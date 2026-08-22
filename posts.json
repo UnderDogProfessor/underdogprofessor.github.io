@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.08",
+      "title": "The rescue email arrives before the breach is public",
+      "url": "https://cyberneticsintern.com/blog/ransom-busters-fake-recovery-service/"
+    },
+    {
+      "date": "2026.08",
+      "title": "A CVSS 10.0 you cannot patch",
+      "url": "https://cyberneticsintern.com/blog/entra-id-cve-2026-69836-cloud-kev/"
+    },
+    {
+      "date": "2026.08",
+      "title": "The AI picked the targets. People did the breaking in.",
+      "url": "https://cyberneticsintern.com/blog/autonomous-ai-campaign-cve-2026-33824/"
+    },
+    {
+      "date": "2026.08",
+      "title": "Ray's browser guard was one string comparison",
+      "url": "https://cyberneticsintern.com/blog/ray-cve-2025-62593-browser-guard/"
+    },
+    {
+      "date": "2026.08",
+      "title": "Patched July 29, compromised by August 5",
+      "url": "https://cyberneticsintern.com/blog/vcenter-cve-2026-59310-mass-exploitation/"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tuning is scoping, not deleting | Cybernetic Intern</title><meta name="description" content="Suppressing an alert hides the noise and the attack together. Narrowing the rule removes only the noise, and leaves a record of what you decided."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/tuning-is-scoping-not-deleting/"><meta property="og:type" content="article"><meta property="og:title" content="Tuning is scoping, not deleting | Cybernetic Intern"><meta property="og:description" content="Suppressing an alert hides the noise and the attack together. Narrowing the rule removes only the noise, and leaves a record of what you decided."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/tuning-is-scoping-not-deleting/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-08-20T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Tuning is scoping, not deleting","description":"Suppressing an alert hides the noise and the attack together. Narrowing the rule removes only the noise, and leaves a record of what you decided.","url":"https://cyberneticsintern.com/learn/detection/tuning-is-scoping-not-deleting/","datePublished":"2026-08-20T07:00:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-08-20T07:00:00.000Z" data-astro-cid-jh75pjse>August 20, 2026</time></div><h1 data-astro-cid-jh75pjse>Tuning is scoping, not deleting</h1><p class="summary" data-astro-cid-jh75pjse>Suppressing an alert hides the noise and the attack together. Narrowing the rule removes only the noise, and leaves a record of what you decided.</p><div class="prose" data-astro-cid-jh75pjse><p>Every noisy rule gets tuned eventually. The question is whether tuning means
+“see less of this” or “describe the benign case precisely”.</p>
+<p>Suppression is the fast option. Mute the account, silence the host, drop the
+alert. It works immediately and it removes the attack alongside the noise,
+because the thing you muted is often exactly the thing an attacker would use.
+Service accounts are noisy for the same reason they are valuable.</p>
+<p>Scoping is slower and keeps the coverage. Instead of “ignore this account”,
+write “ignore this account when it runs from its own host, during its scheduled
+window, doing its expected action”. Anything outside that shape still alerts.
+You have not removed the detection, you have described normal.</p>
+<p>The second difference matters more over time. A suppression is usually a
+checkbox somewhere with no explanation. A scoped condition lives in the rule,
+in version control, next to a comment saying why. Six months later, somebody can
+read what past-you decided and whether it still holds. Nobody can read a
+checkbox.</p>
+<p>A useful test before you tune: if an attacker knew about this exclusion, could
+they operate inside it? If the honest answer is yes, you suppressed rather than
+scoped.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Exclude that account when it runs from its own host, during its window" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>A rule fires constantly on your backup service account. Which response keeps the most coverage?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Suppress alerts from that account" data-astro-cid-jh75pjse>Suppress alerts from that account</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Lower the rule's severity so it stops paging" data-astro-cid-jh75pjse>Lower the rule&#39;s severity so it stops paging</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Disable the rule and revisit it next quarter" data-astro-cid-jh75pjse>Disable the rule and revisit it next quarter</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Exclude that account when it runs from its own host, during its window" data-astro-cid-jh75pjse>Exclude that account when it runs from its own host, during its window</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Exclude that account when it runs from its own host, during its window</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Suppressing the account blinds you to that account being abused, which is exactly what an attacker would want to use. Narrowing on account plus host plus time removes the routine behaviour while still alerting if the same account acts from somewhere new or at the wrong hour. Severity and disabling both drop coverage without recording why.</p></div></details></div></details><script>(function(){const readKey = "detection/tuning-is-scoping-not-deleting";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
