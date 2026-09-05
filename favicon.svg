@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="SL">
+  <!-- The mark from the Kill Chain design's own thumbnail: initials in the
+       signal colour over the near-black ground, under a rule. -->
+  <rect width="100" height="100" fill="#0d1014"/>
+  <text x="50" y="59" text-anchor="middle"
+        font-family="Barlow Condensed, Arial Narrow, sans-serif"
+        font-weight="600" font-size="34" fill="#94bce3">SL</text>
+  <rect x="30" y="68" width="40" height="2" fill="#5980a6"/>
+</svg>

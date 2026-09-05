@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>You can only hunt as far back as you keep | Cybernetic Intern</title><meta name="description" content="Retention is a detection control that usually gets decided on cost. Searchable retention and stored retention are different numbers."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/retention-is-your-real-lookback/"><meta property="og:type" content="article"><meta property="og:title" content="You can only hunt as far back as you keep | Cybernetic Intern"><meta property="og:description" content="Retention is a detection control that usually gets decided on cost. Searchable retention and stored retention are different numbers."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/retention-is-your-real-lookback/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-09-02T19:30:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"You can only hunt as far back as you keep","description":"Retention is a detection control that usually gets decided on cost. Searchable retention and stored retention are different numbers.","url":"https://cyberneticsintern.com/learn/detection/retention-is-your-real-lookback/","datePublished":"2026-09-02T19:30:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-09-02T19:30:00.000Z" data-astro-cid-jh75pjse>September 2, 2026</time></div><h1 data-astro-cid-jh75pjse>You can only hunt as far back as you keep</h1><p class="summary" data-astro-cid-jh75pjse>Retention is a detection control that usually gets decided on cost. Searchable retention and stored retention are different numbers.</p><div class="prose" data-astro-cid-jh75pjse><p>Retention is a detection control. It is usually written down as a storage
+decision and signed off by someone comparing invoices.</p>
+<p>The shape of the problem is simple. Dwell time for a quiet intrusion is routinely
+measured in weeks. Ninety day retention on the source that would answer your
+question is common, and thirty is not unusual. By the time the incident starts,
+the window you need sits behind the window you have.</p>
+<p>Tiering makes it worse. Many platforms keep recent data hot and searchable, then
+roll older data into cheaper storage that is genuinely retained but not queryable
+without a restore measured in hours or days. “We keep a year” and “I can search a
+year right now, at two in the morning” are different claims, and only one of them
+helps during an incident.</p>
+<p>Retention also varies per source in ways nobody has written down anywhere.
+Firewall at 30 days, endpoint at 90, authentication at 180. Your timeline stops
+at whichever source runs out first, and that is rarely the one you expected.</p>
+<p>For each of your top five sources, write down two numbers: how long the data is
+retained, and how long it stays directly searchable. Where those numbers differ,
+the second one is your real lookback.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="30 days for immediate work, with older data available after a restore" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>Your platform retains 12 months of authentication logs, but only the most recent 30 days are in directly searchable storage. An investigation needs activity from four months ago. What is the honest description of your lookback?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="12 months, because the data is retained and can be produced" data-astro-cid-jh75pjse>12 months, because the data is retained and can be produced</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="4 months, because that is the window the investigation needs" data-astro-cid-jh75pjse>4 months, because that is the window the investigation needs</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="30 days, because anything older is effectively gone" data-astro-cid-jh75pjse>30 days, because anything older is effectively gone</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="30 days for immediate work, with older data available after a restore" data-astro-cid-jh75pjse>30 days for immediate work, with older data available after a restore</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>30 days for immediate work, with older data available after a restore</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Saying 12 months promises an answer you cannot get in the first hours of an incident, and saying 30 days writes off data you actually hold. Both numbers are real and they answer different questions. Plan the live investigation around what you can query now, and start the restore immediately rather than at the point you discover you need it, because the restore is usually the long pole in the timeline.</p></div></details></div></details><script>(function(){const readKey = "detection/retention-is-your-real-lookback";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

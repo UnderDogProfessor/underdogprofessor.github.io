@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The first alert is rarely the first activity | Cybernetic Intern</title><meta name="description" content="An alert timestamps when you noticed, not when it started. An investigation that begins at the alert inherits the attacker's head start."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/the-first-alert-is-rarely-the-first-activity/"><meta property="og:type" content="article"><meta property="og:title" content="The first alert is rarely the first activity | Cybernetic Intern"><meta property="og:description" content="An alert timestamps when you noticed, not when it started. An investigation that begins at the alert inherits the attacker's head start."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/the-first-alert-is-rarely-the-first-activity/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-08-28T19:45:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"The first alert is rarely the first activity","description":"An alert timestamps when you noticed, not when it started. An investigation that begins at the alert inherits the attacker's head start.","url":"https://cyberneticsintern.com/learn/detection/the-first-alert-is-rarely-the-first-activity/","datePublished":"2026-08-28T19:45:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-08-28T19:45:00.000Z" data-astro-cid-jh75pjse>August 28, 2026</time></div><h1 data-astro-cid-jh75pjse>The first alert is rarely the first activity</h1><p class="summary" data-astro-cid-jh75pjse>An alert timestamps when you noticed, not when it started. An investigation that begins at the alert inherits the attacker&#39;s head start.</p><div class="prose" data-astro-cid-jh75pjse><p>An alert has a timestamp, and it is tempting to treat that as the beginning.</p>
+<p>It is not. It is the moment one particular rule matched one particular step of
+something already in progress. Whatever the attacker did to reach that step
+happened earlier, and none of it is inside the window you just opened.</p>
+<p>Scope forward from the alert and you investigate the tail. You will find what
+happened next, close the case, and never learn how they arrived, which is the
+answer you actually needed for two reasons: it tells you whether the entry route
+is still open, and whether anything else came through it.</p>
+<p>So work backwards first. Take the entity in the alert, a host or an account, and
+widen the window until the activity looks ordinary again. Then look at what
+changed just before it stopped looking ordinary.</p>
+<p>The other habit worth building is not trusting the alert’s own account of what
+is interesting. The rule matched one behaviour. The same entity may have done
+five other things that no rule watches, and those are visible in the raw data
+around it if somebody looks.</p>
+<p>Next time you triage, note the alert time, then set your window to start
+twenty-four hours earlier before you begin. Notice how often something is already
+there.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Earlier than 14:00, because the alert marks detection rather than the start" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>An alert fires at 14:00 on a host. Where should the investigation&#39;s time window begin?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Earlier than 14:00, because the alert marks detection rather than the start" data-astro-cid-jh75pjse>Earlier than 14:00, because the alert marks detection rather than the start</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="At 14:00, since that is when malicious activity was confirmed" data-astro-cid-jh75pjse>At 14:00, since that is when malicious activity was confirmed</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="At the beginning of the analyst's shift, for consistency across cases" data-astro-cid-jh75pjse>At the beginning of the analyst&#39;s shift, for consistency across cases</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Wherever log retention begins, since that is the practical limit anyway" data-astro-cid-jh75pjse>Wherever log retention begins, since that is the practical limit anyway</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Earlier than 14:00, because the alert marks detection rather than the start</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> A detection fires on one step of a sequence, and steps came before it. Starting at the alert scopes the investigation to the tail and reliably misses initial access, which is the part that tells you how they got in and whether they are still there. Retention is a boundary you will eventually hit rather than a place to start from, and shift times have nothing to do with when anything happened.</p></div></details></div></details><script>(function(){const readKey = "detection/the-first-alert-is-rarely-the-first-activity";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

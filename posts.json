@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.09",
+      "title": "Failing the key check was enough to get in",
+      "url": "https://cyberneticsintern.com/blog/litellm-mcp-auth-bypass-cve-2026-59822/"
+    },
+    {
+      "date": "2026.09",
+      "title": "Changing a setting was the same as running code",
+      "url": "https://cyberneticsintern.com/blog/papercut-ng-mf-zero-day-cve-2026-81578/"
+    },
+    {
+      "date": "2026.08",
+      "title": "Microsoft blocked device code flow, probably not in your tenant",
+      "url": "https://cyberneticsintern.com/blog/device-code-flow-phishing-entra-conditional-access/"
+    },
+    {
+      "date": "2026.08",
+      "title": "Six CVEs, two deadlines",
+      "url": "https://cyberneticsintern.com/blog/kev-august-26-two-deadlines-privilege-escalation/"
+    },
+    {
+      "date": "2026.08",
+      "title": "Two minutes, ten minutes, twenty minutes",
+      "url": "https://cyberneticsintern.com/blog/tale-of-two-socs-red-team-detection/"
+    }
+  ]
+}

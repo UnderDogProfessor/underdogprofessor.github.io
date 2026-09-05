@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Close reasons are your only feedback | Cybernetic Intern</title><meta name="description" content="Alert volume tells you a rule is loud. Structured close reasons tell you why, and they are written by the people using it."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/close-reasons-are-your-feedback/"><meta property="og:type" content="article"><meta property="og:title" content="Close reasons are your only feedback | Cybernetic Intern"><meta property="og:description" content="Alert volume tells you a rule is loud. Structured close reasons tell you why, and they are written by the people using it."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/close-reasons-are-your-feedback/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-09-02T19:45:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Close reasons are your only feedback","description":"Alert volume tells you a rule is loud. Structured close reasons tell you why, and they are written by the people using it.","url":"https://cyberneticsintern.com/learn/detection/close-reasons-are-your-feedback/","datePublished":"2026-09-02T19:45:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-09-02T19:45:00.000Z" data-astro-cid-jh75pjse>September 2, 2026</time></div><h1 data-astro-cid-jh75pjse>Close reasons are your only feedback</h1><p class="summary" data-astro-cid-jh75pjse>Alert volume tells you a rule is loud. Structured close reasons tell you why, and they are written by the people using it.</p><div class="prose" data-astro-cid-jh75pjse><p>A rule fires. An analyst looks, decides it is benign, closes it. Then what?</p>
+<p>In most teams, nothing. The alert closes into a status field offering “resolved”
+and not much else, the reasoning goes into a free-text note nobody aggregates,
+and the rule keeps firing. The next analyst repeats the work from scratch.</p>
+<p>Close reasons are the only structured signal that travels back from the people
+using a detection to the people writing it. Without them you can measure how many
+alerts a rule produced, which tells you about volume and nothing about quality.
+With them you can see that eighty percent of a rule’s alerts close as expected
+administrative activity, which is a tuning instruction written by your own SOC.</p>
+<p>Keep the list short and make the options mutually exclusive. True positive.
+Benign expected. Benign unexpected. Not enough information to decide. Duplicate
+of an existing case. Five options a tired analyst picks correctly at three in the
+morning beat twenty that get picked at random.</p>
+<p>The fourth one earns its place. “Not enough information” is not the analyst
+failing, it is the alert failing, and a rule that collects those repeatedly needs
+more fields rather than more attention.</p>
+<p>Take your noisiest rule and read the last twenty close notes. If you cannot tell
+why those alerts were closed, that is the finding.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="The rule's scope includes behaviour that is routine in your environment" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>One rule accounts for 30 percent of your alert volume, and 90 percent of its alerts close with the reason &#39;benign expected activity&#39;. What does that most directly tell you?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="The rule is inaccurate and should be disabled" data-astro-cid-jh75pjse>The rule is inaccurate and should be disabled</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The rule's scope includes behaviour that is routine in your environment" data-astro-cid-jh75pjse>The rule&#39;s scope includes behaviour that is routine in your environment</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Analysts are closing alerts too quickly to judge them properly" data-astro-cid-jh75pjse>Analysts are closing alerts too quickly to judge them properly</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The technique it detects is not actually used by attackers" data-astro-cid-jh75pjse>The technique it detects is not actually used by attackers</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>The rule&#39;s scope includes behaviour that is routine in your environment</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Close reasons turn raw volume into a diagnosis. Volume alone could only have told you the rule is loud; ninety percent closing the same way is your SOC telling you, in structured form, exactly which kind of loud. Note that a rule can be perfectly accurate at matching what it was written to match and still be wrong here, because the behaviour is normal in this environment. That is a scoping finding, not an accuracy one.</p></div></details></div></details><script>(function(){const readKey = "detection/close-reasons-are-your-feedback";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

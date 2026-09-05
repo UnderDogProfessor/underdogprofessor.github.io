@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Severity is a routing decision | Cybernetic Intern</title><meta name="description" content="Severity answers what should happen when a rule fires, not how frightening the technique is. The same match is an emergency on one host and noise on another."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/severity-is-a-routing-decision/"><meta property="og:type" content="article"><meta property="og:title" content="Severity is a routing decision | Cybernetic Intern"><meta property="og:description" content="Severity answers what should happen when a rule fires, not how frightening the technique is. The same match is an emergency on one host and noise on another."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/severity-is-a-routing-decision/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-08-25T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Severity is a routing decision","description":"Severity answers what should happen when a rule fires, not how frightening the technique is. The same match is an emergency on one host and noise on another.","url":"https://cyberneticsintern.com/learn/detection/severity-is-a-routing-decision/","datePublished":"2026-08-25T07:00:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-08-25T07:00:00.000Z" data-astro-cid-jh75pjse>August 25, 2026</time></div><h1 data-astro-cid-jh75pjse>Severity is a routing decision</h1><p class="summary" data-astro-cid-jh75pjse>Severity answers what should happen when a rule fires, not how frightening the technique is. The same match is an emergency on one host and noise on another.</p><div class="prose" data-astro-cid-jh75pjse><p>Severity gets decided once, when the rule is written, and then argued about
+forever.</p>
+<p>The argument happens because the question is wrong. “How severe is this
+technique” has no answer without an asset. The same match is an emergency on a
+domain controller and a Tuesday on a build agent that compiles things all night.</p>
+<p>Severity is a routing decision. It answers what should happen when this fires,
+not how alarming the technique sounds in the abstract. Write it that way and the
+tiers define themselves: this one wakes somebody, this one waits for the morning
+queue, this one is recorded and closed without a human ever reading it.</p>
+<p>Which is why an estate where everything is medium has no severity at all. It has
+a field. Medium is what a rule gets when nobody decided what should happen, and a
+tier that never changes the response is decoration.</p>
+<p>The practical version costs one column. Give the rule a base severity, then let
+asset criticality raise or lower it at match time. The same rule fires on a
+domain controller and on a lab box and routes to two different places, without
+you maintaining two rules.</p>
+<p>Go and count what fraction of your rules sit at medium. If it is most of them,
+severity is not doing any work in your programme.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="By what response the match should trigger on that asset" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>The same rule matches on a nightly build agent and on a domain controller. How should severity be set?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="One severity per rule, fixed when the rule is written" data-astro-cid-jh75pjse>One severity per rule, fixed when the rule is written</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="From the ATT&amp;CK technique's own severity rating" data-astro-cid-jh75pjse>From the ATT&amp;CK technique&#39;s own severity rating</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="By what response the match should trigger on that asset" data-astro-cid-jh75pjse>By what response the match should trigger on that asset</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="By how often the rule fires, so noisy rules rank lower" data-astro-cid-jh75pjse>By how often the rule fires, so noisy rules rank lower</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>By what response the match should trigger on that asset</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Severity exists to route work. The same evidence justifies waking somebody at three in the morning for a domain controller and a queue entry for a host that compiles code all night, so one fixed value cannot be right for both. ATT&amp;CK describes what a technique is, not what it means in your estate. Ranking by volume is backwards as well: a noisy rule needs tuning, not demotion.</p></div></details></div></details><script>(function(){const readKey = "detection/severity-is-a-routing-decision";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

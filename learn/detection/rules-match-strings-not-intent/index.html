@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Your rule matches strings, not intent | Cybernetic Intern</title><meta name="description" content="Case, encoding and path variation break literal matches without any help from an attacker. The rule did what you asked, not what you meant."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/rules-match-strings-not-intent/"><meta property="og:type" content="article"><meta property="og:title" content="Your rule matches strings, not intent | Cybernetic Intern"><meta property="og:description" content="Case, encoding and path variation break literal matches without any help from an attacker. The rule did what you asked, not what you meant."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/rules-match-strings-not-intent/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-09-02T19:15:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Your rule matches strings, not intent","description":"Case, encoding and path variation break literal matches without any help from an attacker. The rule did what you asked, not what you meant.","url":"https://cyberneticsintern.com/learn/detection/rules-match-strings-not-intent/","datePublished":"2026-09-02T19:15:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-09-02T19:15:00.000Z" data-astro-cid-jh75pjse>September 2, 2026</time></div><h1 data-astro-cid-jh75pjse>Your rule matches strings, not intent</h1><p class="summary" data-astro-cid-jh75pjse>Case, encoding and path variation break literal matches without any help from an attacker. The rule did what you asked, not what you meant.</p><div class="prose" data-astro-cid-jh75pjse><p>You write a rule for <code>powershell.exe</code>. It matches <code>powershell.exe</code>. It does not
+match <code>PowerShell.EXE</code>, or the same command arriving base64 encoded, or a copy of
+the binary renamed to <code>p.exe</code>.</p>
+<p>The rule did exactly what you asked. You asked for the wrong thing.</p>
+<p>Three mismatches cause most of it. Case, because some backends fold case and some
+do not, and the same query behaves differently after a platform migration.
+Encoding, because a command line can be percent encoded, base64 wrapped, or split
+with quoting that means nothing to the shell and everything to your <code>contains</code>
+test. Path, because matching a full path misses the same binary launched from
+somewhere else, while matching a bare filename catches an unrelated file that
+happens to share it.</p>
+<p>None of this requires clever evasion. Most of it is ordinary variation produced
+by installers, scripts, and people typing.</p>
+<p>Match against the field that is hardest to vary. A hash beats a filename. A
+process name beats a command-line substring. Where you have to match text,
+normalise before you compare: fold case in the pipeline, decode what can be
+decoded, then test.</p>
+<p>Take one string-matching rule and run its pattern against the same event with the
+case changed. If the result differs, you just found a gap that has nothing to do
+with attackers.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Normalise the field to lowercase in the pipeline, then match against it" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>You inherit a rule matching the command-line substring Invoke-WebRequest. Which single change most reduces the chance it misses real activity?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Normalise the field to lowercase in the pipeline, then match against it" data-astro-cid-jh75pjse>Normalise the field to lowercase in the pipeline, then match against it</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Add a second condition matching the same word in title case" data-astro-cid-jh75pjse>Add a second condition matching the same word in title case</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Match on the parent process instead of the command line" data-astro-cid-jh75pjse>Match on the parent process instead of the command line</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Raise the rule's severity so a miss gets noticed sooner" data-astro-cid-jh75pjse>Raise the rule&#39;s severity so a miss gets noticed sooner</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Normalise the field to lowercase in the pipeline, then match against it</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Adding one more capitalisation fixes one variant and leaves every other one open, and you will be adding conditions forever. Normalising the field before comparison handles all capitalisation at once, and because it is a pipeline change rather than a rule change, every detection reading that field benefits. Matching the parent process answers a different question, and severity has no effect on whether the rule matches at all.</p></div></details></div></details><script>(function(){const readKey = "detection/rules-match-strings-not-intent";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://attack.mitre.org/techniques/T1027/" rel="noopener" target="_blank" data-astro-cid-jh75pjse>T1027: Obfuscated Files or Information</a></li></ul></section><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

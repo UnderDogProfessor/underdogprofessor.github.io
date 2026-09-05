@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The detection audit you can run in a week | Cybernetic Intern</title><meta name="description" content="Five checks that tell you whether your detections work, each producing evidence rather than a coverage number. No vendor needed, and none takes a quarter."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/detection-programme-audit-five-checks/"><meta property="og:type" content="article"><meta property="og:title" content="The detection audit you can run in a week | Cybernetic Intern"><meta property="og:description" content="Five checks that tell you whether your detections work, each producing evidence rather than a coverage number. No vendor needed, and none takes a quarter."><meta property="og:url" content="https://cyberneticsintern.com/blog/detection-programme-audit-five-checks/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-08-28T09:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The detection audit you can run in a week","description":"Five checks that tell you whether your detections work, each producing evidence rather than a coverage number. No vendor needed, and none takes a quarter.","datePublished":"2026-08-28T09:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/detection-programme-audit-five-checks/"},"keywords":"detection programme audit, detection engineering maturity, detection coverage measurement, SOC detection validation, event logging best practices, ATT&CK detection strategies","citation":[{"@type":"CreativeWork","name":"ASD's ACSC, CISA, FBI, and NSA, with the support of International Partners Release Best Practices for Event Logging and Threat Detection","url":"https://www.cisa.gov/news-events/alerts/2024/08/21/asds-acsc-cisa-fbi-and-nsa-support-international-partners-release-best-practices-event-logging-and"},{"@type":"CreativeWork","name":"Updates: October 2025 (ATT&CK v18)","url":"https://attack.mitre.org/resources/updates/updates-october-2025/"},{"@type":"CreativeWork","name":"Data Sources","url":"https://attack.mitre.org/datasources/"},{"@type":"CreativeWork","name":"Logging Made Easy","url":"https://www.cisa.gov/resources-tools/services/logging-made-easy"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does this actually take?","acceptedAnswer":{"@type":"Answer","text":"The first four checks are a day of work each at most, and less if your data is in one place. The fifth is longer because it usually surfaces process problems rather than technical ones. The point of framing it as a week is that none of this needs a project, a budget line, or a vendor engagement. If a check cannot be run in a day, the answer to that check is almost certainly no."}},{"@type":"Question","name":"We have a coverage percentage from our platform. Is that not the same thing?","acceptedAnswer":{"@type":"Answer","text":"It answers a different question. A coverage number counts rules that exist and carry a label. None of these five checks can be passed by a rule existing. They ask whether data arrives, whether the rule still matches, whether it has ever fired, how long it takes, and whether anybody acts. A programme can score highly on coverage and fail all five."}},{"@type":"Question","name":"What if the answers are bad?","acceptedAnswer":{"@type":"Answer","text":"Then you have found the work, which is the purpose. Bad answers here are more useful than good ones because they are specific: this log source has been silent for eleven days, these forty rules have never fired, this alert takes ninety minutes to reach a human. Those are fixable statements. A vague sense that detection could be better is not."}},{"@type":"Question","name":"Does this replace purple teaming or breach and attack simulation?","acceptedAnswer":{"@type":"Answer","text":"No, and it is not competing with them. Those exercise detections against adversary behaviour, which is a stronger test than anything here. This is the layer underneath: whether the plumbing works at all. Running an attack simulation against a pipeline that has been dropping a log source for a fortnight tells you something you could have learned for free."}},{"@type":"Question","name":"Our detections are in a vendor platform we cannot export. Does any of this apply?","acceptedAnswer":{"@type":"Answer","text":"The first four do, because they are about behaviour rather than authorship. The fifth is harder, and that difficulty is itself the finding. If you cannot answer what a rule looked like six months ago, you have a dependency worth naming in a risk register rather than a detail worth shrugging at."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"The detection audit you can run in a week","item":"https://cyberneticsintern.com/blog/detection-programme-audit-five-checks/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>Detection</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Defensive guide</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-08-28T09:00:00.000Z" data-astro-cid-jo55ryrt>August 28, 2026</time></div><h1 data-astro-cid-jo55ryrt>The detection audit you can run in a week</h1><p class="standfirst" data-astro-cid-jo55ryrt>Five checks that tell you whether your detections work, each producing evidence rather than a coverage number. No vendor needed, and none takes a quarter.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Anyone who owns detections and has been asked how good they are, plus analysts who suspect the coverage number on the slide is softer than it sounds.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p>Somebody asks how good your detection is. You have a number ready, and if you are
+honest, you know the number is softer than it sounds when you say it out loud.</p>
+<p>The number counts rules that exist and carry a label. That is easy to measure,
+which is why it gets measured. Whether any of those rules would catch anything is
+hard to measure, and it is the only part the person asking cares about.</p>
+<p>Here are five checks that produce evidence instead. None needs a vendor, a budget
+line or a quarter.</p>
+<h2 id="the-core-issue">The core issue</h2>
+<p>Every detection is a chain of assumptions, and a coverage number tests none of
+them.</p>
+<p>The event has to be generated. It has to reach your platform. The rule has to
+still match the shape of the data. It has to run often enough to matter. And when
+it fires, somebody has to see it and know what to do.</p>
+<p>A rule can exist, be well written, carry a technique label, and fail at any one of
+those points without producing a single symptom. The console stays green either
+way, because nothing in the console is watching the chain. It is watching the
+rule.</p>
+<p>That is why detection programmes tend to degrade quietly rather than break
+loudly, and why the degradation is usually discovered during an incident.</p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p><strong>The failure mode is silence, and silence reads as success.</strong> A broken detection
+and a working detection with nothing to catch produce identical output: nothing.
+Every other part of a security programme fails noisily. This one does not, so it
+needs deliberate checking in a way that a firewall or a backup does not.</p>
+<p><strong>Coverage numbers create a false sense of position.</strong> They are not dishonest,
+they are answering a question about configuration and being read as an answer
+about capability. The gap between those two things is where the incident happens.</p>
+<p><strong>The frameworks moved and most programmes have not noticed.</strong><span class="cite-run"> If your coverage
+model is built on ATT&amp;CK data sources, that model was deprecated. In the October
+2025 release MITRE states that detections in techniques have been replaced with
+Detection Strategies, and data sources were deprecated across the Enterprise,
+Mobile and ICS domains <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. The data sources page carries the deprecation notice
+<a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. Anything built on that structure is now built on something MITRE has moved
+on from.</span></p>
+<p>I went to cite the old model and found it retired. That is worth checking against
+your own tooling before you next present a coverage slide.</p>
+<h2 id="technical-breakdown-the-five-checks">Technical breakdown: the five checks</h2>
+<p>Run them in order. Each one is cheap, each produces a written answer, and each is
+useless as a feeling.</p>
+<h3 id="1-does-the-data-still-arrive">1. Does the data still arrive?</h3>
+<p><strong>The check.</strong> For every log source feeding a detection, find the most recent
+event. Not the source’s health status, the actual newest record. Sort ascending
+and look at the bottom of the list.</p>
+<p><strong>What bad looks like.</strong> Any source whose newest event is older than its normal
+interval. A source that reports healthy while sending nothing is common, because
+health usually means the connection is up rather than that data is flowing.</p>
+<p>Most detections fire when something bad arrives, and almost none fire when nothing
+arrives at all, which is the state an attacker is working towards. That asymmetry
+is covered in
+<a href="/learn/detection/alert-on-log-source-silence/">alerting on log source silence</a>.</p>
+<p><span class="cite-run">The joint guidance from ASD’s ACSC, CISA, FBI, NSA and international partners
+makes centralised logging a baseline rather than an aspiration, and frames it
+around living off the land techniques, where the absence of malware means the log
+is the only evidence there is <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<h3 id="2-does-the-rule-still-match-the-data">2. Does the rule still match the data?</h3>
+<p><strong>The check.</strong> Take a sample of rules and, for each condition, confirm the field
+it references still exists and still carries the values the rule expects. Query
+the field directly rather than reading the rule.</p>
+<p><strong>What bad looks like.</strong> A field that returns nothing. A rule matching a field
+that no longer exists does not error, it matches nothing, and the rule stays
+enabled and green throughout. This is the quietest failure in the whole chain and
+it usually arrives with a vendor upgrade. See
+<a href="/learn/detection/why-the-same-field-has-three-names/">why the same field has three names</a>.</p>
+<p>While you are there, confirm the data exists at all. A rule that reads process
+command lines is inert if command line logging was never enabled, and that is a
+setting rather than a default on most estates. More in
+<a href="/learn/detection/you-cannot-detect-what-you-never-collected/">you cannot detect what you never collected</a>.</p>
+<h3 id="3-has-it-ever-fired-and-did-anyone-check-on-purpose">3. Has it ever fired, and did anyone check on purpose?</h3>
+<p><strong>The check.</strong> Sort every rule by the date it last fired. Then pick your ten
+highest-value rules and either search historical data for the pattern they
+describe, or generate the benign version of the behaviour in a controlled place
+and watch what happens.</p>
+<p><strong>What bad looks like.</strong> Rules with no last-fired date at all. Those are not quiet
+successes, they are unanswered questions, because a working rule and a broken one
+look the same from the console. The reasoning is in
+<a href="/learn/detection/an-untested-detection-is-a-hypothesis/">an untested detection is a hypothesis</a>.</p>
+<p>Test the whole path, not the match. A rule matching is not the same as somebody
+seeing an alert, and the pipeline, the routing and whatever suppression exists all
+sit in between.</p>
+<h3 id="4-how-long-does-it-actually-take">4. How long does it actually take?</h3>
+<p><strong>The check.</strong> For each of your top detections, find the ingest delay on its source
+and add the schedule interval. Write the total next to the rule.</p>
+<p>Ingest delay is rarely documented anywhere, so measure it rather than asking.
+Most platforms record both the time an event happened and the time it was
+indexed. Subtract one from the other across a day of data and take the worst
+case, not the average, because the worst case is what an attacker gets.</p>
+<p><strong>What bad looks like.</strong> Any total you have never calculated, which is most of
+them. A rule scheduled hourly against a source running fifteen minutes behind can
+be seventy five minutes behind reality, and neither number describes that on its
+own. Whether that is acceptable depends entirely on what it is chasing, which is
+the point:
+<a href="/learn/detection/a-detection-has-two-clocks/">a detection has two clocks</a>.</p>
+<p>This is the check most teams have never run, and it is the one that most often
+changes a roadmap. A detection slower than the attack it describes is
+documentation.</p>
+<h3 id="5-when-it-fires-does-the-right-thing-happen">5. When it fires, does the right thing happen?</h3>
+<p><strong>The check.</strong> Take twenty recent alerts. For each, count how many separate
+consoles an analyst had to open to close it, and confirm the severity matched what
+should have happened rather than how alarming the technique sounds.</p>
+<p><strong>What bad looks like.</strong> Alerts that begin with a pivot, because every field the
+alert omits gets rebuilt by hand once per firing. A rule firing twenty times a day
+with sparse context is a two hundred minute problem rather than a twenty alert
+problem. See
+<a href="/learn/detection/the-cost-of-an-alert-is-the-pivot/">the cost of an alert is the pivot</a>.</p>
+<p>Also bad: an estate where almost everything is medium. That is not a severity
+scheme, it is a field. Severity should answer what happens when this fires, which
+is why the same match can be an emergency on a domain controller and routine on a
+build agent. More in
+<a href="/learn/detection/severity-is-a-routing-decision/">severity is a routing decision</a>.</p>
+<h3 id="the-sixth-question-which-is-really-about-the-other-five">The sixth question, which is really about the other five</h3>
+<p>Can you prove what any of this looked like six months ago?</p>
+<p>If detections live only in a console, the answer is no. There is no history, so a
+broken rule cannot be traced to the edit that broke it, and an incident review
+asking whether a rule was live in March gets a guess.
+<a href="/learn/detection/detections-belong-in-version-control/">Detections belong in version control</a>,
+and the migration is unpleasant if you wait and nearly free if you start with the
+next rule you write.</p>
+<p>There is no attack-chain diagram in this post because there is no adversary
+sequence in it. This is the plumbing underneath the diagrams.</p>
+<h2 id="what-defenders-should-do-monday-morning">What defenders should do Monday morning</h2>
+<p><strong>Immediate, within 24 hours.</strong> Run check one against every source feeding a
+detection you would name in a board report. It is a single query per source and it
+is the only check that can find a problem that is currently active. If you find a
+silent source, that is an incident until proven otherwise.</p>
+<p><strong>Near term, this week.</strong> Run checks two through four and write the answers down
+in one place. Resist fixing anything until all three are done, because the value
+is in seeing the pattern rather than in the individual findings. Teams that fix as
+they go usually stop after the first interesting thing.</p>
+<p><strong>Structural, this quarter.</strong><span class="cite-run"> Make checks one and three continuous rather than
+annual: alert on source silence, and record the last-fired date for every rule
+where somebody will see it. Then decide what your coverage number is actually
+allowed to claim, and change how it is reported if the honest version is smaller.
+If you are a small team with no central logging at all, CISA publishes Logging
+Made Easy as a free log management option aimed at exactly that gap <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>.</span></p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>Newest actual event confirmed for every source feeding a named detection</li>
+<li>Alerting in place for source silence, not only for source health</li>
+<li>Fields referenced by sampled rules confirmed to exist and carry expected values</li>
+<li>Command line and other optional logging confirmed enabled where rules depend on it</li>
+<li>Every rule has a last-fired date, and rules with none are listed</li>
+<li>Top ten detections tested end to end, through routing, not only matched</li>
+<li>Ingest delay plus schedule interval calculated and recorded per key detection</li>
+<li>Twenty recent alerts measured for how many consoles a close required</li>
+<li>Severity distribution checked, and a mostly-medium estate treated as a finding</li>
+<li>Detections in version control, or a dated plan to get them there</li>
+<li>Coverage reporting reworded to claim only what the evidence supports</li>
+</ul>
+<h2 id="why-nobody-runs-these">Why nobody runs these</h2>
+<p>None of this is difficult. That is the uncomfortable part.</p>
+<p>Every check above is a query, a sort, or a count, and none needs a product nobody
+owns. They go unrun because they produce numbers that are worse than the number
+currently on the slide, and because there is no external forcing function. Nobody
+audits whether your detections work. Regulators ask whether you have a SIEM.
+Frameworks ask whether you map to techniques. Both questions are about existence,
+and existence is exactly what these five checks refuse to accept as an answer.</p>
+<p>So the incentive runs the wrong way, and the profession has quietly agreed to
+measure the thing that is easy instead of the thing that matters. A coverage
+percentage is a statement about your configuration. It has never been a statement
+about what would happen.</p>
+<p>The five answers are worse. They are also true, and they are the only version of
+this you can defend when somebody eventually asks whether the detection worked.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>How long does this actually take?</dt><dd data-astro-cid-jo55ryrt>The first four checks are a day of work each at most, and less if your data is in one place. The fifth is longer because it usually surfaces process problems rather than technical ones. The point of framing it as a week is that none of this needs a project, a budget line, or a vendor engagement. If a check cannot be run in a day, the answer to that check is almost certainly no.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>We have a coverage percentage from our platform. Is that not the same thing?</dt><dd data-astro-cid-jo55ryrt>It answers a different question. A coverage number counts rules that exist and carry a label. None of these five checks can be passed by a rule existing. They ask whether data arrives, whether the rule still matches, whether it has ever fired, how long it takes, and whether anybody acts. A programme can score highly on coverage and fail all five.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>What if the answers are bad?</dt><dd data-astro-cid-jo55ryrt>Then you have found the work, which is the purpose. Bad answers here are more useful than good ones because they are specific: this log source has been silent for eleven days, these forty rules have never fired, this alert takes ninety minutes to reach a human. Those are fixable statements. A vague sense that detection could be better is not.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Does this replace purple teaming or breach and attack simulation?</dt><dd data-astro-cid-jo55ryrt>No, and it is not competing with them. Those exercise detections against adversary behaviour, which is a stronger test than anything here. This is the layer underneath: whether the plumbing works at all. Running an attack simulation against a pipeline that has been dropping a log source for a fortnight tells you something you could have learned for free.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Our detections are in a vendor platform we cannot export. Does any of this apply?</dt><dd data-astro-cid-jo55ryrt>The first four do, because they are about behaviour rather than authorship. The fifth is harder, and that difficulty is itself the finding. If you cannot answer what a rule looked like six months ago, you have a dependency worth naming in a risk register rather than a detail worth shrugging at.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>This is a practitioner guide rather than incident reporting, so most of it is working knowledge rather than sourced claim, and I have cited only the things that are externally checkable. The ATT&amp;CK change is one of those and worth stating carefully: MITRE&#39;s own October 2025 release notes say detections in techniques have been replaced with Detection Strategies and that data sources were deprecated across all three domains. Those notes do not define Detection Strategies against Analytics, do not mention Log Sources, and give no removal timeline, all of which appear in vendor summaries of the release rather than in MITRE&#39;s text. I have reported only what MITRE states. I could not open the joint event logging guidance PDF itself, which returned 403 to every method I tried, so I cite CISA&#39;s announcement of it and describe only what that page says. No employer or customer environments informed any part of this.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cisa.gov/news-events/alerts/2024/08/21/asds-acsc-cisa-fbi-and-nsa-support-international-partners-release-best-practices-event-logging-and" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>ASD&#39;s ACSC, CISA, FBI, and NSA, with the support of International Partners Release Best Practices for Event Logging and Threat Detection</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cybersecurity and Infrastructure Security Agency (CISA) · Published August 21, 2024 · Accessed August 22, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://attack.mitre.org/resources/updates/updates-october-2025/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Updates: October 2025 (ATT&amp;CK v18)</a><span class="meta mono" data-astro-cid-j6o3mlwn>MITRE ATT&amp;CK · Published October 1, 2025 · Accessed August 22, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://attack.mitre.org/datasources/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Data Sources</a><span class="meta mono" data-astro-cid-j6o3mlwn>MITRE ATT&amp;CK · Accessed August 22, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cisa.gov/resources-tools/services/logging-made-easy" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Logging Made Easy</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cybersecurity and Infrastructure Security Agency (CISA) · Accessed August 22, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20The%20detection%20audit%20you%20can%20run%20in%20a%20week" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

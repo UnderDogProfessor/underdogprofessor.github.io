@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Detections belong in version control | Cybernetic Intern</title><meta name="description" content="A rule edited in a console has no history, no review and no way back. The same rule in a repository answers who changed it, when, and what it looked like before."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/detections-belong-in-version-control/"><meta property="og:type" content="article"><meta property="og:title" content="Detections belong in version control | Cybernetic Intern"><meta property="og:description" content="A rule edited in a console has no history, no review and no way back. The same rule in a repository answers who changed it, when, and what it looked like before."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/detections-belong-in-version-control/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-08-21T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Detections belong in version control","description":"A rule edited in a console has no history, no review and no way back. The same rule in a repository answers who changed it, when, and what it looked like before.","url":"https://cyberneticsintern.com/learn/detection/detections-belong-in-version-control/","datePublished":"2026-08-21T07:00:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DQbQI5eC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-08-21T07:00:00.000Z" data-astro-cid-jh75pjse>August 21, 2026</time></div><h1 data-astro-cid-jh75pjse>Detections belong in version control</h1><p class="summary" data-astro-cid-jh75pjse>A rule edited in a console has no history, no review and no way back. The same rule in a repository answers who changed it, when, and what it looked like before.</p><div class="prose" data-astro-cid-jh75pjse><p>Most detection content is written in a console. You open the rule, edit the
+query, save. It works, and it costs you every property that makes engineering
+survivable.</p>
+<p>There is no history, so when coverage breaks you cannot see the edit that broke
+it. There is no review, so a change reaches production the moment one person
+saves it. There is no rollback, only reconstruction from memory. And there is no
+way to know what your detections looked like on the day of an incident, which
+is the question that comes up in the review afterwards.</p>
+<p>Detection as code is not a tooling purchase. It is keeping rules in files, in a
+repository, changed through pull requests. The rest is optional.</p>
+<p>What you get is not exciting until you need it. A rule stops matching and you
+can <code>git log</code> the file. A change goes out and somebody else read it first. An
+incident review asks whether the rule was live in March and the answer is a
+commit hash rather than a guess.</p>
+<p>The migration is unpleasant if you wait, because exporting a few hundred
+console-authored rules is nobody’s good week. It is nearly free if you start
+with the next rule you write.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="The rule's commit history, showing each change and its author" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>Coverage for a technique quietly stopped working three weeks ago. Which setup lets you find out why?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="The rule's commit history, showing each change and its author" data-astro-cid-jh75pjse>The rule&#39;s commit history, showing each change and its author</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The console's last-modified timestamp on the rule" data-astro-cid-jh75pjse>The console&#39;s last-modified timestamp on the rule</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The alert volume graph for the last month" data-astro-cid-jh75pjse>The alert volume graph for the last month</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="A backup of the rule taken last night" data-astro-cid-jh75pjse>A backup of the rule taken last night</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>The rule&#39;s commit history, showing each change and its author</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> A timestamp tells you something changed but not what or why. A volume graph tells you when it stopped but not the cause. Last night&#39;s backup already contains the broken version. Only a change history shows the edit that did it, who made it, and what the working version looked like.</p></div></details></div></details><script>(function(){const readKey = "detection/detections-belong-in-version-control";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
