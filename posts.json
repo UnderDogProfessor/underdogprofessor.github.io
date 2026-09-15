@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.09",
+      "title": "Publish first, verify later",
+      "url": "https://cyberneticsintern.com/blog/rubygems-publish-first-verify-later/"
+    },
+    {
+      "date": "2026.09",
+      "title": "The second entrance had no lock",
+      "url": "https://cyberneticsintern.com/blog/cwe-288-alternate-path-cisco-citrix-kev/"
+    },
+    {
+      "date": "2026.09",
+      "title": "The backdoor called itself chronyd",
+      "url": "https://cyberneticsintern.com/blog/stylesmuggler-magento-cve-2026-75650/"
+    },
+    {
+      "date": "2026.09",
+      "title": "You cannot rotate a driver's licence",
+      "url": "https://cyberneticsintern.com/blog/idscan-nexus-driver-licence-leak/"
+    },
+    {
+      "date": "2026.09",
+      "title": "Failing the key check was enough to get in",
+      "url": "https://cyberneticsintern.com/blog/litellm-mcp-auth-bypass-cve-2026-59822/"
+    }
+  ]
+}
