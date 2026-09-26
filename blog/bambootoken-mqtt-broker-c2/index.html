@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The implant never connected to the attacker | Cybernetic Intern</title><meta name="description" content="BambooToken runs command and control over MQTT. The host connects to a broker, the operator connects to the same broker, and the two never meet."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/bambootoken-mqtt-broker-c2/"><meta property="og:type" content="article"><meta property="og:title" content="The implant never connected to the attacker | Cybernetic Intern"><meta property="og:description" content="BambooToken runs command and control over MQTT. The host connects to a broker, the operator connects to the same broker, and the two never meet."><meta property="og:url" content="https://cyberneticsintern.com/blog/bambootoken-mqtt-broker-c2/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-09-17T00:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The implant never connected to the attacker","description":"BambooToken runs command and control over MQTT. The host connects to a broker, the operator connects to the same broker, and the two never meet.","datePublished":"2026-09-17T00:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/bambootoken-mqtt-broker-c2/"},"keywords":"BambooToken MQTT C2, MQTT command and control detection, DLL side-loading Tendyron OnKey, broker-based C2, MQTT port 1883 8883 firewall, Black Lotus Labs BambooToken","citation":[{"@type":"CreativeWork","name":"The banana stand: brokering and managing infections across Asia using MQTT","url":"https://www.lumen.com/blog/en-us/the-banana-stand-brokering-and-managing-infections-across-asia-using-mqtt"},{"@type":"CreativeWork","name":"Service Name and Transport Protocol Port Number Registry","url":"https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.txt"},{"@type":"CreativeWork","name":"Hijack Execution Flow: DLL (T1574.001)","url":"https://attack.mitre.org/techniques/T1574/001/"},{"@type":"CreativeWork","name":"BambooToken Malware Uses MQTT to Control Windows and Linux Systems","url":"https://thehackernews.com/2026/09/bambootoken-malware-uses-mqtt-to.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is MQTT and why would malware use it?","acceptedAnswer":{"@type":"Answer","text":"MQTT is a lightweight publish and subscribe messaging protocol built for telemetry between devices and controllers, registered by IANA on port 1883 and on 8883 for the TLS variant. Malware benefits from it because publish and subscribe puts a broker in the middle. The infected host publishes to and subscribes from the broker, the operator does the same, and neither ever opens a connection to the other. That removes the attacker-owned endpoint that most command and control detection is built to find."}},{"@type":"Question","name":"Is blocking ports 1883 and 8883 enough?","acceptedAnswer":{"@type":"Answer","text":"No, and the campaign shows why. Lumen recorded C2 activity on 1883, 8883 and 2883. IANA assigns 1883 and 8883 to MQTT, but 2883 is registered to something else entirely, so a rule written against the well-known MQTT ports catches two of the three and misses the third. Port numbers are a convention, not a constraint. The rule has to identify the protocol."}},{"@type":"Question","name":"Was this a supply chain attack?","acceptedAnswer":{"@type":"Answer","text":"Two different things are being called that. Lumen states it does not assess that Tendyron's code-signing certificate or build environment was compromised, and that a variant masquerading as another vendor fails signature validation outright, so the malware did not arrive through a compromised supplier. What the report does raise is supply chain reach at the victim end: the compromised estate included a GitLab server, a software development company and several mobile application backends, which are suppliers to somebody else."}},{"@type":"Question","name":"We have no IoT devices. Does that make this easier or harder to catch?","acceptedAnswer":{"@type":"Answer","text":"Easier, and it is the best position to be in. MQTT leaving a network with no IoT or telemetry estate has no legitimate explanation, which makes it a high quality signal with almost no tuning burden. The hard case is an organisation that does run MQTT legitimately, because there the question becomes which brokers are sanctioned and which hosts have any business talking to one."}},{"@type":"Question","name":"How was any of this found if the traffic looks ordinary?","acceptedAnswer":{"@type":"Answer","text":"Not by the network in the first instance. Lumen found an undocumented sample uploaded to VirusTotal in early 2026 and worked outwards from it, then used its own network telemetry to identify infected estates. The report also describes a compiler flag the developer failed to set, which left unused strings in the binary naming capabilities that do not run in the analysed samples."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"The implant never connected to the attacker","item":"https://cyberneticsintern.com/blog/bambootoken-mqtt-broker-c2/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>Threat intel</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Technical analysis</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-09-17T00:00:00.000Z" data-astro-cid-jo55ryrt>September 17, 2026</time></div><h1 data-astro-cid-jo55ryrt>The implant never connected to the attacker</h1><p class="standfirst" data-astro-cid-jo55ryrt>BambooToken runs command and control over MQTT. The host connects to a broker, the operator connects to the same broker, and the two never meet.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Detection engineers, network defenders and anyone whose C2 detection assumes the infected host eventually connects to something the attacker owns.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p><span class="cite-run">At the bottom of Lumen’s report on BambooToken is an indicator list, and the
+command and control servers are given with their ports <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Three of them are
+tagged MQTT: 1883, 8883, and 2883.</span></p>
+<p>I looked the numbers up, because two of them I recognised and one I did not.</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>IANA assignment</th>
+<th><span class="cite-run">Observed use <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1883</td>
+<td><code>mqtt</code>, registered to OASIS</td>
+<td>MQTT C2</td>
+</tr>
+<tr>
+<td>8883</td>
+<td><code>secure-mqtt</code>, registered to OASIS</td>
+<td>MQTT C2 over TLS</td>
+</tr>
+<tr>
+<td>2883</td>
+<td><code>ndnp</code>, nothing to do with MQTT</td>
+<td>MQTT C2</td>
+</tr>
+</tbody>
+</table>
+<p><span class="cite-run">IANA assigns 2883 to an unrelated service <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. The malware runs MQTT on it
+anyway, which is entirely allowed, because a port registration is a convention
+and not a constraint. That small mismatch is the practical half of this story.
+The other half is stranger, and it is that the infected machines in this
+campaign never connected to the attacker at all.</span></p>
+<h2 id="what-happened">What happened</h2>
+<p><span class="cite-run">On September 15, 2026, Lumen’s Black Lotus Labs published research on a malware
+family it named BambooToken, found as an undocumented sample uploaded to
+VirusTotal in early 2026 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Working backwards from it, the team dated the
+framework to at least February 2023 and tracked activity through July 2026 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">Lumen’s telemetry put roughly a dozen compromised enterprise estates in Asia and
+South America: backend servers for several mobile applications, a GitLab server
+in Hong Kong, a Vietnamese company building a portable lifestyle device, a hotel
+in Vietnam, a biomedical company in Argentina, a legal firm in Chile, a
+cryptocurrency website in Lithuania, and a finance organisation in Malaysia <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p>The interesting part is how the malware changed.</p>
+<p><span class="cite-run">The February 2023 version spoke HTTP, the way most implants do. By the 2024 and
+2025 builds it had moved its command channel onto MQTT, and a Linux build first
+seen in December 2025 uses MQTT with a wider set of topics <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. So this is a
+family that had a working command channel and deliberately replaced it.</span></p>
+<p><span class="cite-run">MQTT is a publish and subscribe protocol, built for telemetry between devices
+and controllers. Nothing sends a message to anything directly. Publishers send
+to a named topic on a central broker, subscribers receive from that topic, and
+the broker sits between them <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. IANA registers it on 1883, with the TLS
+variant on 8883 <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p><span class="cite-run">Applied to an implant, that architecture has an effect Lumen names plainly: the
+compromised machine never communicates directly with the C2 server <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p>Most command and control detection assumes a link that broker-based C2 deletes.</p>
+<p>Think about what the standard approaches actually key on. Reputation blocking
+needs a destination the attacker owns. Beacon analysis needs a repeating
+conversation with one suspicious endpoint. Threat intelligence feeds distribute
+attacker infrastructure so you can match against it. Domain age and registration
+heuristics assume the attacker registered something. Every one of those is
+looking for a connection between the victim and the adversary.</p>
+<p>In publish and subscribe there is no such connection. The victim connects to a
+broker. The operator connects to a broker. Both of those are ordinary outbound
+sessions to a piece of messaging infrastructure, and the two parties never
+appear in the same flow record.</p>
+<p><span class="cite-run">Takedown gets harder in the same way. Seizing a C2 domain removes the attacker’s
+control plane. A broker is a different proposition, because it is generic
+infrastructure and because in this campaign the domains sat behind Cloudflare as
+a proxy <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">There is a second-order problem worth naming. One of the C2 domains reached
+Cloudflare Radar’s top 500,000 domains in December 2025, and the older one was
+in the top million at the peak of the earlier campaign <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Popularity rankings
+get used as a reputation input on the reasonable theory that widely visited
+domains are usually legitimate. A domain with enough infected hosts checking into
+it earns that ranking honestly.</span></p>
+<h2 id="technical-breakdown">Technical breakdown</h2>
+<p>The enterprise intrusions run like this. Lumen describes a second, separate
+cluster of small network devices reached by internet scanning, which I have kept
+out of the chain below rather than fuse two different entry routes into one
+picture.</p>
+<figure class="attack-chain"><figcaption class="chain-cap">ATTACK CHAIN</figcaption><ol><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">01</span><div class="chain-body"><span class="chain-label">Initial access</span><span class="chain-detail">A malicious DLL is planted beside a legitimately signed USB-token utility, which loads it when the program starts</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Restrict library loading so processes cannot load modules from user-writable directories, MITRE M1044, and apply execution prevention, M1038. Alert when a signed vendor binary loads a module that is unsigned or absent from your software inventory.</div></details></div></li><li class="chain-step"><span class="chain-num" aria-hidden="true">02</span><div class="chain-body"><span class="chain-label">Execution</span><span class="chain-detail">The agent decodes an embedded GUID, uses it as a mutex so only one copy runs, and reads an optional configuration file dropped alongside it</span></div></li><li class="chain-step"><span class="chain-num" aria-hidden="true">03</span><div class="chain-body"><span class="chain-label">Discovery</span><span class="chain-detail">WMI queries collect operating system details, product key, serial number and licensing state, while a plugin enumerates installed antivirus products on a five second loop</span></div></li><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">04</span><div class="chain-body"><span class="chain-label">Command and control</span><span class="chain-detail">The host opens an outbound session to an MQTT broker and subscribes to topics scoped to its own GUID</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Block outbound MQTT at the perimeter wherever no IoT or telemetry estate justifies it, and write the rule against the identified protocol rather than the port number. Two of the three ports observed here are the registered MQTT ports and the third is not.</div></details></div></li><li class="chain-step"><span class="chain-num" aria-hidden="true">05</span><div class="chain-body"><span class="chain-label">Execution</span><span class="chain-detail">The operator publishes to those topics, and handlers named SHELL and FILEEX spawn a command shell or move files</span></div></li><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">06</span><div class="chain-body"><span class="chain-label">Collection</span><span class="chain-detail">Host data and files are returned by publishing back to the broker, never to the operator</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Alert on sustained outbound sessions carrying steady small payloads to a single external endpoint, and review large transfers out of the network even when the destination geolocates nearby.</div></details></div></li></ol></figure>
+<h3 id="the-topics-are-the-addressing">The topics are the addressing</h3>
+<p><span class="cite-run">Each agent embeds a GUID and subscribes to a small set of topics built from it,
+alongside a global broadcast topic used to reach every implant at once <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. The
+Windows build subscribes to four, the later Linux build to five <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">That structure is worth understanding because it explains the operator’s
+ergonomics. Publishing to the global topic reaches the whole estate. Publishing
+to a GUID-scoped topic reaches exactly one host. The operator needs no inbound
+connectivity to the victim and no port open on the victim side, and Lumen notes
+the broker must approve a subscription before the subscriber receives anything,
+which keeps casual observers out of the channel <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p>Asynchrony matters too. A host that is offline when a command is published can
+receive it later, so a network outage or a laptop lid does not cost the operator
+the session.</p>
+<h3 id="the-side-loading-stated-precisely">The side-loading, stated precisely</h3>
+<p>The phrase supply chain attaches itself to this campaign easily, and the
+report uses it in one sense while ruling out another. The two lead to different
+remediation, so they are worth separating.</p>
+<p><span class="cite-run">Lumen states it does not assess that Tendyron’s code-signing certificate or
+build environment was compromised, and that the actor appears to be abusing a
+file vulnerable to side-loading which is likely to be present natively in
+targeted networks <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. A second variant masquerading as a Chinese office
+software vendor fails certificate signature validation outright, which means the
+certificate was not used to sign the malicious components <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. The Hacker
+News reported the same distinction from the same research <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. No supplier was
+breached to deliver this.</span></p>
+<p><span class="cite-run">What the report does raise is reach at the victim end. The compromised estate
+included a GitLab server, a software development company and several mobile
+application backends <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Those organisations are suppliers to other
+organisations, which is a real concern and a different one.</span></p>
+<p><span class="cite-run">MITRE files this behaviour under T1574.001, and its description of why it works
+is the clearest one available: side-loading masks actions performed under a
+legitimate, trusted and potentially elevated process, and the benign executable
+used to load the payload may not be flagged during delivery or execution <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>.
+The mitigations that page lists are the ones worth budgeting for, chiefly
+restricting library loading and execution prevention <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>.</span></p>
+<p>A small aside for anyone citing this technique in a report. MITRE has
+consolidated its DLL sub-techniques, and <code>T1574/002</code><span class="cite-run">, the ID many write-ups
+still use for side-loading, now redirects to T1574.001 <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>.</span></p>
+<h3 id="what-a-missed-compiler-flag-gave-away">What a missed compiler flag gave away</h3>
+<p><span class="cite-run">The detail I liked most is a mistake. Lumen found a sample where the developer
+had not set the compilation flags that strip unused code, leaving strings in the
+binary that name capabilities absent from the executing code: a keylogger, a
+clipboard grabber, audio recording, and webcam and desktop capture <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p>None of that runs in the analysed samples. It tells you what the toolkit is for
+anyway, which is surveillance rather than immediate theft, and that fits the
+victim profile better than the current feature set does.</p>
+<p><span class="cite-run">Set against that, the same actor forged PE header metadata claiming a Windows
+Server 2003 and Visual Studio 2005 build environment, and deliberately varied
+the compilation timestamps rather than fixing them to one value, because a
+constant would itself have become a signature <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Careful about the thing that
+gets fingerprinted, careless about the linker settings.</span></p>
+<h2 id="what-defenders-should-do-monday-morning">What defenders should do Monday morning</h2>
+<p><strong>Immediate, today.</strong><span class="cite-run"> Ask whether MQTT should ever leave your network. For most
+enterprises with no IoT estate the answer is no, and that makes it one of the
+cheapest high quality detections available: any outbound MQTT is an incident.
+Check what your egress filtering does with 1883, 8883 and 2883, and then check
+whether your tooling identifies the protocol or only matches the port, because
+this campaign used one port that is not registered to MQTT at all <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a><a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p><strong>Near term, this week.</strong> Hunt for the side-loading pattern rather than the
+sample. Look for signed vendor executables loading DLLs that are unsigned, or
+that do not appear in your software inventory, from directories a user can write
+to. That query finds this campaign and it finds the next one, which is the point
+of writing it against behaviour instead of a filename, a habit covered in
+<a href="/learn/detection/detect-the-behaviour-not-the-tool-name/">detect the behaviour, not the tool name</a>.</p>
+<p><strong>Structural, this quarter.</strong><span class="cite-run"> Audit where your C2 detection gets its confidence.
+If the honest answer is mostly reputation feeds and known-bad infrastructure,
+you are covered against adversaries who own their endpoints and uncovered
+against anyone who rents a middleman. Add at least one detection that keys on
+protocol and volume rather than destination, and make sure large egress gets
+reviewed even when the destination sits in your own region, which Lumen
+specifically calls out <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>Outbound MQTT decision made and written down: permitted, or an incident.</li>
+<li>Egress rules cover 1883, 8883 and non-standard ports, by protocol identification.</li>
+<li>Hunt shipped for signed binaries loading unsigned or unknown DLLs.</li>
+<li>Library loading restricted where the platform supports it, MITRE M1044.</li>
+<li>Alerting on WMI enumeration of installed antivirus products.</li>
+<li>Large outbound transfers reviewed regardless of destination geography.</li>
+<li>At least one C2 detection that does not depend on destination reputation.</li>
+<li>Indicators from the Lumen report ingested, with the caveat that they age.</li>
+</ul>
+<h2 id="the-detection-model-aged-before-the-malware-did">The detection model aged before the malware did</h2>
+<p>BambooToken is not a sophisticated implant by the standards of the field. It
+enumerates a host, spawns a shell, and moves files. The 2023 version did all of
+that over HTTP.</p>
+<p>What changed is the transport, and that single change quietly invalidates a
+category of defence. We have spent a decade building detection around the idea
+that an infected machine eventually talks to something the adversary controls,
+and treating the discovery of that endpoint as the win condition. Broker-based
+C2 does not defeat that idea cleverly. It sidesteps it, by arranging for the
+adversary’s endpoint never to appear in the victim’s traffic at all.</p>
+<p><span class="cite-run">The uncomfortable part is that the fix has been sitting in plain sight and is
+unglamorous. An enterprise with no IoT estate should never see MQTT leave its
+network, and almost nobody alerts on it, because nobody wrote the rule for a
+protocol they had no reason to think about. Three prior campaigns have used MQTT
+for C2 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. This is the fourth, and it will not be the last, because the
+technique’s advantage is structural rather than clever.</span></p>
+<p>Go and find out what your perimeter does with port 1883 this week. The answer
+takes ten minutes and you will either be reassured or you will have found
+something.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>What is MQTT and why would malware use it?</dt><dd data-astro-cid-jo55ryrt>MQTT is a lightweight publish and subscribe messaging protocol built for telemetry between devices and controllers, registered by IANA on port 1883 and on 8883 for the TLS variant. Malware benefits from it because publish and subscribe puts a broker in the middle. The infected host publishes to and subscribes from the broker, the operator does the same, and neither ever opens a connection to the other. That removes the attacker-owned endpoint that most command and control detection is built to find.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Is blocking ports 1883 and 8883 enough?</dt><dd data-astro-cid-jo55ryrt>No, and the campaign shows why. Lumen recorded C2 activity on 1883, 8883 and 2883. IANA assigns 1883 and 8883 to MQTT, but 2883 is registered to something else entirely, so a rule written against the well-known MQTT ports catches two of the three and misses the third. Port numbers are a convention, not a constraint. The rule has to identify the protocol.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Was this a supply chain attack?</dt><dd data-astro-cid-jo55ryrt>Two different things are being called that. Lumen states it does not assess that Tendyron&#39;s code-signing certificate or build environment was compromised, and that a variant masquerading as another vendor fails signature validation outright, so the malware did not arrive through a compromised supplier. What the report does raise is supply chain reach at the victim end: the compromised estate included a GitLab server, a software development company and several mobile application backends, which are suppliers to somebody else.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>We have no IoT devices. Does that make this easier or harder to catch?</dt><dd data-astro-cid-jo55ryrt>Easier, and it is the best position to be in. MQTT leaving a network with no IoT or telemetry estate has no legitimate explanation, which makes it a high quality signal with almost no tuning burden. The hard case is an organisation that does run MQTT legitimately, because there the question becomes which brokers are sanctioned and which hosts have any business talking to one.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>How was any of this found if the traffic looks ordinary?</dt><dd data-astro-cid-jo55ryrt>Not by the network in the first instance. Lumen found an undocumented sample uploaded to VirusTotal in early 2026 and worked outwards from it, then used its own network telemetry to identify infected estates. The report also describes a compiler flag the developer failed to set, which left unused strings in the binary naming capabilities that do not run in the analysed samples.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>Every campaign fact here comes from Lumen Black Lotus Labs&#39; report of September 15, 2026, which is the only primary research on this malware family. I have not reverse engineered a sample and I do not have one. The port registration cross-reference is my own: Lumen lists the C2 ports it observed, IANA publishes what those numbers are assigned to, and joining the two is mine rather than theirs. Attribution is deliberately thin because Lumen&#39;s is: the report says it could not correlate BambooToken to any publicly documented activity cluster and labels it an emerging cluster. Samples were uploaded largely from Chinese IP space and the side-loaded product is popular in Chinese banking and government networks, which is context, not attribution. Lumen states it does not assess that Tendyron&#39;s code-signing certificate or build environment was compromised, and I have repeated that rather than softening it. I could not independently verify victim counts or telemetry, all of which rest on Lumen&#39;s own network visibility.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.lumen.com/blog/en-us/the-banana-stand-brokering-and-managing-infections-across-asia-using-mqtt" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>The banana stand: brokering and managing infections across Asia using MQTT</a><span class="meta mono" data-astro-cid-j6o3mlwn>Lumen Black Lotus Labs · Published September 15, 2026 · Accessed September 17, 2026</span></span><span class="mono tier" data-tier="vendor-research" data-astro-cid-j6o3mlwn>VENDOR RESEARCH</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.txt" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Service Name and Transport Protocol Port Number Registry</a><span class="meta mono" data-astro-cid-j6o3mlwn>Internet Assigned Numbers Authority (IANA) · Accessed September 17, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://attack.mitre.org/techniques/T1574/001/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Hijack Execution Flow: DLL (T1574.001)</a><span class="meta mono" data-astro-cid-j6o3mlwn>MITRE ATT&amp;CK · Accessed September 17, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://thehackernews.com/2026/09/bambootoken-malware-uses-mqtt-to.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>BambooToken Malware Uses MQTT to Control Windows and Linux Systems</a><span class="meta mono" data-astro-cid-j6o3mlwn>The Hacker News · Published September 15, 2026 · Accessed September 17, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20The%20implant%20never%20connected%20to%20the%20attacker" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div><a class="next" href="/blog/stylesmuggler-magento-cve-2026-75650/" data-astro-cid-pmq6rq5t><span class="mono kicker" data-astro-cid-pmq6rq5t>READ NEXT</span><span class="title" data-astro-cid-pmq6rq5t>The backdoor called itself chronyd</span><span class="mono arrow" data-astro-cid-pmq6rq5t>↗</span></a></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
