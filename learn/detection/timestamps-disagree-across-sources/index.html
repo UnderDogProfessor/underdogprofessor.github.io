@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Timestamps disagree across sources | Cybernetic Intern</title><meta name="description" content="Every source stamps time its own way, in its own zone, on its own clock. Correlation assumes they agree, and they usually do not."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/timestamps-disagree-across-sources/"><meta property="og:type" content="article"><meta property="og:title" content="Timestamps disagree across sources | Cybernetic Intern"><meta property="og:description" content="Every source stamps time its own way, in its own zone, on its own clock. Correlation assumes they agree, and they usually do not."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/timestamps-disagree-across-sources/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-09-17T19:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Timestamps disagree across sources","description":"Every source stamps time its own way, in its own zone, on its own clock. Correlation assumes they agree, and they usually do not.","url":"https://cyberneticsintern.com/learn/detection/timestamps-disagree-across-sources/","datePublished":"2026-09-17T19:00:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-09-17T19:00:00.000Z" data-astro-cid-jh75pjse>September 17, 2026</time></div><h1 data-astro-cid-jh75pjse>Timestamps disagree across sources</h1><p class="summary" data-astro-cid-jh75pjse>Every source stamps time its own way, in its own zone, on its own clock. Correlation assumes they agree, and they usually do not.</p><div class="prose" data-astro-cid-jh75pjse><p>Three sources record the same event. You get three different times.</p>
+<p>The firewall writes local time with no zone marker. The endpoint agent writes
+UTC. The application writes whatever its own host believed the time was, and
+that host has not successfully synced since a reboot in March.</p>
+<p>None of them is lying. They are answering slightly different questions.</p>
+<p>There are also several clocks inside one record. When the thing happened. When
+the source noticed it. When it was written to disk. When it arrived at your
+platform. A search result showing you a single field called <code>timestamp</code> has
+quietly picked one of those on your behalf, and it is frequently the last one.</p>
+<p>So a timeline assembled by sorting on whatever the platform returns can put
+effect before cause. People catch that when it is absurd, a logon landing after
+the file it opened. Nobody catches a thirty second skew, and thirty seconds is
+enough to break a correlation rule with a tight window.</p>
+<p>Two habits cover most of it. Store an unambiguous event time in UTC at ingest
+and keep the source’s raw value next to it. Then watch clock drift on your
+sources the same way you watch whether they are sending at all.</p>
+<p>Take a recent case. Ask which field the timeline was sorted on, and whether
+every source in it meant the same thing by that field.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="The two sources stamp time differently, so the measured gap is not the real one" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>A rule requires a logon and a process start within sixty seconds of each other. Both events are present in the data, every time, and the rule never fires. What is the most likely cause?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="The correlation window is too short for the behaviour you are describing" data-astro-cid-jh75pjse>The correlation window is too short for the behaviour you are describing</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="One of the two sources is dropping events before they reach the platform" data-astro-cid-jh75pjse>One of the two sources is dropping events before they reach the platform</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The two sources stamp time differently, so the measured gap is not the real one" data-astro-cid-jh75pjse>The two sources stamp time differently, so the measured gap is not the real one</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The rule is matching the wrong field on one of the two events" data-astro-cid-jh75pjse>The rule is matching the wrong field on one of the two events</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>The two sources stamp time differently, so the measured gap is not the real one</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> All four are real failure modes, and three of them fail loudly. A window that is genuinely too short fails inconsistently rather than never, a wrong field matches nothing at all and shows up the first time anyone tests it, and dropped events leave gaps visible elsewhere in that source. A zone or clock difference produces exactly this symptom instead: both events present, both correct, and a computed interval wrong by the size of the offset. Compare the two timestamps against one event you can find in both sources before you touch the window.</p></div></details></div></details><script>(function(){const readKey = "detection/timestamps-disagree-across-sources";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
