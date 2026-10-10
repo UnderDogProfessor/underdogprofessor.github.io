@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.10",
+      "title": "The newest one is from 2023",
+      "url": "https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/"
+    },
+    {
+      "date": "2026.10",
+      "title": "They encoded one letter",
+      "url": "https://cyberneticsintern.com/blog/peoplesoft-waf-bypass-fbi-contractor-patch/"
+    },
+    {
+      "date": "2026.10",
+      "title": "Every score said this could wait",
+      "url": "https://cyberneticsintern.com/blog/zammad-zero-days-agentic-attack-scoring/"
+    },
+    {
+      "date": "2026.09",
+      "title": "One down, nine to go",
+      "url": "https://cyberneticsintern.com/blog/one-down-nine-to-go/"
+    },
+    {
+      "date": "2026.09",
+      "title": "The scope came from the vendor's logs",
+      "url": "https://cyberneticsintern.com/blog/openai-agent-australia-detection-gap/"
+    }
+  ]
+}

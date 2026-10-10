@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A password reset does not end a session | Cybernetic Intern</title><meta name="description" content="Resetting a compromised account's password feels like containment. Every session issued before the reset usually keeps working."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/a-session-outlives-the-password/"><meta property="og:type" content="article"><meta property="og:title" content="A password reset does not end a session | Cybernetic Intern"><meta property="og:description" content="Resetting a compromised account's password feels like containment. Every session issued before the reset usually keeps working."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/a-session-outlives-the-password/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-10-05T17:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"A password reset does not end a session","description":"Resetting a compromised account's password feels like containment. Every session issued before the reset usually keeps working.","url":"https://cyberneticsintern.com/learn/identity/a-session-outlives-the-password/","datePublished":"2026-10-05T17:00:00.000Z","educationalLevel":"foundation","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-10-05T17:00:00.000Z" data-astro-cid-jh75pjse>October 5, 2026</time></div><h1 data-astro-cid-jh75pjse>A password reset does not end a session</h1><p class="summary" data-astro-cid-jh75pjse>Resetting a compromised account&#39;s password feels like containment. Every session issued before the reset usually keeps working.</p><div class="prose" data-astro-cid-jh75pjse><p>An account is compromised. You reset the password. The attacker keeps working.</p>
+<p>This surprises people every time, and it should not, because it follows from
+how sessions work. Authentication happens once. What the user carries afterwards
+is a session: a cookie, a token, a ticket, depending on the system. That artefact
+is what proves them on every subsequent request, and it was issued before you
+changed anything.</p>
+<p>The password is an input to the issuing step. It is not consulted again until
+the session expires and something has to issue a new one.</p>
+<p>So a password reset closes the door for the next person who tries to walk
+through it. It does nothing about anyone already inside, and an attacker who has
+been there long enough to be noticed is holding a session.</p>
+<p>Revoking sessions is a separate action with a different name in every product:
+sign out everywhere, revoke refresh tokens, reset sign-in sessions, invalidate
+tickets. Find yours before you need it, because the middle of an incident is a
+poor time to go reading an admin console.</p>
+<p>There is a second order to this. Some sessions renew themselves, so one can stay
+alive indefinitely without the password ever being presented again.</p>
+<p>Take one account in your identity provider. Reset its password, then check
+whether its existing sessions still work.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="The attacker keeps access until their session is explicitly revoked or expires" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>An attacker is active in a cloud mailbox. You reset the account password and confirm the new one works. What should you expect?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="The attacker loses access immediately, since every request revalidates the password" data-astro-cid-jh75pjse>The attacker loses access immediately, since every request revalidates the password</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The attacker loses access when their client next tries to reconnect to the service" data-astro-cid-jh75pjse>The attacker loses access when their client next tries to reconnect to the service</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The attacker keeps access until their session is explicitly revoked or expires" data-astro-cid-jh75pjse>The attacker keeps access until their session is explicitly revoked or expires</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The attacker keeps access only if they captured the new password during the reset" data-astro-cid-jh75pjse>The attacker keeps access only if they captured the new password during the reset</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>The attacker keeps access until their session is explicitly revoked or expires</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> A session is issued at authentication and presented on every later request in place of the password, so changing the password does not invalidate it. Revocation is a separate action, and in most products it has its own name and its own button. The first option describes how people imagine it works rather than how any mainstream system behaves. Reconnection does not help either, because the client presents the session it already holds. The last option is the tempting one and describes a different attack: capturing the new password would give fresh access, and the attacker does not need it while the old session still answers.</p></div></details></div></details><script>(function(){const readKey = "identity/a-session-outlives-the-password";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

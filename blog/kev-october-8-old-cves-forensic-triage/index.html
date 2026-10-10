@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The newest one is from 2023 | Cybernetic Intern</title><meta name="description" content="CISA added five vulnerabilities to KEV on October 8, 2026. The newest is from 2023, two are from 2015, and four require forensic triage."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/"><meta property="og:type" content="article"><meta property="og:title" content="The newest one is from 2023 | Cybernetic Intern"><meta property="og:description" content="CISA added five vulnerabilities to KEV on October 8, 2026. The newest is from 2023, two are from 2015, and four require forensic triage."><meta property="og:url" content="https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-10-08T00:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The newest one is from 2023","description":"CISA added five vulnerabilities to KEV on October 8, 2026. The newest is from 2023, two are from 2015, and four require forensic triage.","datePublished":"2026-10-08T00:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/"},"keywords":"CISA KEV forensic triage, BOD 26-04 forensic triage, KEV October 8 2026, CVE-2015-3306 ProFTPD, old CVEs still exploited, forensicTriage KEV field","citation":[{"@type":"CreativeWork","name":"Known Exploited Vulnerabilities Catalog (JSON feed, catalog version 2026.10.08, released 2026-10-08T20:09:18Z)","url":"https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"},{"@type":"CreativeWork","name":"BOD 26-04: Prioritizing Security Updates Based on Risk","url":"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"},{"@type":"CreativeWork","name":"BOD 26-04 Implementation Guidance: Prioritizing Security Updates Based on Risk","url":"https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk"},{"@type":"CreativeWork","name":"CVE-2015-3306 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2015-3306"},{"@type":"CreativeWork","name":"CVE-2015-5477 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2015-5477"},{"@type":"CreativeWork","name":"CVE-2016-3081 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2016-3081"},{"@type":"CreativeWork","name":"CVE-2021-3199 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2021-3199"},{"@type":"CreativeWork","name":"CVE-2023-22894 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2023-22894"},{"@type":"CreativeWork","name":"Exploit Prediction Scoring System, scores dated 2026-10-08","url":"https://www.first.org/epss/"},{"@type":"CreativeWork","name":"S2-032: Remote Code Execution can be performed via method: prefix when Dynamic Method Invocation is enabled","url":"https://cwiki.apache.org/confluence/display/WW/S2-032"},{"@type":"CreativeWork","name":"DSA-3263-1 proftpd-dfsg security update","url":"https://lists.debian.org/debian-security-announce/2015/msg00154.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does BOD 26-04 apply to me if I am not a US federal agency?","acceptedAnswer":{"@type":"Answer","text":"The directive binds federal civilian executive branch agencies only, and it says so. The part that reaches everyone else is the data: the forensicTriage flag now ships in the public KEV JSON that most vulnerability tools already consume, so you inherit the signal whether or not you inherit the obligation. The underlying logic also travels well. If a flaw that could have let somebody read or change your data has been exploitable on an internet-facing box since 2015, patching it and closing the ticket answers the wrong question."}},{"@type":"Question","name":"Why would CISA add an eleven-year-old vulnerability to KEV now?","acceptedAnswer":{"@type":"Answer","text":"KEV is a record of what is being exploited, not a record of what was disclosed. The catalog entry is evidence that CISA has reliable information of exploitation in the present, regardless of when the flaw was published. For the two 2015 entries here, EPSS has independently had them above 91 percent probability, which means the tooling to exploit them has been widely available and widely used for years."}},{"@type":"Question","name":"What does forensic triage actually require?","acceptedAnswer":{"@type":"Answer","text":"Per CISA's implementation guidance, the binding requirement is that an adequate forensic triage analysis is performed; the step timings are recommended practice rather than mandate. The sequence it recommends puts evidence collection before patching, prioritises volatile data, requires an evidence collection log, and ends in a written triage report inside 48 to 72 hours. The guidance warns in plain terms that patching may jeopardise the availability of artifacts."}},{"@type":"Question","name":"My scanner says we are clean on all five. Am I done?","acceptedAnswer":{"@type":"Answer","text":"For the four flagged entries, a clean scan answers whether you are vulnerable now, not whether you were compromised earlier. That is the gap the triage requirement exists to close. If one of these products has been internet-facing on an unpatched version for years, the useful question is what is in the logs you still have, and the uncomfortable follow-up is how far back they go."}},{"@type":"Question","name":"Is the triage flag just a severity score under another name?","acceptedAnswer":{"@type":"Answer","text":"No, and the numbers say so clearly. The entry with the lowest CVSS in today's batch, a 4.9 medium in Strapi, is flagged. The entry sitting at the 99.8th EPSS percentile, the BIND denial of service, is not. I tested several plausible predictors against the whole catalog and none of them explained the flag, so treat it as an independent field and parse it."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"The newest one is from 2023","item":"https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>Vulnerability</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Defensive guide</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-10-08T00:00:00.000Z" data-astro-cid-jo55ryrt>October 8, 2026</time></div><h1 data-astro-cid-jo55ryrt>The newest one is from 2023</h1><p class="standfirst" data-astro-cid-jo55ryrt>CISA added five vulnerabilities to KEV on October 8, 2026. The newest is from 2023, two are from 2015, and four require forensic triage.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Anyone whose vulnerability management programme is driven by advisory dates, and anyone who ingests the KEV feed into a ticket queue.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p>CISA added five vulnerabilities to its Known Exploited Vulnerabilities catalog
+today. The newest of them was published in 2023.</p>
+<p>Two are from 2015. One of those is a ProFTPD flaw in the <code>mod_copy</code><span class="cite-run"> module that
+Debian fixed on May 19, 2015, the day after it was published <a href="#ref-11" class="citation" aria-label="Reference 11">[11]</a><a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. It has
+been in the catalog for a few hours. It is due for remediation on October 11.</span></p>
+<p><span class="cite-run">I went looking for what made the batch unusual, because a day where nothing
+added is current is rare. Since the catalog began carrying a forensic triage
+flag on July 1, 2026, entries have been added on 46 separate days. Two of those
+days contained nothing newer than 2023: July 13, which was a single CVE from
+2008, and today <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<h2 id="what-happened">What happened</h2>
+<p><span class="cite-run">Catalog version 2026.10.08 released at 20:09 UTC with five new entries, all
+carrying a remediation date of October 11, 2026 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Here they are with the
+numbers that usually drive a decision, and the one that does not.</span></p>
+<table>
+<thead>
+<tr>
+<th>CVE</th>
+<th>Product</th>
+<th>Published</th>
+<th>CVSS 3.1</th>
+<th>EPSS</th>
+<th>Forensic triage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVE-2015-3306</td>
+<td>ProFTPD 1.3.5 <code>mod_copy</code></td>
+<td>May 18, 2015</td>
+<td>10.0</td>
+<td>96.75% (99.9th)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>CVE-2015-5477</td>
+<td>ISC BIND 9.x <code>named</code></td>
+<td>July 29, 2015</td>
+<td>7.5</td>
+<td>91.28% (99.8th)</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>CVE-2016-3081</td>
+<td>Apache Struts 2.3.x</td>
+<td>April 26, 2016</td>
+<td>8.1</td>
+<td>93.35% (99.8th)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>CVE-2021-3199</td>
+<td>ONLYOFFICE Docs before 5.6.3</td>
+<td>January 26, 2021</td>
+<td>9.8</td>
+<td>8.21% (94.8th)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>CVE-2023-22894</td>
+<td>Strapi through 4.5.5</td>
+<td>April 19, 2023</td>
+<td>4.9</td>
+<td>1.66% (75.9th)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><span class="cite-run">Scores and vectors are from NVD <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a><a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a><a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a><a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a><a href="#ref-8" class="citation" aria-label="Reference 8">[8]</a>. Probabilities are the EPSS
+scores dated October 8, 2026 <a href="#ref-9" class="citation" aria-label="Reference 9">[9]</a>. The triage column is a field in the KEV JSON
+itself <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p>Read the last two columns together and the ordering is upside down. The entry
+with the lowest severity in the batch, a 4.9 medium in Strapi that needs admin
+panel access to begin with, is flagged for forensic triage. The entry sitting at
+the 99.8th EPSS percentile, the BIND bug, is not.</p>
+<p>One more thing about today, which I want to be careful with because it may have
+resolved by the time you read this. When I checked, CISA’s cybersecurity
+advisories feed carried no alert announcing these five. The most recent KEV
+alert in it was dated October 4. The JSON feed had the entries; the announcement
+channel did not. If your KEV process is driven by the alerts RSS or by a news
+aggregator reading it, today is a day you would have missed.</p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p>Almost every vulnerability management programme I have seen is organised around
+newness. The intake is an advisory feed. The triage is a CVSS score attached to
+a recent CVE. The reporting cycle is monthly and it measures how fast this
+month’s patches went out.</p>
+<p>Today’s batch is a direct argument against that shape, because KEV is not an
+advisory feed. It is a record of what is being exploited in the present, and the
+present apparently includes an eleven-year-old FTP server bug.</p>
+<p><span class="cite-run">The EPSS column is the part that should land hardest. ProFTPD sits at 96.75
+percent, which puts it in the top tenth of one percent of all scored CVEs <a href="#ref-9" class="citation" aria-label="Reference 9">[9]</a>.
+Struts and BIND are both above 91 percent. Those are not neglected curiosities
+that nobody remembers how to exploit. They are among the most reliably exploited
+flaws in the entire dataset, and they have been for years, quietly, while
+attention went to whatever shipped last Tuesday.</span></p>
+<p>There is an honest counterpoint sitting in the same table. EPSS would have told
+you about three of these long ago and would have been close to useless for the
+other two: the ONLYOFFICE traversal is at 8.21 percent and the Strapi
+information disclosure at 1.66 percent, which is unremarkable enough to lose any
+ranking contest. So the lesson is not that EPSS was right all along. It is that
+the two feeds disagree about these five, and the disagreement is the signal.</p>
+<p>For the practical reader, the question is narrower. Do you run any of these five
+products anywhere, including on a box somebody stood up in 2017 and nobody has
+logged into since? Struts 2.3 and ProFTPD 1.3.5 are exactly the kind of software
+that ends up inside an appliance, a vendor-managed application server, or a
+build host that predates your asset inventory.</p>
+<h2 id="technical-breakdown">Technical breakdown</h2>
+<p>The <code>forensicTriage</code> field is new and it is doing real work, so it is worth
+understanding before October 11.</p>
+<p>It appears on every entry in the catalog as a plain <code>Yes</code> or <code>No</code>. Across all
+1,739 entries, 78 read <code>Yes</code><span class="cite-run">, and every one of those was added on or after July
+1, 2026 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Of the 109 entries added since that date, 78 are flagged, so this
+is not a rare designation: inside the current era of the catalog it is the
+majority case at roughly 72 percent.</span></p>
+<p><span class="cite-run">The requirement behind the flag comes from BOD 26-04, issued June 10, 2026,
+which supersedes BOD 19-02 and BOD 22-01 and binds federal civilian executive
+branch agencies <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. The directive’s own wording for flagged items is that the
+agency must complete remediation or mitigation within three days and “carry out
+a forensic triage of the asset to assess whether the system is compromised” <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p><span class="cite-run">The implementation guidance is where it gets operationally awkward <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. It is
+careful to say that the step timings are recommended practice and that “the
+requirement of BOD 26-04 is that an adequate forensic triage analysis is
+performed”. But look at the order it recommends:</span></p>
+<ol>
+<li>Scoping, targeted within two hours of the KEV addition.</li>
+<li>Preserve and collect evidence, 2 to 24 hours, prioritising volatile data.</li>
+<li>Critical patching and stabilisation, 2 to 24 hours.</li>
+<li>Contain and control, 6 to 24 hours.</li>
+<li>Triage analysis, 24 to 48 hours.</li>
+<li>Escalation decision and a written triage report, 48 to 72 hours.</li>
+</ol>
+<p><span class="cite-run">Patching is step three. Evidence collection is step two. The guidance states the
+reason without hedging: “Do not alter or remediate systems prior to
+evidence/artifact collection when possible”, and “patching may jeopardize the
+availability of artifacts” <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. It makes the same point about containment,
+warning that “premature containment can destroy vital evidence”.</span></p>
+<p>That is a genuine collision with how most teams behave under a three-day clock,
+and it is the single most useful thing in the directive. The reflex when a KEV
+entry lands on an internet-facing box is to patch it tonight. For a flagged
+entry, patching it tonight without collecting anything first is the one sequence
+that satisfies the deadline and destroys the answer.</p>
+<h3 id="what-predicts-the-flag-and-what-i-could-not-make-predict-it">What predicts the flag, and what I could not make predict it</h3>
+<p>I assumed the flag tracked impact type, because today’s batch fits that reading
+perfectly. The BIND entry is the only unflagged one, and its CVSS vector is
+<code>AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</code><span class="cite-run"> <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>: no confidentiality impact, no
+integrity impact, availability only. A crashed daemon cannot have left anything
+behind, so there is nothing to triage for. The four flagged entries all carry
+confidentiality or integrity impact, including the 4.9 Strapi one at
+</span><code>C:H/I:N/A:N</code><span class="cite-run"> <a href="#ref-8" class="citation" aria-label="Reference 8">[8]</a>.</span></p>
+<p>That reading survived its first test. I pulled the eight entries in the current
+era whose descriptions mention denial of service and found six unflagged and two
+flagged, which looked like a problem until I opened the two exceptions. Both the
+Citrix NetScaler entry and the Linux kernel watch_queue entry carry
+<code>C:H/I:H/A:H</code>: they mention denial of service as one possible outcome among
+several, and my keyword match had miscategorised them.</p>
+<p>Then it broke. Of the 31 unflagged entries added since July, plenty have obvious
+confidentiality or integrity impact: a WordPress Core SQL injection, a Chromium
+V8 type confusion leading to code execution, a PaperCut authentication bypass, a
+FortiOS sensitive information disclosure. Availability-only impact is enough to
+earn a <code>No</code>, but it is clearly not required for one.</p>
+<p>So I tested the other things the catalog makes available. Known ransomware use,
+end-of-life language in the description, whether the entry carries CISA’s
+shared-component note, and whether the CVE predates 2025. Every one of those
+subgroups lands within a few points of the 72 percent base rate. None of them
+explains anything.</p>
+<p>The conclusion I am left with is a negative one, and it is the actionable part:
+the forensic triage requirement is not derivable from any other field CISA
+publishes, and neither the directive nor the implementation guidance documents
+the selection criterion. You cannot infer it from severity, from exploitation
+probability, from age, or from ransomware association. You have to read the
+field.</p>
+<p>Which brings up the thing to go and check today:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>curl -s https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json \</span></span>
+<span class="line"><span>  | jq -r '.vulnerabilities[]</span></span>
+<span class="line"><span>           | select(.forensicTriage == "Yes")</span></span>
+<span class="line"><span>           | [.dateAdded, .cveID, .dueDate, .vendorProject] | @tsv'</span></span></code></pre>
+<p>If your KEV ingestion was written before July 2026, it almost certainly maps a
+fixed set of fields into a ticket and drops the rest. <code>forensicTriage</code> would be
+among the dropped ones, silently, with no error anywhere. The flag has been
+arriving for three months.</p>
+<p>I have not drawn an attack chain for this post. There is no single adversary
+sequence here: five unrelated flaws in five unrelated products, with no shared
+actor and no shared route. Forcing one would produce steps nobody could act on.</p>
+<h2 id="what-defenders-should-do-monday-morning">What defenders should do Monday morning</h2>
+<p><strong>Immediate, today.</strong><span class="cite-run"> Search your estate for the five products in the table
+above, and search it in the places your asset inventory is weakest: appliances,
+vendor-managed application servers, build infrastructure, and anything acquired
+rather than deployed. For Struts specifically, the fix in S2-032 is to upgrade
+to 2.3.20.3, 2.3.24.3 or 2.3.28.1, and the documented workaround is to disable
+Dynamic Method Invocation, which is the setting the flaw depends on <a href="#ref-10" class="citation" aria-label="Reference 10">[10]</a>. For
+ProFTPD, the Debian fix has existed since DSA-3263-1 in May 2015 and anything
+still on 1.3.5 unpatched is more than a decade behind <a href="#ref-11" class="citation" aria-label="Reference 11">[11]</a>.</span></p>
+<p><strong>Near term, this week.</strong><span class="cite-run"> Before you patch any flagged asset that is
+internet-facing, collect from it. Volatile data first, then the logs, and keep a
+collection log of what you took and when <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. This is not a counsel of
+perfection and it does not require a forensics team: an acquisition of memory,
+process list, network connections, and a copy of the relevant application and
+authentication logs before the maintenance window is enormously better than
+nothing, and it is the difference between being able to answer the question
+later and not.</span></p>
+<p>Then check your intake. Confirm that whatever consumes the KEV feed parses
+<code>forensicTriage</code>, and that a flagged entry is routed differently from an
+unflagged one rather than into the same patch queue. Confirm, too, that your
+process is driven by the JSON feed rather than by the alerts RSS, because today
+the two did not agree.</p>
+<p><strong>Structural, this quarter.</strong> Give your vulnerability programme a second intake
+that is not organised around advisory dates. The KEV catalog and EPSS both
+describe the present rather than the news cycle, and today they disagreed with
+each other about three of five entries, which is useful rather than annoying.
+Then go and establish how far back your logs actually go on your oldest
+internet-facing systems, because a triage requirement on an eleven-year-old
+exposure is only answerable to the depth of your retention.</p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>Do we run ProFTPD, ISC BIND, Apache Struts 2.3.x, ONLYOFFICE Docs, or Strapi
+anywhere, including inside appliances and vendor-managed systems?</li>
+<li>Has anything in that list been reachable from the internet on an unpatched
+version, and for how long?</li>
+<li>Does our KEV ingestion parse the <code>forensicTriage</code> field, or silently drop it?</li>
+<li>Is our KEV process driven by the JSON feed or by the alerts RSS?</li>
+<li>For flagged assets, do we collect evidence before we patch, and do we log what
+we collected?</li>
+<li>How far back do logs go on our oldest internet-facing systems?</li>
+<li>Who decides, and on what evidence, that a flagged asset was not compromised?</li>
+</ul>
+<h2 id="the-deadline-is-the-easy-half">The deadline is the easy half</h2>
+<p>The three-day clock is the part of this that will get attention, and it is the
+part that matters least. Patching five products is a weekend. Most teams will
+make it.</p>
+<p>What they will not do, because nothing in their process asks them to, is answer
+the second question. An eleven-year-old flaw on an internet-facing server with a
+96 percent exploitation probability has not been quietly safe all this time
+because nobody noticed it. The honest prior is that somebody did, possibly years
+ago, and the task is to find out. That is what CISA has started requiring, and
+the requirement is a sharper piece of policy than the deadline it is attached
+to, because it is the first time the catalog has said out loud that patching an
+exploited vulnerability is not the same as recovering from one.</p>
+<p>The industry’s answer to a KEV entry has been “patch it” for as long as the
+catalog has existed. For 78 entries and counting, that answer is now explicitly
+half of the work, and the guidance says plainly that doing it first destroys the
+evidence for the other half. I would rather be a week late on step three than
+clean on step two.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Does BOD 26-04 apply to me if I am not a US federal agency?</dt><dd data-astro-cid-jo55ryrt>The directive binds federal civilian executive branch agencies only, and it says so. The part that reaches everyone else is the data: the forensicTriage flag now ships in the public KEV JSON that most vulnerability tools already consume, so you inherit the signal whether or not you inherit the obligation. The underlying logic also travels well. If a flaw that could have let somebody read or change your data has been exploitable on an internet-facing box since 2015, patching it and closing the ticket answers the wrong question.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Why would CISA add an eleven-year-old vulnerability to KEV now?</dt><dd data-astro-cid-jo55ryrt>KEV is a record of what is being exploited, not a record of what was disclosed. The catalog entry is evidence that CISA has reliable information of exploitation in the present, regardless of when the flaw was published. For the two 2015 entries here, EPSS has independently had them above 91 percent probability, which means the tooling to exploit them has been widely available and widely used for years.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>What does forensic triage actually require?</dt><dd data-astro-cid-jo55ryrt>Per CISA&#39;s implementation guidance, the binding requirement is that an adequate forensic triage analysis is performed; the step timings are recommended practice rather than mandate. The sequence it recommends puts evidence collection before patching, prioritises volatile data, requires an evidence collection log, and ends in a written triage report inside 48 to 72 hours. The guidance warns in plain terms that patching may jeopardise the availability of artifacts.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>My scanner says we are clean on all five. Am I done?</dt><dd data-astro-cid-jo55ryrt>For the four flagged entries, a clean scan answers whether you are vulnerable now, not whether you were compromised earlier. That is the gap the triage requirement exists to close. If one of these products has been internet-facing on an unpatched version for years, the useful question is what is in the logs you still have, and the uncomfortable follow-up is how far back they go.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Is the triage flag just a severity score under another name?</dt><dd data-astro-cid-jo55ryrt>No, and the numbers say so clearly. The entry with the lowest CVSS in today&#39;s batch, a 4.9 medium in Strapi, is flagged. The entry sitting at the 99.8th EPSS percentile, the BIND denial of service, is not. I tested several plausible predictors against the whole catalog and none of them explained the flag, so treat it as an independent field and parse it.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>Every figure here was read from primary feeds on October 8, 2026, after the catalog&#39;s own release timestamp of 20:09 UTC that day, and the catalog membership, due dates and triage flags of all five entries were re-checked against the live feed immediately before publication. Three things are worth flagging. First, on both checks there was no CISA alert page announcing these five entries: the KEV JSON feed carried them and the cybersecurity advisories RSS still listed October 4 as its most recent KEV alert, so the announcement may simply have followed later than the data. Second, NVD&#39;s own CISA KEV flag still read NO for all five CVEs at the time I pulled their records, which is a mirroring lag in NVD rather than a contradiction of the catalog. Third, I tried and failed to find a rule that predicts the forensicTriage flag from any other published field, and I have reported that failure rather than dressing a partial correlation up as a finding. CISA does not document the selection criterion in either the directive or the implementation guidance, so the honest statement is that it is not derivable and has to be read.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Known Exploited Vulnerabilities Catalog (JSON feed, catalog version 2026.10.08, released 2026-10-08T20:09:18Z)</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cybersecurity and Infrastructure Security Agency (CISA) · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>BOD 26-04: Prioritizing Security Updates Based on Risk</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cybersecurity and Infrastructure Security Agency (CISA) · Published June 10, 2026 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>BOD 26-04 Implementation Guidance: Prioritizing Security Updates Based on Risk</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cybersecurity and Infrastructure Security Agency (CISA) · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-3306" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2015-3306 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published May 18, 2015 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-5" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[5]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-5477" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2015-5477 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published July 29, 2015 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-6" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[6]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-3081" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2016-3081 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published April 26, 2016 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-7" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[7]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-3199" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2021-3199 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published January 26, 2021 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-8" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[8]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22894" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2023-22894 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published April 19, 2023 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-9" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[9]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.first.org/epss/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Exploit Prediction Scoring System, scores dated 2026-10-08</a><span class="meta mono" data-astro-cid-j6o3mlwn>FIRST Exploit Prediction Scoring System · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-10" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[10]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://cwiki.apache.org/confluence/display/WW/S2-032" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>S2-032: Remote Code Execution can be performed via method: prefix when Dynamic Method Invocation is enabled</a><span class="meta mono" data-astro-cid-j6o3mlwn>Apache Software Foundation · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-11" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[11]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://lists.debian.org/debian-security-announce/2015/msg00154.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>DSA-3263-1 proftpd-dfsg security update</a><span class="meta mono" data-astro-cid-j6o3mlwn>Debian Project · Published May 19, 2015 · Accessed October 8, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20The%20newest%20one%20is%20from%202023" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div><a class="next" href="/blog/peoplesoft-waf-bypass-fbi-contractor-patch/" data-astro-cid-pmq6rq5t><span class="mono kicker" data-astro-cid-pmq6rq5t>READ NEXT</span><span class="title" data-astro-cid-pmq6rq5t>They encoded one letter</span><span class="mono arrow" data-astro-cid-pmq6rq5t>↗</span></a></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

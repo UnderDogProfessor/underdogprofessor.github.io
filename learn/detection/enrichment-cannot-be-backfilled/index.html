@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Enrichment happens once, at ingest | Cybernetic Intern</title><meta name="description" content="Fields added as data arrives are frozen into the record. Add a new enrichment today and yesterday's events still will not carry it."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/detection/enrichment-cannot-be-backfilled/"><meta property="og:type" content="article"><meta property="og:title" content="Enrichment happens once, at ingest | Cybernetic Intern"><meta property="og:description" content="Fields added as data arrives are frozen into the record. Add a new enrichment today and yesterday's events still will not carry it."><meta property="og:url" content="https://cyberneticsintern.com/learn/detection/enrichment-cannot-be-backfilled/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-09-30T12:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Enrichment happens once, at ingest","description":"Fields added as data arrives are frozen into the record. Add a new enrichment today and yesterday's events still will not carry it.","url":"https://cyberneticsintern.com/learn/detection/enrichment-cannot-be-backfilled/","datePublished":"2026-09-30T12:00:00.000Z","educationalLevel":"foundation","about":"Detection Engineering","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/detection/" data-astro-cid-jh75pjse>Detection Engineering</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-09-30T12:00:00.000Z" data-astro-cid-jh75pjse>September 30, 2026</time></div><h1 data-astro-cid-jh75pjse>Enrichment happens once, at ingest</h1><p class="summary" data-astro-cid-jh75pjse>Fields added as data arrives are frozen into the record. Add a new enrichment today and yesterday&#39;s events still will not carry it.</p><div class="prose" data-astro-cid-jh75pjse><p>You add asset owner to your pipeline on Tuesday. Every event from Tuesday
+onward carries it. Every event before Tuesday does not, and never will.</p>
+<p>That is what enrichment at ingest means. The lookup runs once, as the record is
+written, and the answer is baked in. Queries are fast later precisely because
+nothing has to be worked out at search time.</p>
+<p>The trade shows up in two places.</p>
+<p>History does not gain the new field. When an investigation spans the boundary,
+half your timeline has the owner and half does not, and the half that does not
+is usually the older half you needed.</p>
+<p>And the stored value is the answer that was true then. An address enriched as
+benign in March stays benign in the record after the same address turns up on a
+blocklist in September. For forensics that is often what you want, because you
+are reconstructing what was known at the time. It is wrong if you assumed the
+field was current.</p>
+<p>Query-time enrichment inverts both. History gains the new field, values are
+always current, and the lookup source has to still exist when you search.</p>
+<p>Pick one enriched field. Find out whether it was written at ingest or resolved
+at query, then look at what your oldest retained events hold in it.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="No enrichment field at all, because it did not exist when those events were written" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>Your team adds a new threat-intelligence enrichment on October 1. On October 20 you investigate activity from September. What do you expect to find in the September events?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="The enrichment applied retroactively, because intel lookups run against stored records" data-astro-cid-jh75pjse>The enrichment applied retroactively, because intel lookups run against stored records</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="No enrichment field at all, because it did not exist when those events were written" data-astro-cid-jh75pjse>No enrichment field at all, because it did not exist when those events were written</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The enrichment present but carrying a lower confidence value on older records" data-astro-cid-jh75pjse>The enrichment present but carrying a lower confidence value on older records</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The enrichment present only on events that were re-indexed after October 1" data-astro-cid-jh75pjse>The enrichment present only on events that were re-indexed after October 1</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>No enrichment field at all, because it did not exist when those events were written</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Ingest-time enrichment writes the field as the record is created, so a record created before the enrichment existed has nothing to write. Applying it retroactively means reprocessing stored data, which is a deliberate and usually expensive operation rather than something that happens on its own. Re-indexing does sometimes re-run enrichment and is the closest wrong answer, but nothing in the scenario says anything was re-indexed. Scoring confidence by record age is not something mainstream platforms do.</p></div></details></div></details><script>(function(){const readKey = "detection/enrichment-cannot-be-backfilled";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/detection/" data-astro-cid-jh75pjse>← ALL DETECTION ENGINEERING</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defences: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
