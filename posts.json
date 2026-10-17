@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.10",
+      "title": "The integrity checker said it was clean",
+      "url": "https://cyberneticsintern.com/blog/ivanti-connect-secure-uta0576-chain-integrity-checker/"
+    },
+    {
+      "date": "2026.10",
+      "title": "The defrost was a feature",
+      "url": "https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/"
+    },
+    {
+      "date": "2026.10",
+      "title": "Data info, soon",
+      "url": "https://cyberneticsintern.com/blog/deloitte-gentlemen-leak-site-claim-unverified/"
+    },
+    {
+      "date": "2026.10",
+      "title": "The newest one is from 2023",
+      "url": "https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/"
+    },
+    {
+      "date": "2026.10",
+      "title": "They encoded one letter",
+      "url": "https://cyberneticsintern.com/blog/peoplesoft-waf-bypass-fbi-contractor-patch/"
+    }
+  ]
+}

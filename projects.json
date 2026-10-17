@@ -1,0 +1,33 @@
+{
+  "total": 0,
+  "categories": [
+    {
+      "slug": "certifications-and-training",
+      "name": "Certifications and Training",
+      "url": "https://cyberneticsintern.com/projects/certifications-and-training/",
+      "count": 0,
+      "latest": null
+    },
+    {
+      "slug": "tools-and-scripts",
+      "name": "Tools and Scripts",
+      "url": "https://cyberneticsintern.com/projects/tools-and-scripts/",
+      "count": 0,
+      "latest": null
+    },
+    {
+      "slug": "lab-builds-and-writeups",
+      "name": "Lab Builds and Writeups",
+      "url": "https://cyberneticsintern.com/projects/lab-builds-and-writeups/",
+      "count": 0,
+      "latest": null
+    },
+    {
+      "slug": "detection-content",
+      "name": "Detection Content",
+      "url": "https://cyberneticsintern.com/projects/detection-content/",
+      "count": 0,
+      "latest": null
+    }
+  ]
+}
