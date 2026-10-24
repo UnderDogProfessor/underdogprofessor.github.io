@@ -1,0 +1,37 @@
+{
+  "total": 2,
+  "categories": [
+    {
+      "slug": "certifications-and-training",
+      "name": "Certifications and Training",
+      "url": "https://cyberneticsintern.com/projects/certifications-and-training/",
+      "count": 0,
+      "latest": null
+    },
+    {
+      "slug": "tools-and-scripts",
+      "name": "Tools and Scripts",
+      "url": "https://cyberneticsintern.com/projects/tools-and-scripts/",
+      "count": 0,
+      "latest": null
+    },
+    {
+      "slug": "lab-builds-and-writeups",
+      "name": "Lab Builds and Writeups",
+      "url": "https://cyberneticsintern.com/projects/lab-builds-and-writeups/",
+      "count": 2,
+      "latest": {
+        "date": "2026.10",
+        "title": "COLD CHAIN Lab 2: finding password guesses in the Windows Security log",
+        "url": "https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/lab-2/"
+      }
+    },
+    {
+      "slug": "detection-content",
+      "name": "Detection Content",
+      "url": "https://cyberneticsintern.com/projects/detection-content/",
+      "count": 0,
+      "latest": null
+    }
+  ]
+}
