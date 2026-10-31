@@ -1,0 +1,509 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>COLD CHAIN | Cybernetic Intern</title><meta name="description" content="Hands-on incident response labs at one made-up company, built in public. One Windows computer, one small thing to find, about an hour each."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/"><meta property="og:type" content="website"><meta property="og:title" content="COLD CHAIN | Cybernetic Intern"><meta property="og:description" content="Hands-on incident response labs at one made-up company, built in public. One Windows computer, one small thing to find, about an hour each."><meta property="og:url" content="https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og-coldchain.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The COLD CHAIN lab roadmap: six levels and 34 labs on glowing platforms joined by a route."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og-coldchain.png"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"COLD CHAIN","description":"Hands-on incident response labs at one made-up company, built in public. One Windows computer, one small thing to find, about an hour each.","url":"https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/","hasPart":[{"@type":"CollectionPage","name":"COLD CHAIN Level 1","url":"https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/level-1/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Projects","item":"https://cyberneticsintern.com/projects/"},{"@type":"ListItem","position":2,"name":"Lab Builds and Writeups","item":"https://cyberneticsintern.com/projects/lab-builds-and-writeups/"},{"@type":"ListItem","position":3,"name":"COLD CHAIN","item":"https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/index.DgRlwrS9.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><section class="page head-wrap compact" data-astro-cid-nrucbe5w><a class="mono back" href="/projects/lab-builds-and-writeups/" data-astro-cid-nrucbe5w>← LAB BUILDS AND WRITEUPS</a><div class="state mono" data-astro-cid-nrucbe5w>SERIES · 1LEVEL · 5LABS</div><h1 data-astro-cid-nrucbe5w>COLD CHAIN</h1><p class="blurb" data-astro-cid-nrucbe5w>COLD CHAIN is a set of hands-on incident response labs I am building in public. Every lab takes place at the same made-up company, Rimeport Cold Logistics, which stores and delivers chilled and frozen food.</p></section><section class="page map-wrap" aria-label="COLD CHAIN roadmap map" data-astro-cid-nrucbe5w><div class="ccmap" data-ccmap><canvas id="scene" tabindex="0" role="img" aria-label="Interactive 3D map of the COLD CHAIN lab roadmap. Drag to orbit and click a lab for its summary and links. The same information is in the list of levels below the map."></canvas><noscript><p class="nojs">The interactive map needs JavaScript. The list of levels below has the same information, and every lab links to its own page.</p></noscript><div class="fx scan" aria-hidden="true"></div><div class="fx vig" aria-hidden="true"></div><header class="hud title"><div class="eyebrow">THE ROADMAP · DRAG TO LOOK AROUND</div><div class="status" id="live-status"><span id="live-count"></span><span class="ticks" id="ticks" aria-hidden="true"></span></div></header><div class="hud legend" aria-hidden="true"><div><i class="lg-done"></i>Published and tested</div><div><i class="lg-next"></i>Next up</div><div><i class="lg-plan"></i>Planned</div><div><i class="lg-llm"></i>Local LLM attacker</div><div class="hint">drag: orbit / wheel: zoom / click a level</div></div><aside class="hud panel" id="panel" aria-live="polite"></aside><nav class="hud dock" aria-label="Map controls"><div class="group" id="chips"></div><div class="group"><button id="btn-over" type="button">OVERVIEW</button><button id="btn-play" type="button" aria-pressed="false">JOURNEY</button><button id="btn-orbit" type="button" aria-pressed="true">ORBIT</button><button id="btn-panel" type="button" aria-pressed="true" title="Show or hide the side panel">PANEL</button></div></nav><div class="tip" id="tip" hidden></div></div><script type="application/json" id="ccmap-data">{"levels":[{"name":"Basics","theme":"One Windows PC, all by hand.","learn":"Read the Security log, preserve evidence and keep notes like a responder.","machines":"1 Windows 11 PC (WS-DSP-01)","stages":[0,0],"labs":[{"n":1,"title":"What normal looks like","blurb":"Read sign-in records and learn what a normal morning looks like.","st":"done","links":[{"label":"Read the writeup","url":"/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-1/","external":false},{"label":"The lab on GitHub","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/01-what-normal-looks-like.md","external":true},{"label":"My notes and evidence","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/01-what-normal-looks-like.md","external":true}]},{"n":2,"title":"Someone is guessing passwords","blurb":"Find failed sign-ins and tell a typo from guessing.","st":"done","links":[{"label":"Read the writeup","url":"/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-2/","external":false},{"label":"The lab on GitHub","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/02-someone-is-guessing-passwords.md","external":true},{"label":"My notes and evidence","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/02-someone-is-guessing-passwords.md","external":true}]},{"n":3,"title":"A new account appeared","blurb":"Trace who made an account and gave it admin rights.","st":"done","links":[{"label":"Read the writeup","url":"/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-3/","external":false},{"label":"The lab on GitHub","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/03-a-new-account-appeared.md","external":true},{"label":"My notes and evidence","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/03-a-new-account-appeared.md","external":true}]},{"n":4,"title":"Something runs at startup","blurb":"Find what was set up to survive a reboot.","st":"done","links":[{"label":"Read the writeup","url":"/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-4/","external":false},{"label":"The lab on GitHub","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/04-something-runs-at-startup.md","external":true},{"label":"My notes and evidence","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/04-something-runs-at-startup.md","external":true}]},{"n":5,"title":"Write it up","blurb":"Turn your findings into a one-page report.","st":"done","links":[{"label":"Read the writeup","url":"/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-5/","external":false},{"label":"The lab on GitHub","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/05-write-it-up.md","external":true},{"label":"My notes and evidence","url":"https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/05-write-it-up.md","external":true}]}]},{"name":"A small company","theme":"Rimeport’s network.","learn":"Follow one attacker across machines and merge their logs.","machines":"Domain controller, file server, 2 PCs","stages":[1,2],"labs":[{"n":6,"title":"Meet the network","blurb":"Learn Rimeport’s normal across several machines.","st":"plan","links":[]},{"n":7,"title":"Password spraying over the network","blurb":"Failed logins from other machines, and where they came from.","st":"plan","links":[]},{"n":8,"title":"Moving sideways","blurb":"Follow one account as it hops between machines.","st":"plan","links":[]},{"n":9,"title":"Who touched the files","blurb":"Read file-server access records.","st":"plan","links":[]},{"n":10,"title":"The new admin, domain-wide","blurb":"Lab 3 again, now on the domain controller.","st":"plan","links":[]},{"n":11,"title":"Reconstruct the night","blurb":"Merge three machines’ logs into one timeline.","st":"plan","links":[]}]},{"name":"Evidence on disk and in memory","theme":"Artifacts that outlive the logs.","learn":"Prove what ran and what was deleted.","machines":"The same range, plus disk and memory images","stages":[2,2],"labs":[{"n":12,"title":"What ran","blurb":"Prove which programs ran, from Prefetch.","st":"plan","links":[]},{"n":13,"title":"What was deleted","blurb":"Recover traces of deleted files from the MFT.","st":"plan","links":[]},{"n":14,"title":"Registry persistence","blurb":"Hunt for persistence in the registry.","st":"plan","links":[]},{"n":15,"title":"Memory","blurb":"Find processes and connections in a memory image.","st":"plan","links":[]},{"n":16,"title":"The lure","blurb":"Trace the download that started it all.","st":"plan","links":[]},{"n":17,"title":"Build a timeline","blurb":"Combine disk, memory and logs.","st":"plan","links":[]}]},{"name":"Live response","theme":"The attacker is automated and reacts.","learn":"Detect, triage, contain and recover while the attacker moves.","machines":"The range, plus detection sensors","stages":[3,5],"labs":[{"n":18,"title":"Install the eyes","blurb":"Add Sysmon and basic detections.","st":"plan","links":[]},{"n":19,"title":"Triage with Velociraptor","blurb":"Collect evidence from a live machine.","st":"plan","links":[]},{"n":20,"title":"Your first alert","blurb":"Triage a detection as it fires.","st":"plan","links":[]},{"n":21,"title":"Contain it","blurb":"Isolate, disable, reset. The attacker reacts.","st":"plan","links":[]},{"n":22,"title":"Eradicate and recover","blurb":"Clean up and prove the attacker is out.","st":"plan","links":[]},{"n":23,"title":"Same incident, different seed","blurb":"Every learner gets a different version.","st":"plan","links":[]},{"n":24,"title":"Free-play attacker","blurb":"A local LLM picks the attacker’s next step from a fixed menu of safe actions. Every action is logged.","st":"llm","links":[]}]},{"name":"Blind terrain","theme":"Where endpoint tools can’t see.","learn":"Investigate backups, a hypervisor, an appliance, a cloud tenant and an AI agent.","machines":"Plus a backup server, an ESXi host and a fictional VPN","stages":[3,5],"labs":[{"n":25,"title":"Backups","blurb":"Investigate the backup server.","st":"plan","links":[]},{"n":26,"title":"The hypervisor","blurb":"Where endpoint tools can’t see: ESXi.","st":"plan","links":[]},{"n":27,"title":"The VPN appliance","blurb":"A fictional edge device with a fictional flaw.","st":"plan","links":[]},{"n":28,"title":"The cloud tenant","blurb":"Sign-in and audit logs from a synthetic tenant.","st":"plan","links":[]},{"n":29,"title":"An AI agent with a stolen key","blurb":"Investigate a compromised agent.","st":"plan","links":[]}]},{"name":"Command","theme":"Running the incident.","learn":"Lead the response, brief leaders and write the final report.","machines":"The whole company","stages":[5,5],"labs":[{"n":30,"title":"The first 60 minutes","blurb":"Run the opening of an incident.","st":"plan","links":[]},{"n":31,"title":"Brief the CEO","blurb":"Talk to LLM stakeholders under pressure.","st":"plan","links":[]},{"n":32,"title":"Insurers and regulators","blurb":"Meet notification deadlines.","st":"plan","links":[]},{"n":33,"title":"The report","blurb":"Write the final report. A coach reviews it.","st":"plan","links":[]},{"n":34,"title":"Season finale","blurb":"Ransomware, end to end, from every source.","st":"finale","links":[]}]}],"stages":[["MANUAL","You make the incident by hand."],["SCRIPTS","Scripts make the noise and the attacker’s steps."],["AUTO-CAPTURE","Every run saves its own logs and hashes, so evidence can’t be erased."],["SCENARIO ENGINE","A scenario file drives the run and writes the answer key. Seeds make each incident unique."],["LLM OPERATOR","A local model picks the attacker’s next step from a fixed menu of safe actions."],["REACTIVE","The attacker reacts to your moves. LLM users and stakeholders join in."]],"live":5,"total":34}</script><script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- data ---------- */
+  var COL = { 0: '#94bce3', 1: '#7fe0ff', 2: '#9fa8ff', 3: '#ff7a7a', 4: '#c79bff', 5: '#f1e6c8' };
+  var DATA = JSON.parse(document.getElementById('ccmap-data').textContent);
+  var STAGES = DATA.stages, LEVELS = DATA.levels, LIVE = DATA.live, TOTAL = DATA.total;
+  var LABS = [], panelOpen = true;
+  LEVELS.forEach(function (L, i) {
+    L.i = i; L.col = COL[i];
+    L.labs = L.labs.map(function (a, k) {
+      var lab = { n: a.n, title: a.title, blurb: a.blurb, st: a.st, links: a.links || [], level: L, k: k };
+      LABS.push(lab); return lab;
+    });
+    L.done = L.labs.filter(function (b) { return b.st === 'done'; }).length;
+  });
+
+  /* ---------- layout in world space ---------- */
+  var FLOOR = -70;
+  LEVELS.forEach(function (L, i) {
+    L.cx = (i - 2.5) * 270; L.cy = Math.sin(i * 0.95) * 170; L.cz = i * 125; L.w = 300; L.d = 210;
+    var m = L.labs.length;
+    L.labs.forEach(function (lab, k) {
+      var r = Math.floor(k / 4), c = k % 4, nr = Math.min(4, m - 4 * r);
+      var cc = (r % 2) ? (nr - 1 - c) : c;
+      lab.wx = L.cx + (cc - (nr - 1) / 2) * 70; lab.wy = L.cy + (0.5 - r) * 76; lab.wz = L.cz;
+      lab.h = lab.st === 'done' ? 34 : lab.st === 'next' ? 26 : lab.st === 'llm' ? 32 : lab.st === 'finale' ? 38 : 16;
+    });
+  });
+  var PYL = { x: -900, y: 230 };
+
+  /* route: polyline through all 34 nodes, climbing between levels */
+  var route = [], total = 0;
+  function addPt(x, y, z, target) {
+    var p = { x: x, y: y, z: z, target: target, s: 0 };
+    if (route.length) { var q = route[route.length - 1]; total += Math.hypot(x - q.x, y - q.y, z - q.z); }
+    p.s = total; route.push(p);
+  }
+  LABS.forEach(function (lab, idx) {
+    if (idx === 0) { addPt(lab.wx, lab.wy, lab.wz, 0); return; }
+    var pv = LABS[idx - 1], a = { x: pv.wx, y: pv.wy, z: pv.wz }, b = { x: lab.wx, y: lab.wy, z: lab.wz };
+    if (pv.level !== lab.level) {
+      var c1 = { x: a.x + (b.x - a.x) * 0.3, y: a.y + (b.y - a.y) * 0.1, z: a.z + 100 };
+      var c2 = { x: b.x - (b.x - a.x) * 0.3, y: b.y - (b.y - a.y) * 0.1, z: b.z - 40 };
+      for (var t = 1; t <= 18; t++) {
+        var u = t / 18, v = 1 - u;
+        addPt(v*v*v*a.x + 3*v*v*u*c1.x + 3*v*u*u*c2.x + u*u*u*b.x,
+              v*v*v*a.y + 3*v*v*u*c1.y + 3*v*u*u*c2.y + u*u*u*b.y,
+              v*v*v*a.z + 3*v*v*u*c1.z + 3*v*u*u*c2.z + u*u*u*b.z, idx);
+      }
+    } else {
+      for (var t2 = 1; t2 <= 6; t2++) addPt(a.x + (b.x - a.x) * t2 / 6, a.y + (b.y - a.y) * t2 / 6, a.z, idx);
+    }
+  });
+  function segStatus(target) { return target <= 2 ? 'done' : target <= 4 ? 'next' : 'plan'; }
+  function routeAt(s) {
+    s = ((s % total) + total) % total;
+    for (var i = 1; i < route.length; i++) if (route[i].s >= s) {
+      var p = route[i - 1], q = route[i], u = (s - p.s) / Math.max(1e-6, q.s - p.s);
+      return { x: p.x + (q.x - p.x) * u, y: p.y + (q.y - p.y) * u, z: p.z + (q.z - p.z) * u, st: segStatus(q.target) };
+    }
+    return { x: 0, y: 0, z: 0, st: 'plan' };
+  }
+
+  /* ---------- canvas + camera ---------- */
+  var cvs = document.getElementById('scene'), ctx = cvs.getContext('2d');
+  var W = 0, H = 0, DPR = 1, view = { f: 1000, cx: 0, cy: 0, panel: 0 };
+  var cam = { yaw: 0.62, pitch: 0.92, dist: 2700, tx: -300, ty: 20, tz: 300 };
+  var goal = { dist: 2700, tx: -300, ty: 20, tz: 300 };
+  var vel = { yaw: 0, pitch: 0 };
+  var sel = -1, selLab = null, hoverLab = null, hoverLvl = -1, autoOrbit = !reduce, dragging = false, dirty = true;
+  var hits = [], polys = [];
+  var particles = [];
+  for (var pi = 0; pi < 90; pi++) particles.push({ x: (Math.random() - .5) * 2200, y: (Math.random() - .5) * 1000, z: -60 + Math.random() * 860, tw: Math.random() * 6.28 });
+
+  function resize() {
+    var r = cvs.getBoundingClientRect(); DPR = Math.min(2, window.devicePixelRatio || 1);
+    W = r.width; H = r.height; cvs.width = Math.round(W * DPR); cvs.height = Math.round(H * DPR);
+    var wide = W > 860; view.panel = (wide && panelOpen) ? 400 : 0;
+    var availW = W - view.panel;
+    view.f = Math.max(wide ? 600 : 470, Math.min(2000, availW * (wide ? 1.5 : 1.38)));
+    view.cx = availW / 2; view.cy = wide ? H * 0.54 : H * 0.34;
+    if (sel < 0) { goal.dist = overviewDist(); goal.tx = ovTx(); } else goal.dist = focusDist();
+    if (!inited) { inited = true; cam.dist = goal.dist; cam.tx = goal.tx; }
+    dirty = true;
+  }
+  var inited = false;
+  function ovTx() { return W > 860 ? (panelOpen ? -380 : -300) : -100; }
+  function overviewDist() { return W > 860 ? 2700 : 3100; }
+  function focusDist() { return W > 860 ? 1000 : 820; }
+  function project(x, y, z) {
+    var dx = x - cam.tx, dy = y - cam.ty, dz = z - cam.tz;
+    var cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw);
+    var x1 = dx * cy - dy * sy, y1 = dx * sy + dy * cy;
+    var cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+    var up = dz * cp + y1 * sp, depth = Math.max(80, cam.dist + y1 * cp - dz * sp), s = view.f / depth;
+    var X = view.cx + x1 * s, Y = view.cy - up * s;
+    if (!noFit) { X = view.cx + fit.dx + (X - view.cx) * fit.k; Y = view.cy + fit.dy + (Y - view.cy) * fit.k; s *= fit.k; }
+    return { x: X, y: Y, s: s, d: depth };
+  }
+
+  /* Overview framing. The map is measured where it lands on screen, then
+     scaled and nudged to sit inside the space the panel and the controls leave
+     free. Measuring (instead of hard-coding a camera position) is what keeps the
+     last level clear of the panel at any window size and at any rotation. */
+  var fit = { k: 1, dx: 0, dy: 0 }, fitGoal = { k: 1, dx: 0, dy: 0 }, noFit = false;
+  function fitRect() {
+    var availW = W - view.panel;
+    return W > 860 ? { l: 24, r: availW - 24, t: 84, b: H - 92 } : { l: 14, r: W - 14, t: 72, b: panelOpen ? H * 0.54 : H - 130 };
+  }
+  function computeFit() {
+    var d0 = cam.dist, x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    function add(x, y) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    noFit = true; cam.dist = overviewDist();
+    LEVELS.forEach(function (L) {
+      var hw = L.w / 2, hd = L.d / 2, topY = 1e9, topX = 0;
+      [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(function (c) {
+        var a = project(L.cx + c[0] * hw, L.cy + c[1] * hd, L.cz), b = project(L.cx + c[0] * hw, L.cy + c[1] * hd, FLOOR);
+        add(a.x, a.y); add(b.x, b.y);
+        if (a.y < topY) { topY = a.y; topX = a.x; }
+      });
+      add(topX - 90, topY - 72); add(topX + 90, topY - 10);
+    });
+    [[-60, -60], [60, 60]].forEach(function (c) {
+      var b = project(PYL.x + c[0], PYL.y + c[1], FLOOR), t = project(PYL.x + c[0], PYL.y + c[1], 740);
+      add(b.x, b.y); add(t.x, t.y);
+    });
+    var lab = project(PYL.x + 70, PYL.y, 125); add(lab.x + 120, lab.y);
+    cam.dist = d0; noFit = false;
+    var R = fitRect(), k = Math.max(0.25, Math.min(1.7, Math.min((R.r - R.l) / (x1 - x0), (R.b - R.t) / (y1 - y0))));
+    fitGoal.k = k;
+    fitGoal.dx = (R.l + R.r) / 2 - view.cx - ((x0 + x1) / 2 - view.cx) * k;
+    fitGoal.dy = (R.t + R.b) / 2 - view.cy - ((y0 + y1) / 2 - view.cy) * k;
+  }
+  function rgba(hex, a) {
+    var v = parseInt(hex.slice(1), 16); return 'rgba(' + (v >> 16) + ',' + ((v >> 8) & 255) + ',' + (v & 255) + ',' + a + ')';
+  }
+  function line3(a, b) { var p = project(a[0], a[1], a[2]), q = project(b[0], b[1], b[2]); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); }
+  function pillBox(x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+
+  /* ---------- drawing ---------- */
+  var T = 0;
+  function drawFloor() {
+    ctx.save(); ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(148,188,227,.10)'; ctx.beginPath();
+    for (var g = -1800; g <= 1800; g += 150) { line3([-1800, g, FLOOR], [1800, g, FLOOR]); line3([g, -1800, FLOOR], [g, 1800, FLOOR]); }
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(148,188,227,.16)';
+    [500, 1000, 1500].forEach(function (R) {
+      ctx.beginPath();
+      for (var a = 0; a <= 72; a++) { var t = a / 72 * 6.2832, p = project(Math.cos(t) * R, Math.sin(t) * R, FLOOR); a ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }
+      ctx.stroke();
+    });
+    if (!reduce) {
+      var sw = T * 0.4, o = project(0, 0, FLOOR); ctx.beginPath(); ctx.moveTo(o.x, o.y);
+      for (var k = 0; k <= 14; k++) { var t2 = sw - k * 0.035, p2 = project(Math.cos(t2) * 1500, Math.sin(t2) * 1500, FLOOR); ctx.lineTo(p2.x, p2.y); }
+      ctx.closePath(); ctx.fillStyle = 'rgba(148,188,227,.05)'; ctx.fill();
+    }
+    ctx.restore();
+  }
+  function drawPylon() {
+    var hi = sel >= 0 ? LEVELS[sel].stages : null;
+    ctx.save();
+    var b = project(PYL.x, PYL.y, FLOOR), t = project(PYL.x, PYL.y, 640);
+    ctx.strokeStyle = 'rgba(148,188,227,.3)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(t.x, t.y); ctx.stroke();
+    for (var s = 0; s < 6; s++) {
+      var on = hi ? (s >= hi[0] && s <= hi[1]) : true, col = s === 4 ? '#ff7a7a' : s === 5 ? '#f1e6c8' : '#94bce3', z = 20 + s * 105;
+      ctx.beginPath();
+      for (var a = 0; a <= 40; a++) { var tt = a / 40 * 6.2832 + (reduce ? 0 : T * (0.3 + s * 0.05)), p = project(PYL.x + Math.cos(tt) * 56, PYL.y + Math.sin(tt) * 56, z); a ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }
+      ctx.strokeStyle = rgba(col, on ? 0.9 : 0.22); ctx.lineWidth = on ? 2.4 : 1.2; ctx.shadowColor = col; ctx.shadowBlur = on ? 14 : 0; ctx.stroke(); ctx.shadowBlur = 0;
+      var lp = project(PYL.x + 70, PYL.y, z);
+      if (W > 860 && sel < 0) { ctx.font = '600 ' + Math.max(9, Math.min(12, lp.s * 26)) + 'px ui-monospace, Consolas, monospace'; ctx.fillStyle = rgba(col, on ? 1 : 0.4); ctx.textAlign = 'left';
+      ctx.fillText(s + ' ' + STAGES[s][0], lp.x, lp.y + 4); }
+    }
+    if (sel >= 0) { ctx.restore(); return; }
+    var tp = project(PYL.x, PYL.y, 700); ctx.font = '700 ' + Math.max(12, Math.min(20, tp.s * 42)) + 'px Barlow Condensed, Arial Narrow, sans-serif'; ctx.fillStyle = 'rgba(233,237,241,.85)'; ctx.textAlign = 'left';
+    ctx.fillText('AUTOMATION LADDER', Math.max(14, tp.x - 34), tp.y); ctx.restore();
+  }
+  function drawPlatform(L) {
+    var dim = (sel >= 0 && sel !== L.i) ? 0.5 : 1, hot = (sel === L.i) ? 1 : (hoverLvl === L.i ? 0.6 : 0);
+    var hw = L.w / 2, hd = L.d / 2, c = [[-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd]];
+    var top = c.map(function (q) { return project(L.cx + q[0], L.cy + q[1], L.cz); });
+    var fl = c.map(function (q) { return project(L.cx + q[0], L.cy + q[1], FLOOR); });
+    ctx.save();
+    ctx.strokeStyle = rgba(L.col, 0.16 * dim); ctx.lineWidth = 1; ctx.beginPath();
+    for (var k = 0; k < 4; k++) { ctx.moveTo(top[k].x, top[k].y); ctx.lineTo(fl[k].x, fl[k].y); } ctx.stroke();
+    ctx.beginPath(); fl.forEach(function (p, i) { i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }); ctx.closePath(); ctx.fillStyle = rgba(L.col, 0.05 * dim); ctx.fill();
+    ctx.beginPath(); top.forEach(function (p, i) { i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }); ctx.closePath();
+    ctx.fillStyle = rgba(L.col, (0.07 + 0.1 * hot) * dim); ctx.fill();
+    polys[L.i] = top;
+    ctx.strokeStyle = rgba(L.col, 0.22 * dim); ctx.lineWidth = 1; ctx.beginPath();
+    for (var g = 1; g < 4; g++) {
+      var u = g / 4, a = [L.cx - hw + L.w * u, L.cy - hd, L.cz], b = [L.cx - hw + L.w * u, L.cy + hd, L.cz]; line3(a, b);
+      var a2 = [L.cx - hw, L.cy - hd + L.d * u, L.cz], b2 = [L.cx + hw, L.cy - hd + L.d * u, L.cz]; line3(a2, b2);
+    }
+    ctx.stroke();
+    ctx.shadowColor = L.col; ctx.shadowBlur = (hot ? 26 : 14) * dim; ctx.strokeStyle = rgba(L.col, (0.75 + 0.25 * hot) * dim); ctx.lineWidth = hot ? 2.8 : 2;
+    ctx.beginPath(); top.forEach(function (p, i) { i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }); ctx.closePath(); ctx.stroke();
+    ctx.shadowBlur = 0; ctx.lineWidth = 3.2; ctx.beginPath();
+    for (var q2 = 0; q2 < 4; q2++) {
+      var p0 = top[q2], p1 = top[(q2 + 1) % 4], p3 = top[(q2 + 3) % 4], l = 0.16;
+      ctx.moveTo(p0.x + (p3.x - p0.x) * l, p0.y + (p3.y - p0.y) * l); ctx.lineTo(p0.x, p0.y); ctx.lineTo(p0.x + (p1.x - p0.x) * l, p0.y + (p1.y - p0.y) * l);
+    }
+    ctx.strokeStyle = rgba(L.col, dim); ctx.stroke();
+    ctx.restore();
+    return top;
+  }
+  function drawLevelTag(L, top) {
+    var dim = (sel >= 0 && sel !== L.i) ? 0.55 : 1, a = top[0];
+    top.forEach(function (p) { if (p.y < a.y) a = p; });
+    var s = Math.max(W > 860 ? 0.78 : 0.62, Math.min(1.25, a.s * 2.1)), bw = 170 * s, bh = 48 * s, x = a.x - bw / 2, y = a.y - bh - 18 * s;
+    ctx.save(); ctx.globalAlpha = dim;
+    ctx.strokeStyle = rgba(L.col, 0.6); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, y + bh); ctx.lineTo(a.x, a.y); ctx.stroke();
+    pillBox(x, y, bw, bh, 8 * s); ctx.fillStyle = 'rgba(6,7,10,.86)'; ctx.fill(); ctx.strokeStyle = rgba(L.col, sel === L.i ? 1 : 0.7); ctx.lineWidth = sel === L.i ? 2 : 1.3; ctx.shadowColor = L.col; ctx.shadowBlur = sel === L.i ? 16 : 8; ctx.stroke(); ctx.shadowBlur = 0;
+    ctx.textAlign = 'left'; ctx.fillStyle = L.col; ctx.font = '600 ' + 10 * s + 'px ui-monospace, Consolas, monospace';
+    ctx.fillText('LEVEL ' + (L.i + 1) + (L.done ? '  ' + L.done + '/' + L.labs.length + ' LIVE' : ''), x + 10 * s, y + 16 * s);
+    ctx.fillStyle = '#e9edf1'; ctx.font = '700 ' + 19 * s + 'px Barlow Condensed, Arial Narrow, sans-serif';
+    var nm = L.name.toUpperCase(); if (ctx.measureText(nm).width > bw - 18 * s) { ctx.font = '700 ' + 15 * s + 'px Barlow Condensed, Arial Narrow, sans-serif'; }
+    ctx.fillText(nm, x + 10 * s, y + 38 * s); ctx.restore();
+  }
+  function drawRoute() {
+    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    var groups = { done: [], next: [], plan: [] };
+    for (var i = 1; i < route.length; i++) groups[segStatus(route[i].target)].push(i);
+    ['plan', 'next', 'done'].forEach(function (st) {
+      var idx = groups[st]; if (!idx.length) return;
+      var col = st === 'done' ? '#94bce3' : st === 'next' ? '#f1e6c8' : '#94bce3';
+      var passes = st === 'plan' ? [[7, 0.06], [1.6, 0.4]] : [[12, 0.12], [5, 0.35], [2, 0.95]];
+      passes.forEach(function (ps, pi2) {
+        ctx.lineWidth = ps[0]; ctx.strokeStyle = rgba(col, ps[1]);
+        if (st === 'plan' && pi2 === 1) { ctx.setLineDash([7, 9]); ctx.lineDashOffset = reduce ? 0 : -T * 22; } else ctx.setLineDash([]);
+        ctx.beginPath();
+        idx.forEach(function (j) { line3([route[j - 1].x, route[j - 1].y, route[j - 1].z], [route[j].x, route[j].y, route[j].z]); });
+        ctx.stroke();
+      });
+    });
+    ctx.setLineDash([]); ctx.restore();
+    if (!reduce) {
+      ctx.save(); ctx.globalCompositeOperation = 'lighter';
+      for (var k = 0; k < 6; k++) {
+        var r = routeAt(T * 90 + k * total / 6), p = project(r.x, r.y, r.z), col = r.st === 'plan' ? '#7fe0ff' : r.st === 'next' ? '#f1e6c8' : '#ffffff';
+        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 16 * Math.max(0.6, p.s * 2)); g.addColorStop(0, rgba(col, 0.95)); g.addColorStop(1, rgba(col, 0));
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, 16 * Math.max(0.6, p.s * 2), 0, 6.2832); ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+  function drawNode(lab) {
+    var L = lab.level, dim = (sel >= 0 && sel !== L.i) ? 0.5 : 1, isHot = (hoverLab === lab || selLab === lab);
+    var b = project(lab.wx, lab.wy, lab.wz), t = project(lab.wx, lab.wy, lab.wz + lab.h);
+    var r = Math.max(6.5, Math.min(18, t.s * 14)) * (isHot ? 1.3 : 1), col = lab.st === 'llm' ? '#ff7a7a' : lab.st === 'finale' ? '#f1e6c8' : L.col;
+    ctx.save(); ctx.globalAlpha = dim;
+    ctx.beginPath(); for (var a = 0; a <= 16; a++) { var tt = a / 16 * 6.2832, p = project(lab.wx + Math.cos(tt) * 12, lab.wy + Math.sin(tt) * 12, lab.wz); a ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); }
+    ctx.strokeStyle = rgba(col, 0.55); ctx.lineWidth = 1.4; ctx.stroke();
+    var gr = ctx.createLinearGradient(b.x, b.y, t.x, t.y); gr.addColorStop(0, rgba(col, 0.1)); gr.addColorStop(1, rgba(col, 0.8));
+    ctx.strokeStyle = gr; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(t.x, t.y); ctx.stroke();
+    ctx.shadowColor = col; ctx.shadowBlur = lab.st === 'plan' ? 6 : 18;
+    var pulse = reduce ? 0 : (Math.sin(T * 3 + lab.n) + 1) / 2;
+    if (lab.st === 'done') { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(t.x, t.y, r, 0, 6.2832); ctx.fill(); }
+    else {
+      ctx.fillStyle = 'rgba(6,7,10,.92)'; ctx.beginPath(); ctx.arc(t.x, t.y, r, 0, 6.2832); ctx.fill();
+      ctx.strokeStyle = rgba(col, lab.st === 'plan' ? 0.6 : 1); ctx.lineWidth = lab.st === 'plan' ? 1.6 : 2.4; ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+    if (lab.st === 'next') { ctx.strokeStyle = rgba('#f1e6c8', 0.7 - pulse * 0.5); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(t.x, t.y, r + 4 + pulse * 8, 0, 6.2832); ctx.stroke(); }
+    if (lab.st === 'llm') {
+      ctx.strokeStyle = rgba('#ff7a7a', 0.9); ctx.lineWidth = 1.6; ctx.setLineDash([4, 5]); ctx.lineDashOffset = reduce ? 0 : -T * 30;
+      ctx.beginPath(); ctx.arc(t.x, t.y, r + 8, 0, 6.2832); ctx.stroke(); ctx.beginPath(); ctx.arc(t.x, t.y, r + 15 + pulse * 3, 0, 6.2832); ctx.stroke(); ctx.setLineDash([]);
+    }
+    if (lab.st === 'finale') {
+      ctx.strokeStyle = rgba('#f1e6c8', 0.85); ctx.lineWidth = 1.6; ctx.beginPath();
+      for (var s = 0; s < 8; s++) { var ang = s / 8 * 6.2832 + (reduce ? 0 : T * 0.5); ctx.moveTo(t.x + Math.cos(ang) * (r + 5), t.y + Math.sin(ang) * (r + 5)); ctx.lineTo(t.x + Math.cos(ang) * (r + 14), t.y + Math.sin(ang) * (r + 14)); }
+      ctx.stroke();
+    }
+    if (r > 8.5) {
+      ctx.fillStyle = lab.st === 'done' ? '#06070a' : rgba(col, lab.st === 'plan' ? 0.75 : 1);
+      ctx.font = '600 ' + Math.round(r * 0.95) + 'px ui-monospace, Consolas, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(String(lab.n), t.x, t.y + 1); ctx.textBaseline = 'alphabetic';
+    }
+    if (lab.st === 'llm') { ctx.fillStyle = '#ff7a7a'; ctx.font = '600 10px ui-monospace, Consolas, monospace'; ctx.textAlign = 'center'; ctx.fillText('LLM', t.x, t.y - r - 20); }
+    if (isHot) {
+      var txt = 'LAB ' + lab.n + '  ' + lab.title.toUpperCase();
+      ctx.font = '600 11px ui-monospace, Consolas, monospace'; var w = ctx.measureText(txt).width + 18, x = t.x - w / 2, y = t.y - r - 40;
+      pillBox(x, y, w, 24, 7); ctx.fillStyle = 'rgba(6,7,10,.95)'; ctx.fill(); ctx.strokeStyle = col; ctx.lineWidth = 1.4; ctx.shadowColor = col; ctx.shadowBlur = 12; ctx.stroke(); ctx.shadowBlur = 0;
+      ctx.fillStyle = '#e9edf1'; ctx.textAlign = 'center'; ctx.fillText(txt, t.x, y + 16);
+    }
+    ctx.restore();
+    hits.push({ lab: lab, x: t.x, y: t.y, r: r + 6, d: t.d });
+  }
+  function drawParticles(dt) {
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    particles.forEach(function (q) {
+      if (!reduce) { q.z += dt * 14; if (q.z > 800) q.z = -60; q.tw += dt * 2; }
+      var p = project(q.x, q.y, q.z), a = 0.25 + 0.35 * (Math.sin(q.tw) + 1) / 2, sz = Math.max(1.2, p.s * 5);
+      ctx.strokeStyle = 'rgba(148,188,227,' + a + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x - sz, p.y); ctx.lineTo(p.x + sz, p.y); ctx.moveTo(p.x, p.y - sz); ctx.lineTo(p.x, p.y + sz); ctx.stroke();
+    });
+    ctx.restore();
+  }
+  var last = 0, onScreen = true;
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; if (onScreen) dirty = true; }).observe(cvs);
+  function frame(now) {
+    var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now; T += dt;
+    var moving = false;
+    if (!dragging) {
+      if (Math.abs(vel.yaw) > 1e-4 || Math.abs(vel.pitch) > 1e-4) { cam.yaw += vel.yaw; cam.pitch = Math.max(0.22, Math.min(1.38, cam.pitch + vel.pitch)); vel.yaw *= 0.92; vel.pitch *= 0.92; moving = true; }
+      else if (autoOrbit && !reduce) { cam.yaw += dt * 0.07; moving = true; }
+    }
+    var k = reduce ? 1 : 1 - Math.pow(0.001, dt);
+    ['tx', 'ty', 'tz', 'dist'].forEach(function (key) { var d = goal[key] - cam[key]; if (Math.abs(d) > 0.4) { cam[key] += d * k; moving = true; } else cam[key] = goal[key]; });
+    if (sel < 0) computeFit(); else { fitGoal.k = 1; fitGoal.dx = 0; fitGoal.dy = 0; }
+    var kf = reduce ? 1 : 1 - Math.pow(0.002, dt);
+    ['k', 'dx', 'dy'].forEach(function (key) { var d = fitGoal[key] - fit[key]; if (Math.abs(d) > (key === 'k' ? 0.0004 : 0.3)) { fit[key] += d * kf; moving = true; } else fit[key] = fitGoal[key]; });
+    if (onScreen && (!reduce || dirty || moving)) { render(dt); dirty = false; }
+    requestAnimationFrame(frame);
+  }
+  function render(dt) {
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H);
+    hits = []; polys = [];
+    drawFloor(); drawPylon();
+    var order = LEVELS.slice().sort(function (a, b) { return project(b.cx, b.cy, b.cz).d - project(a.cx, a.cy, a.cz).d; });
+    var tops = {};
+    order.forEach(function (L) { tops[L.i] = drawPlatform(L); });
+    drawRoute();
+    LABS.slice().sort(function (a, b) { return project(b.wx, b.wy, b.wz).d - project(a.wx, a.wy, a.wz).d; }).forEach(drawNode);
+    order.forEach(function (L) { drawLevelTag(L, tops[L.i]); });
+    drawParticles(dt || 0.016);
+  }
+
+  /* ---------- panel ---------- */
+  var panel = document.getElementById('panel'), chips = document.getElementById('chips'), tip = document.getElementById('tip');
+  var ticks = document.getElementById('ticks');
+  document.getElementById('live-count').textContent = LIVE + ' / ' + TOTAL + ' LIVE'; document.getElementById('live-status').setAttribute('aria-label', LIVE + ' of ' + TOTAL + ' labs published');
+  for (var ti = 0; ti < TOTAL; ti++) { var tk = document.createElement('i'); if (ti < LIVE) tk.className = 'on'; ticks.appendChild(tk); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function stageList(range) {
+    return '<ul class="stages">' + STAGES.map(function (s, i) {
+      var on = !range || (i >= range[0] && i <= range[1]), c = i === 4 ? '#ff7a7a' : i === 5 ? '#f1e6c8' : '#94bce3';
+      return '<li class="' + (on ? 'on' : '') + '" style="--sc:' + c + '"><b>' + i + '</b><span><strong>' + esc(s[0]) + '</strong>' + (on ? '<br>' + esc(s[1]) : '') + '</span></li>';
+    }).join('') + '</ul>';
+  }
+  function pillFor(st) { return st === 'done' ? '<span class="pill done">PUBLISHED AND TESTED</span>' : st === 'next' ? '<span class="pill next">NEXT UP</span>' : st === 'llm' ? '<span class="pill llm">PLANNED / LOCAL LLM</span>' : '<span class="pill plan">PLANNED</span>'; }
+  function quickLinks(lab) {
+    if (!lab.links.length) return '<p class="soon">' + (lab.st === 'next' ? 'In the works. The writeup goes live once I have run the lab and checked it against the real logs.' : 'Not written yet. This is the plan, and it may change when I run the earlier labs.') + '</p>';
+    return '<ul class="qlinks">' + lab.links.map(function (l, i) {
+      return '<li><a class="' + (i === 0 ? 'primary' : '') + '" href="' + esc(l.url) + '"' + (l.external ? ' target="_blank" rel="noopener"' : '') + '>' + esc(l.label) + '<span aria-hidden="true">' + (l.external ? ' ↗' : ' →') + '</span></a></li>';
+    }).join('') + '</ul>';
+  }
+  function renderPanel() {
+    var h = '';
+    if (sel < 0) {
+      h += '<div class="eyebrow">THE PLAN</div><h2>Six levels, one company</h2>';
+      h += '<p>Every lab happens at Rimeport Cold Logistics, a made-up food distributor. You start with one Windows PC and finish by running a whole incident. The attacker gets more automated as you level up.</p>';
+      h += '<div class="label">LEVELS</div><ul class="labs">' + LEVELS.map(function (L) { return '<li><button type="button" data-lvl="' + L.i + '" style="--c:' + L.col + '"><span class="n">L' + (L.i + 1) + '</span><span>' + esc(L.name) + '</span><span class="n">' + L.labs.length + ' labs</span></button></li>'; }).join('') + '</ul>';
+      h += '<div class="label">THE AUTOMATION LADDER</div>' + stageList(null);
+      h += '<p class="fine">A plan, not a promise: labs change when I run them and find out what the logs really show. Built in public by Shreyas Lipare. <a href="https://github.com/UnderDogProfessor/coldchain-ir" target="_blank" rel="noopener">github.com/UnderDogProfessor/coldchain-ir</a></p>';
+    } else {
+      var L = LEVELS[sel];
+      h += '<div class="lvl-head">' + '<div class="eyebrow" style="color:' + L.col + '">LEVEL ' + (sel + 1) + ' OF 6</div><h2>' + esc(L.name) + '</h2>';
+      h += '<div style="margin-top:12px">' + (L.done ? '<span class="pill prog">' + (L.done === L.labs.length ? 'COMPLETE' : 'IN PROGRESS: ' + L.done + ' OF ' + L.labs.length + ' LABS PUBLISHED') + '</span>' : '<span class="pill plan">PLANNED</span>') + '</div>';
+      h += '<p>' + esc(L.learn) + '</p></div>';
+      if (selLab) h += '<div class="labcard" style="--c:' + (selLab.st === 'llm' ? '#ff7a7a' : L.col) + '">' + pillFor(selLab.st) + '<h3>Lab ' + selLab.n + ': ' + esc(selLab.title) + '</h3><p>' + esc(selLab.blurb) + '</p>' + quickLinks(selLab) + '<button type="button" class="copy" data-copy="' + selLab.n + '">COPY LINK TO THIS LAB</button></div>';
+      h += '<div class="label">LABS</div><ul class="labs">' + L.labs.map(function (b) { return '<li><button type="button" class="' + (selLab === b ? 'hl' : '') + '" data-lab="' + b.n + '" style="--c:' + (b.st === 'llm' ? '#ff7a7a' : L.col) + '"><span class="n">' + String(b.n).padStart(2, '0') + '</span><span>' + esc(b.title) + '</span><span class="st ' + (b.st === 'plan' ? '' : b.st) + '" title="' + esc(b.st) + '"></span></button></li>'; }).join('') + '</ul>';
+      h += '<div class="label">MACHINES</div><div class="kv">' + esc(L.machines) + '</div>';
+      h += '<div class="label">AUTOMATION AT THIS LEVEL</div>' + stageList(L.stages);
+    }
+    panel.innerHTML = h; panel.scrollTop = 0; panel.classList.toggle('has-lab', !!selLab);
+    chips.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('on', +c.dataset.lvl === sel); c.setAttribute('aria-pressed', +c.dataset.lvl === sel); });
+  }
+  LEVELS.forEach(function (L) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.dataset.lvl = L.i; b.textContent = 'L' + (L.i + 1); b.style.setProperty('--c', L.col); b.setAttribute('aria-label', 'Level ' + (L.i + 1) + ': ' + L.name); b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () { stopJourney(); reveal(); select(L.i); }); chips.appendChild(b);
+  });
+  /* The address records what is selected, so a lab can be linked to directly:
+     #lab-2 opens Lab 2, #level-3 opens Level 3. replaceState keeps the back
+     button for leaving the page rather than stepping through every click. */
+  function setHash(i, lab) {
+    var h = i < 0 ? '' : lab ? '#lab-' + lab.n : '#level-' + (i + 1);
+    try { history.replaceState(null, '', location.pathname + location.search + h); } catch (e) {}
+  }
+  function fromHash() {
+    var m = /^#(lab|level)-([0-9]+)$/.exec(location.hash);
+    if (!m) return null;
+    var n = +m[2];
+    if (m[1] === 'lab') return LABS[n - 1] ? { i: LABS[n - 1].level.i, lab: LABS[n - 1] } : null;
+    return LEVELS[n - 1] ? { i: n - 1, lab: null } : null;
+  }
+  /* On a phone the panel is a sheet over half the map, so the overview starts
+     with it collapsed and choosing a level or lab opens it. */
+  function narrow() { return cvs.getBoundingClientRect().width <= 860; }
+  function setPanel(open) {
+    panelOpen = open; panel.classList.toggle('collapsed', !open);
+    var bp = document.getElementById('btn-panel'); if (bp) bp.setAttribute('aria-pressed', String(open));
+  }
+  function reveal() { if (!panelOpen && narrow()) setPanel(true); }
+  function select(i, lab, silent) {
+    sel = i; selLab = lab || null;
+    if (!silent && !playing) setHash(i, lab);
+    if (i < 0) { goal.tx = ovTx(); goal.ty = 20; goal.tz = 300; goal.dist = overviewDist(); }
+    else { var L = LEVELS[i]; goal.tx = L.cx; goal.ty = L.cy; goal.tz = L.cz + 20; goal.dist = focusDist(); }
+    renderPanel(); dirty = true;
+  }
+  panel.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.copy !== undefined) {
+      var url = location.origin + location.pathname + '#lab-' + b.dataset.copy;
+      var done = function (msg) { b.textContent = msg; setTimeout(function () { b.textContent = 'COPY LINK TO THIS LAB'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { done('LINK COPIED'); }, function () { done('COPY FAILED'); });
+      else done('COPY FAILED');
+      return;
+    }
+    stopJourney();
+    if (b.dataset.lvl !== undefined) select(+b.dataset.lvl);
+    else if (b.dataset.lab) { var lab = LABS[+b.dataset.lab - 1]; select(lab.level.i, lab); }
+  });
+  panel.addEventListener('pointerover', function (e) { var b = e.target.closest('button[data-lab]'); hoverLab = b ? LABS[+b.dataset.lab - 1] : null; dirty = true; });
+  panel.addEventListener('pointerleave', function () { hoverLab = null; dirty = true; });
+
+  /* ---------- interaction ---------- */
+  var ptr = new Map(), down = null, pinch = 0;
+  function stopAuto() { autoOrbit = false; var o = document.getElementById('btn-orbit'); o.setAttribute('aria-pressed', 'false'); }
+  cvs.addEventListener('pointerdown', function (e) {
+    cvs.setPointerCapture(e.pointerId); ptr.set(e.pointerId, { x: e.clientX, y: e.clientY }); stopJourney();
+    if (ptr.size === 1) { dragging = true; down = { x: e.clientX, y: e.clientY, t: performance.now(), moved: 0 }; stopAuto(); vel.yaw = vel.pitch = 0; }
+    if (ptr.size === 2) { var a = Array.from(ptr.values()); pinch = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y); }
+  });
+  cvs.addEventListener('pointermove', function (e) {
+    var p = ptr.get(e.pointerId), r = cvs.getBoundingClientRect();
+    if (p) {
+      var dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
+      if (ptr.size === 1) { cam.yaw += dx * 0.0062; cam.pitch = Math.max(0.22, Math.min(1.38, cam.pitch + dy * 0.0048)); vel.yaw = dx * 0.0062 * 0.5; vel.pitch = dy * 0.0048 * 0.5; down.moved += Math.abs(dx) + Math.abs(dy); }
+      else if (ptr.size === 2) { var a = Array.from(ptr.values()), d = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y); if (pinch) goal.dist = cam.dist = Math.max(600, Math.min(3400, cam.dist * pinch / d)); pinch = d; }
+      dirty = true;
+    } else { hover(e.clientX - r.left, e.clientY - r.top, e.clientX, e.clientY); }
+  });
+  function endPtr(e) {
+    var had = ptr.has(e.pointerId); ptr.delete(e.pointerId);
+    if (had && ptr.size === 0) { dragging = false; if (down && down.moved < 6 && performance.now() - down.t < 600) { var r = cvs.getBoundingClientRect(); click(e.clientX - r.left, e.clientY - r.top); } down = null; vel.yaw = Math.max(-0.03, Math.min(0.03, vel.yaw)); vel.pitch = Math.max(-0.02, Math.min(0.02, vel.pitch)); }
+    if (ptr.size < 2) pinch = 0;
+  }
+  cvs.addEventListener('pointerup', endPtr); cvs.addEventListener('pointercancel', endPtr);
+  cvs.addEventListener('pointerleave', function () { hoverLab = null; hoverLvl = -1; tip.hidden = true; dirty = true; });
+  cvs.addEventListener('wheel', function (e) { if (document.activeElement !== cvs) return; e.preventDefault(); stopAuto(); goal.dist = Math.max(600, Math.min(3400, goal.dist * Math.exp(e.deltaY * 0.0011))); dirty = true; }, { passive: false });
+  function inPoly(x, y, pts) { var c = false; for (var i = 0, j = pts.length - 1; i < pts.length; j = i++) { if (((pts[i].y > y) !== (pts[j].y > y)) && (x < (pts[j].x - pts[i].x) * (y - pts[i].y) / (pts[j].y - pts[i].y) + pts[i].x)) c = !c; } return c; }
+  function pick(x, y) {
+    var best = null, bd = 1e9;
+    hits.forEach(function (h) { var d = Math.hypot(h.x - x, h.y - y); if (d < h.r && d - h.r < bd) { bd = d - h.r; best = h.lab; } });
+    return best;
+  }
+  function pickLevel(x, y) {
+    var bestI = -1, bestD = 1e9;
+    LEVELS.forEach(function (L) { if (polys[L.i] && inPoly(x, y, polys[L.i])) { var d = project(L.cx, L.cy, L.cz).d; if (d < bestD) { bestD = d; bestI = L.i; } } });
+    return bestI;
+  }
+  function hover(x, y, cx, cy) {
+    var lab = pick(x, y), lv = lab ? lab.level.i : pickLevel(x, y);
+    if (lab !== hoverLab || lv !== hoverLvl) { hoverLab = lab; hoverLvl = lv; dirty = true; }
+    cvs.style.cursor = (lab || lv >= 0) ? 'pointer' : 'grab';
+    if (lab) {
+      var r = cvs.parentNode.getBoundingClientRect();
+      tip.hidden = false; tip.innerHTML = '<span>LAB ' + lab.n + ' / LEVEL ' + (lab.level.i + 1) + ' / ' + (lab.st === 'done' ? 'PUBLISHED' : lab.st === 'next' ? 'NEXT UP' : 'PLANNED') + '</span><b>' + esc(lab.title) + '</b><span>' + esc(lab.blurb) + '</span>';
+      var tx = cx - r.left + 16, ty = cy - r.top + 16; tip.style.left = Math.min(tx, r.width - 256) + 'px'; tip.style.top = Math.min(ty, r.height - 150) + 'px';
+    } else tip.hidden = true;
+  }
+  function click(x, y) {
+    var lab = pick(x, y);
+    if (lab) { reveal(); select(lab.level.i, lab); return; }
+    var lv = pickLevel(x, y); if (lv >= 0) { reveal(); select(lv); }
+  }
+  cvs.addEventListener('keydown', function (e) {
+    var k = e.key, used = true; stopAuto();
+    if (k === 'ArrowLeft') cam.yaw -= 0.12; else if (k === 'ArrowRight') cam.yaw += 0.12;
+    else if (k === 'ArrowUp') cam.pitch = Math.min(1.38, cam.pitch + 0.08); else if (k === 'ArrowDown') cam.pitch = Math.max(0.22, cam.pitch - 0.08);
+    else if (k === '+' || k === '=') goal.dist = Math.max(600, goal.dist * 0.88); else if (k === '-') goal.dist = Math.min(3400, goal.dist * 1.14);
+    else if (k >= '1' && k <= '6') { stopJourney(); select(+k - 1); }
+    else if (k === '0' || k === 'Escape') { stopJourney(); select(-1); }
+    else if (k === 'j' || k === 'J') toggleJourney();
+    else used = false;
+    if (used) { e.preventDefault(); dirty = true; }
+  });
+  var jt = null, jStep = 0, playing = false;
+  var btnPlay = document.getElementById('btn-play');
+  function stopJourney() { if (jt) clearTimeout(jt); jt = null; playing = false; btnPlay.setAttribute('aria-pressed', 'false'); }
+  function stepJourney() { if (!playing) return; var seq = [-1, 0, 1, 2, 3, 4, 5, -1]; select(seq[jStep % seq.length]); jStep++; jt = setTimeout(stepJourney, 3600); }
+  function toggleJourney() { if (playing) { stopJourney(); return; } playing = true; jStep = 0; btnPlay.setAttribute('aria-pressed', 'true'); stopAuto(); stepJourney(); }
+  btnPlay.addEventListener('click', toggleJourney);
+  document.getElementById('btn-over').addEventListener('click', function () { stopJourney(); select(-1); });
+  document.getElementById('btn-orbit').addEventListener('click', function () { autoOrbit = !autoOrbit && !reduce; this.setAttribute('aria-pressed', String(autoOrbit)); dirty = true; });
+  if (reduce) document.getElementById('btn-orbit').setAttribute('aria-pressed', 'false');
+  var btnPanel = document.getElementById('btn-panel');
+  btnPanel.addEventListener('click', function () { panelOpen = !panelOpen; this.setAttribute('aria-pressed', String(panelOpen)); panel.classList.toggle('collapsed', !panelOpen); resize(); select(sel, selLab, true); });
+  window.addEventListener('resize', resize);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { dirty = true; });
+
+  var start = fromHash();
+  /* Opens on the whole roadmap, already framed, so the first thing anyone sees
+     is the six levels and not a close-up of one. */
+  if (!start && narrow()) setPanel(false);
+  resize(); if (start) select(start.i, start.lab, true); else select(-1, null, true);
+  cam.dist = goal.dist; cam.tx = goal.tx; cam.ty = goal.ty; cam.tz = goal.tz;
+  if (sel < 0) { computeFit(); fit.k = fitGoal.k; fit.dx = fitGoal.dx; fit.dy = fitGoal.dy; }
+  requestAnimationFrame(frame);
+  if (start) setTimeout(function () { cvs.parentNode.scrollIntoView({ block: 'start' }); }, 60);
+  window.addEventListener('hashchange', function () { var h = fromHash(); if (h) { stopJourney(); reveal(); select(h.i, h.lab, true); } });
+})();
+</script></section><section class="page list-wrap" data-astro-cid-nrucbe5w><h2 class="mono list-label" data-astro-cid-nrucbe5w>ALL LEVELS AS A LIST</h2><ul class="list" data-astro-cid-nrucbe5w><li class="item" data-astro-cid-nrucbe5w><a href="/projects/lab-builds-and-writeups/coldchain-ir/level-1/" data-astro-cid-nrucbe5w><span class="mono num" data-astro-cid-nrucbe5w>1</span><span class="body" data-astro-cid-nrucbe5w><span class="title" data-astro-cid-nrucbe5w>Level 1 · Basics</span><span class="summary" data-astro-cid-nrucbe5w>The basics: one Windows computer, one small thing to find, about an hour each. No prior incident response experience assumed. Every lab works the Security log by hand, so the evidence is the point rather than the tooling.</span></span><span class="mono count" data-astro-cid-nrucbe5w>5 LABS</span></a></li></ul></section><section class="page about-wrap" data-astro-cid-nrucbe5w><h2 class="mono list-label" data-astro-cid-nrucbe5w>ABOUT THE LAB</h2><p class="blurb" data-astro-cid-nrucbe5w>The lab machine is a Windows 11 Enterprise virtual machine in VMware Workstation named WS-DSP-01, the computer of Dana, a dispatcher at the North Yard warehouse. Levels build on each other, so each one assumes the one before it.</p></section></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.10",
+      "title": "The stopgap was the fix",
+      "url": "https://cyberneticsintern.com/blog/php-cve-2026-115560-session-upload-progress-unpatched/"
+    },
+    {
+      "date": "2026.10",
+      "title": "Six hours before the patch",
+      "url": "https://cyberneticsintern.com/blog/php2shell-cve-2026-109618-109619-leak-before-patch/"
+    },
+    {
+      "date": "2026.10",
+      "title": "They tried the password first",
+      "url": "https://cyberneticsintern.com/blog/connectwise-cloud-backup-service-principal-m365/"
+    },
+    {
+      "date": "2026.10",
+      "title": "The integrity checker said it was clean",
+      "url": "https://cyberneticsintern.com/blog/ivanti-connect-secure-uta0576-chain-integrity-checker/"
+    },
+    {
+      "date": "2026.10",
+      "title": "The defrost was a feature",
+      "url": "https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/"
+    }
+  ]
+}
