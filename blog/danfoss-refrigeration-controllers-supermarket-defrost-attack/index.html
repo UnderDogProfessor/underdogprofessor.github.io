@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The defrost was a feature | Cybernetic Intern</title><meta name="description" content="Hundreds of European supermarkets lost refrigeration on October 11, 2026. Danfoss says the affected controllers are end of life. Forced defrost is a feature."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/"><meta property="og:type" content="article"><meta property="og:title" content="The defrost was a feature | Cybernetic Intern"><meta property="og:description" content="Hundreds of European supermarkets lost refrigeration on October 11, 2026. Danfoss says the affected controllers are end of life. Forced defrost is a feature."><meta property="og:url" content="https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-10-13T00:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The defrost was a feature","description":"Hundreds of European supermarkets lost refrigeration on October 11, 2026. Danfoss says the affected controllers are end of life. Forced defrost is a feature.","datePublished":"2026-10-13T00:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/"},"keywords":"supermarket refrigeration cyberattack, Danfoss AK-SM800 AK-SC355, CVE-2025-41450 Danfoss, forced defrost attack, building management system security, end of life OT devices","citation":[{"@type":"CreativeWork","name":"Hundreds of supermarkets in France hit by 'unprecedented' cyberattack","url":"https://www.aljazeera.com/news/2026/10/13/unprecedented-cyberattack-hits-french-supermarkets-causing-food-losses"},{"@type":"CreativeWork","name":"Hackers turn up the heat in refrigerators at hundreds of supermarkets in France, sparking fires and food losses","url":"https://www.cbsnews.com/news/cyberattack-supermarkets-refrigerators-france-fires-food-losses/"},{"@type":"CreativeWork","name":"Refrigeration Controller Hack Spoils Food Across European Supermarkets","url":"https://www.securityweek.com/refrigeration-controller-hack-spoils-food-across-european-supermarkets/"},{"@type":"CreativeWork","name":"CVE-2025-41450 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2025-41450"},{"@type":"CreativeWork","name":"CVE-2026-15203 detail","url":"https://nvd.nist.gov/vuln/detail/CVE-2026-15203"},{"@type":"CreativeWork","name":"Danfoss Security Advisories","url":"https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/"},{"@type":"CreativeWork","name":"CERTFR-2026-ALE-012: Incident de securite ciblant les controleurs a distance des installations de refrigeration","url":"https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-012/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was this the Claroty vulnerability?","acceptedAnswer":{"@type":"Answer","text":"Nobody has said so, and the product names do not line up. Claroty's August 2026 research and the associated CVEs cover the Danfoss AK-SM 8xxA Series, which is supported and has a fix. Danfoss has pointed at the AK-SM800 and AK-SC355, which it describes as legacy products that no longer receive updates. Those are not the same line. The honest position is that the entry route is unpublished, and that a flaw in a supported product is a poor explanation for an incident the vendor attributes to end-of-life hardware."}},{"@type":"Question","name":"Is CVE-2026-15203 relevant here?","acceptedAnswer":{"@type":"Answer","text":"No, and this one is worth correcting because it is circulating. CVE-2026-15203 is a real Danfoss vulnerability published on August 26, 2026, but it covers the iC7-Automation SP, iC7-Marine and iC7-Hybrid product lines, which are industrial drives rather than refrigeration controllers. Same vendor, unrelated equipment. I checked the NVD record directly."}},{"@type":"Question","name":"Why is a fridge controller reachable from the internet at all?","acceptedAnswer":{"@type":"Answer","text":"Because remote maintenance is the business model. A supervisory controller coordinates the cases and cold rooms across a whole store, and the contractor who services it does so from an office rather than by driving to several hundred sites. That access is deliberate and in most estates it is also the only practical way the equipment gets looked after. The failure is not that remote access exists, it is that it commonly terminates on a device nobody can patch."}},{"@type":"Question","name":"How is forcing a defrost an attack? Is that not a normal function?","acceptedAnswer":{"@type":"Answer","text":"It is entirely normal, which is the point. Defrost cycles are scheduled maintenance behavior that every refrigeration controller performs. An attacker with control of the supervisory layer does not need a memory corruption bug to cause harm, they need the documented function and the authority to call it. That is why this reads as abuse of legitimate capability rather than as exploitation in the usual sense, and it is why detections built around malware or exploit signatures would not have fired."}},{"@type":"Question","name":"We run building systems through a contractor. What should we actually check?","acceptedAnswer":{"@type":"Answer","text":"Three things you can establish this week. Which of those devices are reachable from the internet, directly or through a vendor's remote access tool. Which of them are still supported by the manufacturer and which have passed end of life. And whether anything you own would alert if a setpoint changed at three in the morning. Most estates can answer none of those quickly, and the third one is usually the gap that converts a nuisance into a loss. Note that CERT-FR names Copeland xweb and Dixell xweb alongside the Danfoss series, so do not scope the question to one vendor."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"The defrost was a feature","item":"https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>Incident</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Incident breakdown</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-10-13T00:00:00.000Z" data-astro-cid-jo55ryrt>October 13, 2026</time></div><h1 data-astro-cid-jo55ryrt>The defrost was a feature</h1><p class="standfirst" data-astro-cid-jo55ryrt>Hundreds of European supermarkets lost refrigeration on October 11, 2026. Danfoss says the affected controllers are end of life. Forced defrost is a feature.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Anyone responsible for building systems, refrigeration or any other operational technology that a maintenance contractor reaches over the internet.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p>The attackers told the fridges to defrost.</p>
+<p>That is the reported mechanism, and it is worth sitting with for a second,
+because a defrost cycle is not a bug. Every commercial refrigeration controller
+runs them on a schedule. Somebody with control of the supervisory layer does not
+need a memory corruption flaw to ruin a store’s entire cold chain. They need the
+documented function and the authority to call it.</p>
+<p><span class="cite-run">Overnight on October 11 into October 12, 2026, that happened at hundreds of
+supermarkets across Europe. Cases and cold rooms reached 50 degrees Celsius,
+122 Fahrenheit, and several stores caught fire <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a><a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<h2 id="what-happened">What happened</h2>
+<p><span class="cite-run">French broadcaster BFM TV reported that the attackers “managed to remotely
+trigger the forced defrosting of the refrigeration systems in numerous stores”
+<a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. The Paris prosecutor’s office opened an investigation into what it
+described as a large-scale cyberattack affecting the refrigerators of several
+major food retail chains across France <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p><span class="cite-run">The scale depends on which retailer is counting. Intermarché and Netto put it at
+300 or more locations, Coopérative U at over 100, Carrefour at 80 out of roughly
+6,000 stores, Monoprix at about 5 percent of its roughly 490 sites, and
+E.Leclerc at several <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a><a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. Auchan was also affected <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. It did not stop at
+the French border: SecurityWeek reports retailers hit in Belgium, Germany, the
+Netherlands, Poland, Portugal and Spain <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>, and a Sekoia analyst gave Reuters a
+similar list <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">Intermarché told affected branches to throw away all fresh and frozen stock <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.
+Its chief executive told BFM TV the losses ran to “tens of millions of euros
+nationwide in a single day” <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Coopérative U’s chief executive called the
+attack unprecedented and said targeting that equipment was of extreme gravity
+<a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p><span class="cite-run">The vendor in the middle is Danfoss, a Danish manufacturer of refrigeration
+controls. A person close to the French prime minister said the national
+cybersecurity agency had found a vulnerability in software supplied by a Danish
+company and had contacted the vendor <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. Danfoss said most of the affected
+equipment was legacy product that no longer receives software or security
+updates, and named the AK-SM800 and AK-SC355 <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. It also said the affected
+units were running outdated firmware and that it had long advised customers to
+keep systems updated <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p>Nobody has published how the attackers got in. There is no attribution and no
+reported ransom demand.</p>
+<p><span class="cite-run">One source is worth more than all the coverage put together, and it is the one
+almost nobody is quoting. France’s national CERT published alert
+CERTFR-2026-ALE-012 on October 12 and updated it the next day to add further
+targeted equipment <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. Two things in it change the shape of this story.</span></p>
+<p><span class="cite-run">It is not only Danfoss. CERT-FR names the Danfoss AK-SC and AK-SM series, and
+alongside them Copeland xweb and Dixell xweb <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. Three vendors, which makes
+this a category of device rather than one manufacturer’s problem.</span></p>
+<p><span class="cite-run">And CERT-FR says it is aware of numerous compromises of remote refrigeration
+controllers, adding that attack campaigns are probably still running <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. This
+is not over.</span></p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p>Two things make this different from the usual third-party compromise story.</p>
+<p><span class="cite-run">The first is that the damage was physical and immediate. Not data, not downtime,
+not a notification obligation. Meat, fish and frozen stock across hundreds of
+sites, destroyed in one night, plus fires. The EU agriculture commissioner said
+food security “requires more attention at all levels” and called the
+exploitation of food a reality <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. He is right that this is a different
+category of consequence, and the retail sector has spent very little on it.</span></p>
+<p>The second is that the attack appears to have used the equipment’s own
+functionality. If the reported mechanism holds, no payload had to survive on the
+device and no exploit had to be reliable at scale. A defrost command is a normal
+instruction. This is the part that should worry anybody running a detection
+program, because the controls most organizations buy are oriented around finding
+malicious code. There was, on the current account, nothing malicious to find.</p>
+<p>For the ordinary reader, the useful translation is this. The fridge in your
+local supermarket is managed by a small computer that a contractor can reach
+from their office, and in many stores that computer is old enough that the
+manufacturer has stopped supporting it. That is not negligence by one chain. It
+is the normal state of building systems almost everywhere, including in
+hospitals, data centers and cold storage for pharmaceuticals.</p>
+<h2 id="technical-breakdown">Technical breakdown</h2>
+<p>The most repeated claim in the coverage is that this connects to research
+Claroty published in August 2026 on Danfoss refrigeration management. That
+connection does not survive a look at the product names, and the mismatch is the
+most useful thing in this post.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>The research being cited</th>
+<th>What Danfoss names as affected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product</td>
+<td><span class="cite-run">AK-SM 8xxA Series, the AK-SM 800A platform <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a><a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a></span></td>
+<td><span class="cite-run">AK-SM800 and AK-SC355 <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a></span></td>
+</tr>
+<tr>
+<td>Support status</td>
+<td><span class="cite-run">Supported, with fixed firmware available <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a><a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a></span></td>
+<td><span class="cite-run">Legacy, no longer receiving updates <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a></span></td>
+</tr>
+<tr>
+<td>Vendor advisory</td>
+<td><span class="cite-run">DSA-2025-03-01 and DSA-2025-08-01 <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a></span></td>
+<td><span class="cite-run">No advisory published for either model <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a></span></td>
+</tr>
+<tr>
+<td>CVE</td>
+<td><span class="cite-run">CVE-2025-41450, CVSS 8.2, improper authentication, affecting versions prior to 4.2 <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a></span></td>
+<td>None published</td>
+</tr>
+<tr>
+<td>In CISA KEV</td>
+<td><span class="cite-run">No, as of October 13, 2026 <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a></span></td>
+<td>Not applicable</td>
+</tr>
+</tbody>
+</table>
+<p>Those are two different product lines. The one with the published flaw has a
+patch. The one the vendor points at has no advisory because it is past end of
+life, which is precisely why it has no advisory.</p>
+<p><span class="cite-run">I checked the CVE record rather than taking it from the reporting.
+CVE-2025-41450 was published on May 8, 2025, not in August 2026 as some accounts
+imply, carries CVSS 8.2 with CWE-305, and its vector requires user interaction
+<a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. A flaw needing user interaction is an awkward fit for a synchronized
+overnight action across hundreds of unattended sites.</span></p>
+<p><span class="cite-run">While verifying that, I found a second claim circulating that is simply wrong.
+Some write-ups attach CVE-2026-15203 to this incident. That CVE is real, and it
+is a Danfoss vulnerability published on August 26, 2026, but it covers the
+iC7-Automation SP, iC7-Marine and iC7-Hybrid lines <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. Those are industrial
+drives. Same vendor, unrelated equipment, no bearing on a supermarket fridge.</span></p>
+<p>So what is left, stripped of the speculation? A supervisory controller that
+coordinates refrigeration across an entire store, reachable remotely because
+that is how maintenance contractors work, running software the manufacturer no
+longer updates, at hundreds of sites, instructed to perform a function it was
+built to perform.</p>
+<p>I have not drawn an attack chain. A chain asserts a route from first contact to
+objective, and the first contact here is exactly what nobody has published.
+Drawing one would mean inventing the step that matters most.</p>
+<p>What I can say about detection is narrower and more useful. The observable event
+was a setpoint or mode change at an unusual hour, followed by temperature rising
+across many units at once. Both of those are visible in refrigeration telemetry
+that most large grocers already collect for food safety compliance, and neither
+requires a security product to see. The gap is almost never the data. It is that
+the data goes to a facilities dashboard nobody watches overnight, and the alarm
+thresholds are tuned for equipment failure rather than for simultaneous change
+across a fleet.</p>
+<h2 id="what-defenders-should-do-next">What defenders should do next</h2>
+<p><span class="cite-run">Take this from CERT-FR rather than from me. Its alert carries specific guidance
+and it is the only authoritative operational advice published so far <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>.</span></p>
+<p><strong>Immediate, today.</strong><span class="cite-run"> Remove internet exposure from any affected unit, including
+anything reachable on a public IP. CERT-FR adds a caveat I have not seen
+anywhere else and would not have thought of: check your insurance policy terms
+before you do it <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. Then review the whole configuration, and CERT-FR
+specifically names the defrost ranges, which tells you what it has been seeing
+<a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. Restore access only over a secure VPN or a protected network. Source IP
+filtering for your contractors at the firewall will do in an emergency, but
+CERT-FR is explicit that it is not a durable fix <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>.</span></p>
+<p><span class="cite-run">For Danfoss equipment specifically, CERT-FR names three vendor measures: switch
+to “Strict” security mode, change default passwords, and update firmware <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. If
+you run the AK-SM 8xxA line there is a fix available <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>. If you run something
+past end of life there is not, and reachability is the only control you have.</span></p>
+<p><strong>Near term, this week.</strong><span class="cite-run"> If a unit was compromised, isolate it, factory reset
+it, and reconfigure before returning it to service <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. CERT-FR is blunt about
+the limits of that: a factory reset removes persistence but leaves the device
+vulnerable, and it will probably be compromised again <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. Treat the reset as
+cleanup, not as remediation.</span></p>
+<p>Then put an alert on out-of-hours setpoint and mode changes, and on temperature
+rise across multiple units inside a short window. Your facilities team almost
+certainly already has this telemetry for food safety reasons. Route a copy
+somewhere a person looks at three in the morning, which in most organizations
+means the SOC rather than the building management console.</p>
+<p>Ask your maintenance contractor two questions in writing: how they reach your
+controllers, and what happens to that access when one of their staff leaves.</p>
+<p><strong>Structural, this quarter.</strong> Inventory the operational technology in your
+estate by support status, not by criticality. Criticality assessments tend to
+score a fridge controller low, which is how it ends up unmanaged, and this
+incident is the argument that the score was wrong. For anything past end of
+life, the decision is replacement or isolation, and treating it as neither is
+the decision most estates have made by default.</p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>Do we run Danfoss AK-SC or AK-SM, Copeland xweb or Dixell xweb controllers anywhere?</li>
+<li>Which building and refrigeration controllers are reachable from the internet,
+including through a contractor’s remote access?</li>
+<li>Which of them are past manufacturer end of life, and what is the plan?</li>
+<li>Would anything alert on a setpoint change at 03:00?</li>
+<li>Have we reviewed the defrost schedules themselves, which is what CERT-FR asks for?</li>
+<li>Does refrigeration telemetry reach anybody outside the facilities team?</li>
+<li>How does our maintenance contractor authenticate, and who at their end has
+access?</li>
+<li>If every controller in one region changed mode at once, how long until
+somebody knew?</li>
+</ul>
+<h2 id="the-device-was-never-in-anybodys-scope">The device was never in anybody’s scope</h2>
+<p>The reflex after an incident like this is to ask which vulnerability did it. I
+understand the reflex and I have spent two days on the answer, but I think it is
+the wrong question here, and the product mismatch at the center of this post is
+the evidence.</p>
+<p>A controller that the manufacturer stopped supporting, that no asset inventory
+lists, that no vulnerability scanner reaches and that no patch cycle covers does
+not need a celebrated CVE to be a problem. It needs only to be reachable and to
+do what it was designed to do. Whether the route in was CVE-2025-41450, default
+credentials, a contractor’s compromised remote access tool or something nobody
+has thought of yet, the outcome was available to anybody who got there.</p>
+<p>Operational technology keeps being treated as somebody else’s estate, usually
+facilities, and security keeps accepting that division because the devices are
+boring and the vendors are unfamiliar. That division is where this incident
+lives. The industry has spent a decade learning to ask who owns an internet
+facing server. It has not yet learned to ask who owns the fridge.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Was this the Claroty vulnerability?</dt><dd data-astro-cid-jo55ryrt>Nobody has said so, and the product names do not line up. Claroty&#39;s August 2026 research and the associated CVEs cover the Danfoss AK-SM 8xxA Series, which is supported and has a fix. Danfoss has pointed at the AK-SM800 and AK-SC355, which it describes as legacy products that no longer receive updates. Those are not the same line. The honest position is that the entry route is unpublished, and that a flaw in a supported product is a poor explanation for an incident the vendor attributes to end-of-life hardware.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Is CVE-2026-15203 relevant here?</dt><dd data-astro-cid-jo55ryrt>No, and this one is worth correcting because it is circulating. CVE-2026-15203 is a real Danfoss vulnerability published on August 26, 2026, but it covers the iC7-Automation SP, iC7-Marine and iC7-Hybrid product lines, which are industrial drives rather than refrigeration controllers. Same vendor, unrelated equipment. I checked the NVD record directly.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Why is a fridge controller reachable from the internet at all?</dt><dd data-astro-cid-jo55ryrt>Because remote maintenance is the business model. A supervisory controller coordinates the cases and cold rooms across a whole store, and the contractor who services it does so from an office rather than by driving to several hundred sites. That access is deliberate and in most estates it is also the only practical way the equipment gets looked after. The failure is not that remote access exists, it is that it commonly terminates on a device nobody can patch.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>How is forcing a defrost an attack? Is that not a normal function?</dt><dd data-astro-cid-jo55ryrt>It is entirely normal, which is the point. Defrost cycles are scheduled maintenance behavior that every refrigeration controller performs. An attacker with control of the supervisory layer does not need a memory corruption bug to cause harm, they need the documented function and the authority to call it. That is why this reads as abuse of legitimate capability rather than as exploitation in the usual sense, and it is why detections built around malware or exploit signatures would not have fired.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>We run building systems through a contractor. What should we actually check?</dt><dd data-astro-cid-jo55ryrt>Three things you can establish this week. Which of those devices are reachable from the internet, directly or through a vendor&#39;s remote access tool. Which of them are still supported by the manufacturer and which have passed end of life. And whether anything you own would alert if a setpoint changed at three in the morning. Most estates can answer none of those quickly, and the third one is usually the gap that converts a nuisance into a loss. Note that CERT-FR names Copeland xweb and Dixell xweb alongside the Danfoss series, so do not scope the question to one vendor.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>This is a live incident and the most important fact is missing: nobody, including CERT-FR, has published how the attackers got in. CERT-FR&#39;s alert CERTFR-2026-ALE-012 is the authoritative source here and I found it late, after drafting; it is why this post names Copeland and Dixell alongside Danfoss rather than treating this as one vendor&#39;s incident, and why the actions section is its guidance rather than mine. Treat every causal link below as unestablished. The specific thing I want to flag is that the connection being drawn in much of the coverage, between this attack and the Danfoss research Claroty published in August 2026, is not supported by the product names. Claroty examined the AK-SM 8xxA Series. Danfoss has named the AK-SM800 and the AK-SC355, which are different and older. I could not open Claroty&#39;s own write-up: the URL I tried returned 404 and I could not locate the canonical one, so I have cited SecurityWeek for the fact of the disclosure rather than Claroty for its contents, and I have not described their technical findings. Store counts vary between outlets and I have given the range rather than picking one. There is no attribution, no ransom demand reported, and no statement from Danfoss on its own advisory page, which carried nothing about the incident when I checked on October 13, 2026.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.aljazeera.com/news/2026/10/13/unprecedented-cyberattack-hits-french-supermarkets-causing-food-losses" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Hundreds of supermarkets in France hit by &#39;unprecedented&#39; cyberattack</a><span class="meta mono" data-astro-cid-j6o3mlwn>Al Jazeera · Published October 13, 2026 · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cbsnews.com/news/cyberattack-supermarkets-refrigerators-france-fires-food-losses/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Hackers turn up the heat in refrigerators at hundreds of supermarkets in France, sparking fires and food losses</a><span class="meta mono" data-astro-cid-j6o3mlwn>CBS News, with AFP · Published October 12, 2026 · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.securityweek.com/refrigeration-controller-hack-spoils-food-across-european-supermarkets/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Refrigeration Controller Hack Spoils Food Across European Supermarkets</a><span class="meta mono" data-astro-cid-j6o3mlwn>SecurityWeek · Published October 13, 2026 · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-41450" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2025-41450 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published May 8, 2025 · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-5" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[5]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15203" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CVE-2026-15203 detail</a><span class="meta mono" data-astro-cid-j6o3mlwn>NIST National Vulnerability Database · Published August 26, 2026 · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-6" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[6]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Danfoss Security Advisories</a><span class="meta mono" data-astro-cid-j6o3mlwn>Danfoss · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-7" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[7]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-012/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>CERTFR-2026-ALE-012: Incident de securite ciblant les controleurs a distance des installations de refrigeration</a><span class="meta mono" data-astro-cid-j6o3mlwn>CERT-FR, Agence nationale de la securite des systemes d&#39;information · Published October 12, 2026 · Accessed October 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20The%20defrost%20was%20a%20feature" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div><a class="next" href="/blog/water-utility-plc-internet-exposure/" data-astro-cid-pmq6rq5t><span class="mono kicker" data-astro-cid-pmq6rq5t>READ NEXT</span><span class="title" data-astro-cid-pmq6rq5t>Boil water notices, caused by a password change</span><span class="mono arrow" data-astro-cid-pmq6rq5t>↗</span></a></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

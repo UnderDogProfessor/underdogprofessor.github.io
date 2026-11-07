@@ -1,0 +1,1 @@
+function e(){try{return JSON.parse(localStorage.getItem(`range.progress.v1`))||{}}catch{return{}}}function t(e){try{localStorage.setItem(`range.progress.v1`,JSON.stringify(e))}catch{}}export{t as n,e as t};
