@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.11",
+      "title": "Three status pages, three answers",
+      "url": "https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/"
+    },
+    {
+      "date": "2026.11",
+      "title": "The miner was the cheap part",
+      "url": "https://cyberneticsintern.com/blog/n-able-n-central-4everable2shell-rmm-blast-radius/"
+    },
+    {
+      "date": "2026.11",
+      "title": "Nothing else turned off",
+      "url": "https://cyberneticsintern.com/blog/sonicwall-cve-2026-19868-saml-mfa-bypass-alternate-auth/"
+    },
+    {
+      "date": "2026.11",
+      "title": "The version number said patched",
+      "url": "https://cyberneticsintern.com/blog/gitlab-onigmo-cve-2026-97229-ruby-patch-gap/"
+    },
+    {
+      "date": "2026.10",
+      "title": "The stopgap was the fix",
+      "url": "https://cyberneticsintern.com/blog/php-cve-2026-115560-session-upload-progress-unpatched/"
+    }
+  ]
+}

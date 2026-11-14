@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A token is addressed to somebody | Cybernetic Intern</title><meta name="description" content="The audience claim names which service a token was minted for, and a service that does not check it will happily accept one issued for somewhere else."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/a-token-is-addressed-to-somebody/"><meta property="og:type" content="article"><meta property="og:title" content="A token is addressed to somebody | Cybernetic Intern"><meta property="og:description" content="The audience claim names which service a token was minted for, and a service that does not check it will happily accept one issued for somewhere else."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/a-token-is-addressed-to-somebody/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-10-29T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"A token is addressed to somebody","description":"The audience claim names which service a token was minted for, and a service that does not check it will happily accept one issued for somewhere else.","url":"https://cyberneticsintern.com/learn/identity/a-token-is-addressed-to-somebody/","datePublished":"2026-10-29T07:00:00.000Z","educationalLevel":"foundation","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-10-29T07:00:00.000Z" data-astro-cid-jh75pjse>October 29, 2026</time></div><h1 data-astro-cid-jh75pjse>A token is addressed to somebody</h1><p class="summary" data-astro-cid-jh75pjse>The audience claim names which service a token was minted for, and a service that does not check it will happily accept one issued for somewhere else.</p><div class="prose" data-astro-cid-jh75pjse><p>Every token carries a claim saying who it is for. In a JWT it is <code>aud</code>, the
+audience, and it names the service the token was minted to be presented to.</p>
+<p>Validation is where this goes wrong. Checking a token usually means three
+things: the signature is good, it has not expired, and the issuer is one you
+trust. Those are the checks people remember. The fourth, that the audience is
+you, is the one that gets skipped, because the token works without it.</p>
+<p>Skipping it has a specific consequence. If two services trust the same identity
+provider, and neither checks audience, a token for one is a token for the
+other. An attacker who can obtain a token for the least important service in
+your estate now holds one the most important service will accept.</p>
+<p>Nothing about that is an attack on the identity provider. It issued a perfectly
+correct token for the thing it was asked about. The receiving service chose not
+to read the address on the envelope.</p>
+<p>This is also why a single shared audience value across many services, a pattern
+that shows up when somebody wanted to stop fighting configuration, quietly
+undoes the separation you thought you had.</p>
+<p>Pick one internal API and read its token validation. Count how many of the four
+checks it performs. The audience one is where the money is.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="A valid token minted for the reporting tool can be replayed against the payments API" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>Two internal services, a reporting tool and a payments API, both trust tokens from the same identity provider. The payments API validates the signature and the expiry but not the audience. What follows?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Nothing, because the identity provider only issues a token after authenticating the user" data-astro-cid-jh75pjse>Nothing, because the identity provider only issues a token after authenticating the user</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Nothing, because the signature proves the identity provider issued it for this request" data-astro-cid-jh75pjse>Nothing, because the signature proves the identity provider issued it for this request</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="A valid token minted for the reporting tool can be replayed against the payments API" data-astro-cid-jh75pjse>A valid token minted for the reporting tool can be replayed against the payments API</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The payments API will reject the token, because the signing key differs per service" data-astro-cid-jh75pjse>The payments API will reject the token, because the signing key differs per service</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>A valid token minted for the reporting tool can be replayed against the payments API</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> The signature only proves the issuer minted the token and nobody altered it. It says nothing about intended recipient, and in this setup both services trust the same issuer and therefore the same key. The audience claim is the part that carries the destination, so skipping it collapses two trust boundaries into one. Whoever can get a token for the low-value service now has one the high-value service accepts, which is a privilege escalation that never touches the identity provider.</p></div></details></div></details><script>(function(){const readKey = "identity/a-token-is-addressed-to-somebody";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://www.rfc-editor.org/rfc/rfc7519#section-4.1.3" rel="noopener" target="_blank" data-astro-cid-jh75pjse>RFC 7519, JSON Web Token, the aud claim</a></li></ul></section><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

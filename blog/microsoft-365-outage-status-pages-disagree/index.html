@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Three status pages, three answers | Cybernetic Intern</title><meta name="description" content="At 16:10 UTC on November 13, 2026, Microsoft's three public status surfaces disagreed about the same outage. Here is which one to trust, and why."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/"><meta property="og:type" content="article"><meta property="og:title" content="Three status pages, three answers | Cybernetic Intern"><meta property="og:description" content="At 16:10 UTC on November 13, 2026, Microsoft's three public status surfaces disagreed about the same outage. Here is which one to trust, and why."><meta property="og:url" content="https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-11-13T00:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Three status pages, three answers","description":"At 16:10 UTC on November 13, 2026, Microsoft's three public status surfaces disagreed about the same outage. Here is which one to trust, and why.","datePublished":"2026-11-13T00:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/"},"keywords":"Microsoft 365 outage status page, Microsoft 365 service health RSS, status.cloud.microsoft, Azure status page no active events, Defender XDR degraded outage, Microsoft Graph service health API","citation":[{"@type":"CreativeWork","name":"Microsoft service health status","url":"https://status.cloud.microsoft/"},{"@type":"CreativeWork","name":"Microsoft Admin Center Status (RSS feed)","url":"https://status.cloud.microsoft/api/feed/mac"},{"@type":"CreativeWork","name":"Azure status","url":"https://azure.status.microsoft/en-us/status"},{"@type":"CreativeWork","name":"Working with service communications APIs in Microsoft Graph","url":"https://learn.microsoft.com/en-us/graph/api/resources/service-communications-api-overview"},{"@type":"CreativeWork","name":"Massive Microsoft 365 outage disrupts Outlook, Teams, Copilot worldwide","url":"https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/"},{"@type":"CreativeWork","name":"Microsoft hit by global outages: What happened and why?","url":"https://www.aljazeera.com/news/2026/11/13/microsoft-hit-by-global-outages-what-happened-and-why"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which Microsoft status page should I actually check?","acceptedAnswer":{"@type":"Answer","text":"For Microsoft 365, status.cloud.microsoft, and specifically its RSS feed rather than the rendered page. The page gives you a one-line title. The feed behind the same page carries Microsoft's full update, including the per-service impact list and the time of the next promised update. The Azure status page is a different thing and will often say nothing during a Microsoft 365 incident."}},{"@type":"Question","name":"Why did the Azure status page say there were no active events?","acceptedAnswer":{"@type":"Answer","text":"Because it is working as designed. That page states that it is only used for widespread incidents, and tells you to sign in to Azure Service Health for anything that may be affecting your own services. A Microsoft 365 service incident is not an Azure platform event, so it does not appear there. The page saying nothing is not the same as the platform being fine."}},{"@type":"Question","name":"Was this a cyberattack?","acceptedAnswer":{"@type":"Answer","text":"Microsoft says no. Its own service health update on November 13, 2026, says there is no evidence of malicious activity associated with the incident, and a Microsoft executive said publicly the day before that there was no indication of malicious or cyber activity. Microsoft has not published a root cause and has committed to a Post-Incident Report."}},{"@type":"Question","name":"Did the outage affect security tooling, or just email?","acceptedAnswer":{"@type":"Answer","text":"Both. Microsoft's own impact list named Defender XDR portal pages, Defender for Office 365 experiences that depend on Purview signals, Purview Data Loss Prevention policy evaluation, audit search, eDiscovery, and Intune device compliance. If your detection and data-protection posture assumes those controls are evaluating, they were not, for some period you should now establish."}},{"@type":"Question","name":"Can I monitor Microsoft 365 service health without a person signing in?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Microsoft Graph service communications API exposes service health and issues, and supports application permissions with ServiceHealth.Read.All, so a backend monitor can poll it with no signed-in user. Set it up before you need it, because the admin center is the surface Microsoft itself warned might not load."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"Three status pages, three answers","item":"https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>Cloud</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Defensive guide</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-11-13T00:00:00.000Z" data-astro-cid-jo55ryrt>November 13, 2026</time></div><h1 data-astro-cid-jo55ryrt>Three status pages, three answers</h1><p class="standfirst" data-astro-cid-jo55ryrt>At 16:10 UTC on November 13, 2026, Microsoft&#39;s three public status surfaces disagreed about the same outage. Here is which one to trust, and why.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Anyone who had to answer &quot;is it us or is it them&quot; during the November 2026 Microsoft 365 outage, and anyone who will have to answer it next time.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p>At 16:10 UTC today I opened three Microsoft status surfaces inside the same
+minute and got three different answers about the same outage.</p>
+<p><span class="cite-run">The Microsoft 365 page said service degradation, in one sentence, with no detail
+<a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. The RSS feed sitting behind that same page listed twenty affected services,
+named a workaround for two of them, and gave a time for the next update <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. The
+Azure status page said there were currently no active events <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>.</span></p>
+<p>All three were correct. The question every analyst was fielding yesterday
+afternoon was the oldest one in operations, is it us or is it them, and the
+answer depended entirely on which of those three pages somebody happened to
+open first.</p>
+<h2 id="what-happened">What happened</h2>
+<p><span class="cite-run">Reports of Outlook failures began around 16:00 GMT on Thursday, November 12,
+2026 <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>. Microsoft logged the Microsoft 365 incident as starting at 1:26 PM ET
+that day, which is 18:26 GMT, and tracked it in the admin center as MO1550821,
+confirming that customers might be unable to connect to Exchange Online,
+Microsoft Teams, SharePoint Online, Microsoft 365 Copilot and Microsoft
+Defender XDR <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></p>
+<p><span class="cite-run">Those two times are about two and a half hours apart, and the gap is not a
+contradiction. Microsoft says it had been investigating Exchange Online mailbox
+connectivity reports in the Americas earlier that day <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. The tracked incident
+starts later than the trouble does, which is the normal shape of these things
+and the reason the first action below is to build your own window rather than
+inherit the vendor’s.</span></p>
+<p><span class="cite-run">A separate Teams incident, TM1550488, had run from 9:45 to 10:53 AM ET the same
+morning and was resolved before the larger one began. Microsoft has not said
+whether the two were related <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></p>
+<p><span class="cite-run">The company’s explanation moved as the day went on. That is what an in-flight
+incident looks like from outside, and it is worth reading as such rather than
+as evasion. It first pointed to elevated infrastructure load across multiple
+regions. It then said
+the load was not driven by a rise in traffic but by servers becoming
+unexpectedly unavailable, straining what remained. It paused all deployments,
+redistributed connection traffic, and began restarting affected servers <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.
+Later it described a core process on those servers becoming overwhelmed, and
+said it was investigating whether reverting a small number of recent
+configuration updates would speed recovery <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. By Friday it was rolling back a
+network change, without saying whether that change was the cause <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>.</span></p>
+<p><span class="cite-run">Microsoft extended its email timeout window to 48 hours to preserve delayed
+messages while it worked through the backlog <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. On the question everyone in
+this industry asks first, its service health update is unambiguous: there is no
+evidence of malicious activity associated with the incident, and a full
+Post-Incident Report with root cause will follow <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. A Microsoft executive
+said publicly on Thursday evening that there was no indication of malicious or
+cyber activity <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>.</span></p>
+<p><span class="cite-run">Downdetector had logged at least 43,000 Outlook reports from 72 countries by
+07:00 GMT on Friday <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>. That number counts people who went to a website to
+complain. It is a signal of breadth, not a measurement of impact, and it should
+never be quoted as one.</span></p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p><span class="cite-run">Read Microsoft’s own impact list and the outage stops being a mail story. It
+names Defender XDR portal pages failing to load, and policy evaluation delayed
+or failing in Defender for Office 365 experiences that depend on Purview
+signals. It names Purview Data Loss Prevention across Microsoft 365 services,
+along with auto-labeling, Communication Compliance, audit search, eDiscovery
+search and export, and Data Classification. Intune device enrollment, check-in
+and compliance policies could be intermittently affected, and Microsoft Graph
+requests touching Exchange Online data could time out <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p>Microsoft writes all of that as “may be unable to”, as vendors do during a live
+incident. Read it as the set of things that were not dependable rather than as
+a list of what definitely broke in your tenant.</p>
+<p>So for some number of hours, in a lot of tenants, DLP was not reliably
+evaluating, labels were not reliably applying, compliance state was not reliably
+reporting, and the portal where you would notice any of that was not reliably
+loading.</p>
+<p>Nobody attacked anything here. The point is narrower and more awkward: an
+availability incident in a platform that also runs your controls is a control
+incident, and most organizations have no process that treats it as one. The
+outage bridge talks about mail. It does not usually ask which policies stopped
+evaluating and what passed through while they were not.</p>
+<p><span class="cite-run">And the admin center, the place you would go to find out, was on the impact
+list. Microsoft said admins might be unable to load some of its pages <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. That
+is also why the public status page exists at all. It says so in plain language
+on the page itself: information is posted there because Microsoft 365
+administrators may be unable to access the admin center to get service health
+information <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<h2 id="technical-breakdown">Technical breakdown</h2>
+<p>Microsoft runs several status surfaces with different jobs, and the differences
+are not written down anywhere a person will find them at 2am. Here is what each
+one actually gave me, with the times I read them.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>What it said on November 13, 2026</th>
+<th>Sign-in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status.cloud.microsoft</code> rendered page</td>
+<td><span class="cite-run">“Service degradation”. One line: users may be unable to connect to multiple Microsoft 365 services. Expanding “Show details” added a timestamp and nothing else <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a></span></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>status.cloud.microsoft/api/feed/mac</code> RSS</td>
+<td><span class="cite-run">Microsoft’s full update at 16:07:11 UTC: current status, twenty services with per-service impact, workarounds for Fabric and Power Apps, scope of impact, and “Next update by” 18:00 UTC <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a></span></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>azure.status.microsoft</code></td>
+<td><span class="cite-run">“There are currently no active events”, across every region, refreshing every two minutes <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a></span></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Microsoft 365 admin center service health</td>
+<td><span class="cite-run">Microsoft’s own impact list warned admins might be unable to load some admin center pages <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a></span></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Graph <code>serviceAnnouncement</code> endpoints</td>
+<td>HTTP 401, <code>InvalidAuthenticationToken</code>, with no bearer token. Needs <code>ServiceHealth.Read.All</code><span class="cite-run"> <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a></span></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Downdetector</td>
+<td><span class="cite-run">At least 43,000 Outlook reports from 72 countries at 07:00 GMT <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a></span></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Three things fall out of that table.</p>
+<p><strong>The Azure page is not the Microsoft 365 page, and it is not lying to you.</strong><span class="cite-run">
+It states its own scope directly: it is only used for widespread incidents, and
+you are told to sign in to Azure Service Health for anything affecting your
+specific services <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. A Microsoft 365 service incident does not qualify. If
+your runbook says “check the Azure status page”, your runbook will tell you
+everything is fine during an Exchange Online outage, and somebody will believe
+it.</span></p>
+<p><strong>The RSS feed is the better read, by a wide margin.</strong> The rendered page gives
+you a headline. The feed at <code>/api/feed/mac</code> gives you Microsoft’s actual
+narrative, unauthenticated, in a format you can diff. Same service, same minute,
+two completely different amounts of information. I found it by reading the
+status page’s own JavaScript bundle for the path its RSS button points at, which
+is a silly way to have to find a public feed.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span># Microsoft 365 service health, no sign-in, no tenant, no admin center</span></span>
+<span class="line"><span>curl -s https://status.cloud.microsoft/api/feed/mac</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># The Azure equivalent, which covers platform-wide events only</span></span>
+<span class="line"><span>curl -s https://azure.status.microsoft/en-us/status/feed/</span></span></code></pre>
+<p>At 16:10 UTC the first returned one item with status <code>ServiceDegradation</code>. The
+second returned a valid RSS channel containing zero items. Both were accurate
+and they describe the same afternoon.</p>
+<p><strong>The authenticated surfaces are the detailed ones, and they are the ones at
+risk.</strong> Tenant-specific service health lives in the admin center and in Graph,
+and both sit behind the identity and service fabric that was degraded. The Graph
+service communications API is the right long-term answer, because it supports
+application permissions with <code>ServiceHealth.Read.All</code><span class="cite-run">, which means a backend
+monitor can poll service health with no signed-in user at all <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. I could not
+test it against a live tenant from here, and I will not claim the
+</span><code>serviceAnnouncement</code><span class="cite-run"> endpoints were unaffected during the incident, because
+Microsoft’s own note about Graph timeouts was specific to requests touching
+Exchange Online data <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. What I can say is that an app-permission poller is the
+only one of these surfaces that does not require a human to successfully load a
+web application during an outage.</span></p>
+<p>There is no attack chain in this post because there was no adversary. Treating
+an outage like an intrusion is its own failure mode, and it wastes the first
+hour.</p>
+<h2 id="what-defenders-should-do-next">What defenders should do next</h2>
+<p><strong>Immediate, within 24 hours.</strong></p>
+<ol>
+<li>Establish your own impact window from your own telemetry rather than from
+Microsoft’s. The start of your degradation is rarely the start of the
+incident, and it is the window you will be asked about.</li>
+<li><span class="cite-run">Walk Microsoft’s per-service impact list against the controls you actually
+depend on <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. For most tenants the ones that matter are DLP policy
+evaluation, sensitivity auto-labeling, Intune compliance state and audit
+search availability.</span></li>
+<li>Re-run any audit or eDiscovery search executed during the window. Searches
+that completed against a degraded index can return fewer results without
+returning an error, and an empty result set during an outage is not an
+answer.</li>
+<li><span class="cite-run">Check mail flow backlogs rather than mail access. Microsoft extended its
+email timeout to 48 hours, which means delayed messages were preserved and
+delivered late <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. Deliveries landing hours after they were sent will look
+strange in any time-based rule, and in user reports.</span></li>
+</ol>
+<p><strong>Near term, this week.</strong></p>
+<ol start="5">
+<li>Write down which status surface your team checks, and make it the Microsoft
+365 RSS feed rather than the Azure page or a screenshot somebody posts in
+chat. One line in the runbook, with the URL.</li>
+<li>Reconcile the window against your detections. Ask specifically what should
+have alerted and did not, rather than what alerted. The second question is
+easy and the first is the one with the finding in it.</li>
+<li>Brief whoever answers the phone. During a well-publicized outage, “Microsoft
+is down, re-authenticate here” is a credible-sounding message to send, and
+users are primed to act on it. I searched for reporting of an outage-themed
+phishing campaign tied to this incident and found none at the time of
+writing, which is worth saying plainly: that is an absence of reporting, not
+a clean bill of health, and it is the cheapest brief you will give all week.</li>
+</ol>
+<p><strong>Structural, this quarter.</strong></p>
+<ol start="8">
+<li><span class="cite-run">Stand up a service health monitor on application permissions, so the answer
+to “is it us” does not depend on a person loading a portal <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. This is a
+half-day of work and it pays for itself the first time.</span></li>
+<li>Add a control-degradation step to your outage process. Name the controls
+that live in the affected platform, record which were degraded and for how
+long, and treat that record as an input to detection coverage rather than a
+footnote in a status update.</li>
+<li>Decide now what you do when the platform that holds your evidence is the
+platform that is down. Where your audit log, your case notes and your
+communications all live in one tenant, an outage is also an evidence
+availability problem, and the time to discover that is not during one.</li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Impact window established from your own telemetry, not from the vendor’s</li>
+<li class="task-list-item"><input type="checkbox" disabled> Microsoft’s per-service impact list walked against your actual controls</li>
+<li class="task-list-item"><input type="checkbox" disabled> Audit and eDiscovery searches run during the window re-executed</li>
+<li class="task-list-item"><input type="checkbox" disabled> Mail backlog reviewed, with late deliveries accounted for in time-based rules</li>
+<li class="task-list-item"><input type="checkbox" disabled> Status surface named in the runbook, with the RSS URL, not the Azure page</li>
+<li class="task-list-item"><input type="checkbox" disabled> Detections reconciled: what should have fired and did not</li>
+<li class="task-list-item"><input type="checkbox" disabled> Service desk briefed on outage-themed social engineering</li>
+<li class="task-list-item"><input type="checkbox" disabled> Service health monitor running on application permissions</li>
+<li class="task-list-item"><input type="checkbox" disabled> Control degradation recorded as a coverage input, not a footnote</li>
+</ul>
+<h2 id="the-dashboard-was-inside-the-building">The dashboard was inside the building</h2>
+<p>The lesson people will take from this week is about resilience, and they will
+mean email. I think that is the smaller half.</p>
+<p>A platform that delivers your mail, enforces your data protection policy,
+reports your device compliance and holds your audit log has made all four of
+those things share a failure domain. That is a design decision, and the industry
+made it by accumulation rather than by choosing it, one consolidation at a time,
+each of which looked like simplification. Nobody signed off on “our DLP and our
+evidence store and our incident comms will go down together”. It just came out
+that way.</p>
+<p>The part I would change is smaller and entirely achievable. Every organization
+running on a platform like this should be able to answer two questions without
+logging into it: is the platform degraded right now, and which of my controls
+degrade with it. The first takes a <code>curl</code> and a runbook line. The second takes
+somebody sitting down with a vendor impact list and their own control inventory
+for an afternoon, once.</p>
+<p>Three status pages told me three true things about the same minute. That is
+fine, and it is navigable. It is only dangerous when nobody has decided in
+advance which one they are going to read.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Which Microsoft status page should I actually check?</dt><dd data-astro-cid-jo55ryrt>For Microsoft 365, status.cloud.microsoft, and specifically its RSS feed rather than the rendered page. The page gives you a one-line title. The feed behind the same page carries Microsoft&#39;s full update, including the per-service impact list and the time of the next promised update. The Azure status page is a different thing and will often say nothing during a Microsoft 365 incident.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Why did the Azure status page say there were no active events?</dt><dd data-astro-cid-jo55ryrt>Because it is working as designed. That page states that it is only used for widespread incidents, and tells you to sign in to Azure Service Health for anything that may be affecting your own services. A Microsoft 365 service incident is not an Azure platform event, so it does not appear there. The page saying nothing is not the same as the platform being fine.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Was this a cyberattack?</dt><dd data-astro-cid-jo55ryrt>Microsoft says no. Its own service health update on November 13, 2026, says there is no evidence of malicious activity associated with the incident, and a Microsoft executive said publicly the day before that there was no indication of malicious or cyber activity. Microsoft has not published a root cause and has committed to a Post-Incident Report.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Did the outage affect security tooling, or just email?</dt><dd data-astro-cid-jo55ryrt>Both. Microsoft&#39;s own impact list named Defender XDR portal pages, Defender for Office 365 experiences that depend on Purview signals, Purview Data Loss Prevention policy evaluation, audit search, eDiscovery, and Intune device compliance. If your detection and data-protection posture assumes those controls are evaluating, they were not, for some period you should now establish.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Can I monitor Microsoft 365 service health without a person signing in?</dt><dd data-astro-cid-jo55ryrt>Yes. The Microsoft Graph service communications API exposes service health and issues, and supports application permissions with ServiceHealth.Read.All, so a backend monitor can poll it with no signed-in user. Set it up before you need it, because the admin center is the surface Microsoft itself warned might not load.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>This incident was ongoing as this was written. Every status-surface observation is a reading I took myself at a stated time on November 13, 2026, and status pages change by design, so treat the times as the claim rather than the state. Microsoft has not published a root cause and has promised a Post-Incident Report; everything here about cause is Microsoft&#39;s own in-flight wording, not a conclusion. The Downdetector figures are self-reported counts from one tracker, not a measure of users affected. I found no reporting of an outage-themed phishing campaign tied to this incident, which is an absence of evidence rather than evidence of absence.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://status.cloud.microsoft/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Microsoft service health status</a><span class="meta mono" data-astro-cid-j6o3mlwn>Microsoft · Accessed November 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://status.cloud.microsoft/api/feed/mac" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Microsoft Admin Center Status (RSS feed)</a><span class="meta mono" data-astro-cid-j6o3mlwn>Microsoft · Published November 13, 2026 · Accessed November 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://azure.status.microsoft/en-us/status" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Azure status</a><span class="meta mono" data-astro-cid-j6o3mlwn>Microsoft · Accessed November 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://learn.microsoft.com/en-us/graph/api/resources/service-communications-api-overview" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Working with service communications APIs in Microsoft Graph</a><span class="meta mono" data-astro-cid-j6o3mlwn>Microsoft Learn · Accessed November 13, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-5" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[5]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Massive Microsoft 365 outage disrupts Outlook, Teams, Copilot worldwide</a><span class="meta mono" data-astro-cid-j6o3mlwn>BleepingComputer · Published November 12, 2026 · Accessed November 13, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li><li id="ref-6" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[6]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.aljazeera.com/news/2026/11/13/microsoft-hit-by-global-outages-what-happened-and-why" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Microsoft hit by global outages: What happened and why?</a><span class="meta mono" data-astro-cid-j6o3mlwn>Al Jazeera · Published November 13, 2026 · Accessed November 13, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20Three%20status%20pages%2C%20three%20answers" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
