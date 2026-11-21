@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A complex password can still be a known one | Cybernetic Intern</title><meta name="description" content="Complexity rules measure which characters a password contains. They cannot tell you whether that exact password already appears in a public breach corpus."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/a-complex-password-can-still-be-a-known-one/"><meta property="og:type" content="article"><meta property="og:title" content="A complex password can still be a known one | Cybernetic Intern"><meta property="og:description" content="Complexity rules measure which characters a password contains. They cannot tell you whether that exact password already appears in a public breach corpus."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/a-complex-password-can-still-be-a-known-one/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-11-08T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"A complex password can still be a known one","description":"Complexity rules measure which characters a password contains. They cannot tell you whether that exact password already appears in a public breach corpus.","url":"https://cyberneticsintern.com/learn/identity/a-complex-password-can-still-be-a-known-one/","datePublished":"2026-11-08T07:00:00.000Z","educationalLevel":"foundation","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-11-08T07:00:00.000Z" data-astro-cid-jh75pjse>November 8, 2026</time></div><h1 data-astro-cid-jh75pjse>A complex password can still be a known one</h1><p class="summary" data-astro-cid-jh75pjse>Complexity rules measure which characters a password contains. They cannot tell you whether that exact password already appears in a public breach corpus.</p><div class="prose" data-astro-cid-jh75pjse><p>A password policy checks composition. Length, upper case, lower case, a digit,
+a symbol, perhaps nothing resembling the username. Every one of those is a
+question about which characters are present.</p>
+<p>None of them is a question about whether anybody has used this password before.</p>
+<p>Summer2026!Toronto satisfies a strict policy. It is also exactly what a person
+produces when a rule demands a capital, a digit and a symbol, which means it is
+close enough to millions of others that a list built from previous breaches
+reaches it early. The rule did its job. The password is still a poor one.</p>
+<p>This is why published guidance moved. The current shape is to drop forced
+periodic rotation and most composition rules, keep a generous minimum length,
+and add the check the rules cannot make: compare the chosen password against
+known-breached and commonly chosen values, and refuse the ones that appear.</p>
+<p>That single check removes the passwords an attacker tries first, which is the
+population that decides the outcome. A spray does not guess at random. It works
+down a list, and the list is public.</p>
+<p>Go and find out whether your directory would reject a password you already know
+appears in a public corpus. Set one on a test account and watch what happens.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Because the rules measure composition, and say nothing about whether the password is already on a public list" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>Your policy demands 14 characters with mixed case, a digit and a symbol. A user sets Summer2026!Toronto and it is accepted. Why might that still fall to one of the first attempts an attacker makes?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Because length beyond twelve characters stops contributing meaningful entropy" data-astro-cid-jh75pjse>Because length beyond twelve characters stops contributing meaningful entropy</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Because a trailing symbol is discarded by most password hashing routines" data-astro-cid-jh75pjse>Because a trailing symbol is discarded by most password hashing routines</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Because complexity is evaluated before hashing, so the stored form is weaker than the typed one" data-astro-cid-jh75pjse>Because complexity is evaluated before hashing, so the stored form is weaker than the typed one</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Because the rules measure composition, and say nothing about whether the password is already on a public list" data-astro-cid-jh75pjse>Because the rules measure composition, and say nothing about whether the password is already on a public list</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Because the rules measure composition, and say nothing about whether the password is already on a public list</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Every composition rule asks a question about characters, and none of them asks whether a human being has chosen this exact string before. Season, year, symbol and place is the shape a person produces when a rule demands a capital, a digit and a symbol, so it sits near the top of lists assembled from previous breaches. Length keeps adding entropy, hashing routines do not discard characters, and the stored form is a hash of exactly what was typed. The missing control is a comparison against known-breached and commonly chosen values at the moment the password is set.</p></div></details></div></details><script>(function(){const readKey = "identity/a-complex-password-can-still-be-a-known-one";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://pages.nist.gov/800-63-3/sp800-63b.html" rel="noopener" target="_blank" data-astro-cid-jh75pjse>NIST SP 800-63B, Digital Identity Guidelines: Authentication and Lifecycle Management</a></li></ul></section><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

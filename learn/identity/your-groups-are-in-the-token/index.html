@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Your groups are in the token, not the directory | Cybernetic Intern</title><meta name="description" content="Group membership is stamped into a token or ticket when it is issued, so removing somebody from a group does not take their access away until that token expires."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/your-groups-are-in-the-token/"><meta property="og:type" content="article"><meta property="og:title" content="Your groups are in the token, not the directory | Cybernetic Intern"><meta property="og:description" content="Group membership is stamped into a token or ticket when it is issued, so removing somebody from a group does not take their access away until that token expires."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/your-groups-are-in-the-token/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-10-31T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Your groups are in the token, not the directory","description":"Group membership is stamped into a token or ticket when it is issued, so removing somebody from a group does not take their access away until that token expires.","url":"https://cyberneticsintern.com/learn/identity/your-groups-are-in-the-token/","datePublished":"2026-10-31T07:00:00.000Z","educationalLevel":"foundation","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-10-31T07:00:00.000Z" data-astro-cid-jh75pjse>October 31, 2026</time></div><h1 data-astro-cid-jh75pjse>Your groups are in the token, not the directory</h1><p class="summary" data-astro-cid-jh75pjse>Group membership is stamped into a token or ticket when it is issued, so removing somebody from a group does not take their access away until that token expires.</p><div class="prose" data-astro-cid-jh75pjse><p>Removing somebody from a group feels like taking something away. In the
+directory it is. At the resource, often, nothing has happened yet.</p>
+<p>Group membership is resolved at issue time. When a domain controller builds a
+Kerberos ticket it enumerates the groups and writes them into the ticket, and
+when an identity provider mints a token it writes the groups in as claims. The
+file server, the application, the API: they read what they are handed. They do
+not call back to ask whether it is still true.</p>
+<p>Which means a revocation and a ticket lifetime are in a race, and the ticket
+usually wins the first few hours.</p>
+<p>It cuts the other way too, and this is the version that generates helpdesk
+tickets. You add somebody to a group, they say it has not worked, and they are
+right until they sign out and back in.</p>
+<p>The fix in an incident is not more membership changes. It is ending the
+sessions, so the next ticket is built from the directory as it is now.</p>
+<p>Find out what your ticket and token lifetimes actually are. That number is how
+long a revocation takes to mean anything, and most people quoting it from
+memory are quoting the default rather than their own.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Their existing ticket still carries the old group membership and will until it is reissued" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>During an investigation you remove a user from the Finance group at 14:00. They are still reaching the finance file share at 14:20. What is the most likely explanation?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Directory replication has not reached the server enforcing the permission" data-astro-cid-jh75pjse>Directory replication has not reached the server enforcing the permission</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The share permissions grant access to a second group they remain a member of" data-astro-cid-jh75pjse>The share permissions grant access to a second group they remain a member of</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Removal from a group takes effect only at the next password change" data-astro-cid-jh75pjse>Removal from a group takes effect only at the next password change</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Their existing ticket still carries the old group membership and will until it is reissued" data-astro-cid-jh75pjse>Their existing ticket still carries the old group membership and will until it is reissued</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Their existing ticket still carries the old group membership and will until it is reissued</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Group membership is evaluated once, when the ticket or token is issued, and travels inside it as a claim. The file server reads the claim it is handed rather than querying the directory on each access, so the removal is real in the directory and invisible at the resource until the ticket is reissued. Replication delay and a second group are both worth ruling out, but neither explains the gap as reliably as a ticket lifetime does. Ending the session, not just the membership, is what actually closes it.</p></div></details></div></details><script>(function(){const readKey = "identity/your-groups-are-in-the-token";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview" rel="noopener" target="_blank" data-astro-cid-jh75pjse>Kerberos authentication and the Privilege Attribute Certificate</a></li></ul></section><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

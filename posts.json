@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "date": "2026.11",
+      "title": "Same Java, different CPU",
+      "url": "https://cyberneticsintern.com/blog/java4shell-cve-2026-114938-avx512-hardware-gate/"
+    },
+    {
+      "date": "2026.11",
+      "title": "The column that says Unknown",
+      "url": "https://cyberneticsintern.com/blog/project-zero-full-x-disclosure-policy-patch-gap/"
+    },
+    {
+      "date": "2026.11",
+      "title": "The credentials were in the traces",
+      "url": "https://cyberneticsintern.com/blog/cursor-fireworks-credentials-in-agent-traces/"
+    },
+    {
+      "date": "2026.11",
+      "title": "Three status pages, three answers",
+      "url": "https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/"
+    },
+    {
+      "date": "2026.11",
+      "title": "The miner was the cheap part",
+      "url": "https://cyberneticsintern.com/blog/n-able-n-central-4everable2shell-rmm-blast-radius/"
+    }
+  ]
+}

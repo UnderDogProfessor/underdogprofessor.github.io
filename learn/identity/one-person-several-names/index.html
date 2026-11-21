@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>One person, several names | Cybernetic Intern</title><meta name="description" content="A single account carries several names at once and different systems log different ones, so matching two records by name is a guess rather than a join."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/one-person-several-names/"><meta property="og:type" content="article"><meta property="og:title" content="One person, several names | Cybernetic Intern"><meta property="og:description" content="A single account carries several names at once and different systems log different ones, so matching two records by name is a guess rather than a join."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/one-person-several-names/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-11-13T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"One person, several names","description":"A single account carries several names at once and different systems log different ones, so matching two records by name is a guess rather than a join.","url":"https://cyberneticsintern.com/learn/identity/one-person-several-names/","datePublished":"2026-11-13T07:00:00.000Z","educationalLevel":"foundation","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-11-13T07:00:00.000Z" data-astro-cid-jh75pjse>November 13, 2026</time></div><h1 data-astro-cid-jh75pjse>One person, several names</h1><p class="summary" data-astro-cid-jh75pjse>A single account carries several names at once and different systems log different ones, so matching two records by name is a guess rather than a join.</p><div class="prose" data-astro-cid-jh75pjse><p>One account carries more names than people expect. A down-level name for older
+protocols. A user principal name that looks like an email address and often is
+not one. A display name. A mail attribute. A security identifier that never
+changes. In a cloud directory, an object ID as well.</p>
+<p>Systems log whichever one they happen to hold. A Windows event records the
+down-level form. A web application records the principal name. A SaaS audit
+trail records the address the account was invited with, which might be an alias
+from two jobs ago.</p>
+<p>Now two alerts land, and somebody has to decide whether that is one person or
+two before the timeline means anything.</p>
+<p>Matching on names gets this right most of the time, which is the problem. It
+fails on the cases that matter: the contractor with two accounts, the person
+whose surname changed last spring, the shared mailbox, the two people who
+genuinely hold the same short name in different domains.</p>
+<p>The join that holds is the identifier nobody can edit. The security identifier,
+or the directory object ID. Everything else is a label that somebody in HR can
+change on a Tuesday afternoon without telling you.</p>
+<p>Go and pick one user, write down every name they currently carry, then check
+which of those your SIEM actually stores.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="The immutable identifier behind each one, such as the security identifier or the directory object ID" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>Two alerts arrive. A Windows event names an account in its down-level form, and a SaaS audit log names john.smith@corp.example. What settles whether these are the same person?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="The immutable identifier behind each one, such as the security identifier or the directory object ID" data-astro-cid-jh75pjse>The immutable identifier behind each one, such as the security identifier or the directory object ID</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The display name on each account, which is the field required to be unique" data-astro-cid-jh75pjse>The display name on each account, which is the field required to be unique</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Whether both authenticated from the same device, since names vary but hardware does not" data-astro-cid-jh75pjse>Whether both authenticated from the same device, since names vary but hardware does not</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="The user principal name prefix, which is derived from the down-level name and therefore matches it" data-astro-cid-jh75pjse>The user principal name prefix, which is derived from the down-level name and therefore matches it</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>The immutable identifier behind each one, such as the security identifier or the directory object ID</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Every name on an account is a label somebody can edit, and several of them are routinely edited: surnames change, mail attributes get aliases, principal names get rewritten during a migration. The identifier that survives all of that is the one to join on. Display names are not unique and never were. Device correlation is useful supporting evidence but fails for anyone who uses two machines. The principal name prefix frequently matches the down-level name, which is precisely what makes it dangerous to rely on: it is right often enough to be trusted and wrong exactly where it matters.</p></div></details></div></details><script>(function(){const readKey = "identity/one-person-several-names";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A relayed authentication is a valid one | Cybernetic Intern</title><meta name="description" content="In a relay the attacker never learns the password or the hash. They forward your proof to a different service, which accepts it as genuine, because it is."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/a-relayed-authentication-is-a-valid-one/"><meta property="og:type" content="article"><meta property="og:title" content="A relayed authentication is a valid one | Cybernetic Intern"><meta property="og:description" content="In a relay the attacker never learns the password or the hash. They forward your proof to a different service, which accepts it as genuine, because it is."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/a-relayed-authentication-is-a-valid-one/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-11-06T07:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"A relayed authentication is a valid one","description":"In a relay the attacker never learns the password or the hash. They forward your proof to a different service, which accepts it as genuine, because it is.","url":"https://cyberneticsintern.com/learn/identity/a-relayed-authentication-is-a-valid-one/","datePublished":"2026-11-06T07:00:00.000Z","educationalLevel":"practitioner","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.B-LMcElQ.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>PRACTITIONER</span><time datetime="2026-11-06T07:00:00.000Z" data-astro-cid-jh75pjse>November 6, 2026</time></div><h1 data-astro-cid-jh75pjse>A relayed authentication is a valid one</h1><p class="summary" data-astro-cid-jh75pjse>In a relay the attacker never learns the password or the hash. They forward your proof to a different service, which accepts it as genuine, because it is.</p><div class="prose" data-astro-cid-jh75pjse><p>NTLM proves you know a secret without sending it. The server issues a
+challenge, you return a response computed from your password hash, and the
+server checks the arithmetic.</p>
+<p>Notice what is missing. Nothing in that exchange says which server the
+challenge came from.</p>
+<p>So an attacker who can get a machine to authenticate to them has no need to
+crack anything. They take a challenge from a second server, pass it along as
+their own, take the response, and hand it onward. The second server sees a
+correct answer to the challenge it issued, and does what correct answers earn.</p>
+<p>The account is yours. The privileges are yours. The record on the receiving end
+is a successful logon by an account that is supposed to log on, which is why
+this is hard to find afterward and easy to miss while it happens.</p>
+<p>The defense is to bind the authentication to something that cannot be carried
+elsewhere. SMB signing and LDAP signing tie the session to the exchange that
+established it. Channel binding ties it to the TLS channel underneath. Where
+those are enforced, a forwarded response does not fit the session it arrives
+in.</p>
+<p>Go and check whether SMB signing is required on your file servers and domain
+controllers, rather than merely enabled.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="A successful authentication by the coerced account, indistinguishable from a legitimate one" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>An attacker gets a server to authenticate to a host they control, and forwards that authentication to a file server. What does the file server record?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="A failed authentication, because the challenge it issued was answered by a different host" data-astro-cid-jh75pjse>A failed authentication, because the challenge it issued was answered by a different host</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="A successful authentication from the attacker's host, under whatever account the attacker holds" data-astro-cid-jh75pjse>A successful authentication from the attacker&#39;s host, under whatever account the attacker holds</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="A successful authentication by the coerced account, indistinguishable from a legitimate one" data-astro-cid-jh75pjse>A successful authentication by the coerced account, indistinguishable from a legitimate one</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="A successful authentication flagged as delegated, which is what makes relay auditable" data-astro-cid-jh75pjse>A successful authentication flagged as delegated, which is what makes relay auditable</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>A successful authentication by the coerced account, indistinguishable from a legitimate one</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> The response the file server checks is a correct answer to the challenge the file server issued, computed by the real account. Nothing in the exchange identifies which host originally asked, so the record is a genuine logon by a legitimate account, which is exactly why relay survives log review. The attacker&#39;s own identity never appears, no failure is produced, and no delegation flag is set, because no delegation took place. Signing and channel binding are the controls that help, since they tie the authentication to a session the attacker cannot forward it into.</p></div></details></div></details><script>(function(){const readKey = "identity/a-relayed-authentication-is-a-valid-one";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://attack.mitre.org/techniques/T1557/001/" rel="noopener" target="_blank" data-astro-cid-jh75pjse>Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning and SMB Relay (T1557.001)</a></li></ul></section><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
