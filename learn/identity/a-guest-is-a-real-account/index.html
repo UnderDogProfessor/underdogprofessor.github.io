@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A guest is a real account | Cybernetic Intern</title><meta name="description" content="Inviting an external collaborator creates an account in your directory that can hold groups and roles, authenticated by somebody else's controls."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/a-guest-is-a-real-account/"><meta property="og:type" content="article"><meta property="og:title" content="A guest is a real account | Cybernetic Intern"><meta property="og:description" content="Inviting an external collaborator creates an account in your directory that can hold groups and roles, authenticated by somebody else's controls."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/a-guest-is-a-real-account/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-11-25T07:45:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"A guest is a real account","description":"Inviting an external collaborator creates an account in your directory that can hold groups and roles, authenticated by somebody else's controls.","url":"https://cyberneticsintern.com/learn/identity/a-guest-is-a-real-account/","datePublished":"2026-11-25T07:45:00.000Z","educationalLevel":"foundation","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DzFyZwuC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>FOUNDATION</span><time datetime="2026-11-25T07:45:00.000Z" data-astro-cid-jh75pjse>November 25, 2026</time></div><h1 data-astro-cid-jh75pjse>A guest is a real account</h1><p class="summary" data-astro-cid-jh75pjse>Inviting an external collaborator creates an account in your directory that can hold groups and roles, authenticated by somebody else&#39;s controls.</p><div class="prose" data-astro-cid-jh75pjse><p>Inviting an external collaborator creates an account in your directory. It is
+marked as a guest, it authenticates against their home organization, and in
+most other respects it behaves like an account you own.</p>
+<p>That is the part worth holding onto. A guest can be added to groups. A guest
+can be granted roles. A guest reads what authenticated users can read, which in
+a directory is a great deal. The guest flag is a label, not a sandbox.</p>
+<p>Authentication happening elsewhere is the genuinely useful part of the design
+and also the complication. You do not manage their password, their second
+factor, or the state of the machine they sign in from, unless your own policies
+say so explicitly. If their organization is compromised, an account in your
+directory becomes reachable with credentials you never issued and cannot
+rotate.</p>
+<p>Guests also outlive the reason they were created. The project finishes, the
+invitation stays, and nothing generates a ticket to remove it, because no
+leaver process at your company covers somebody who never joined it.</p>
+<p>List your guest accounts and sort by last sign-in. Everything that has not
+signed in for ninety days is a decision nobody has made yet.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Whatever that group grants, reachable with credentials you did not issue and cannot reset" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>A guest account from a partner organization belongs to a group granting access to a document library. The partner suffers a credential breach. What is your exposure?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Limited, because guest accounts cannot hold group memberships that grant access to data" data-astro-cid-jh75pjse>Limited, because guest accounts cannot hold group memberships that grant access to data</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="None, because authentication happens at the partner and your directory will reject an unfamiliar sign-in" data-astro-cid-jh75pjse>None, because authentication happens at the partner and your directory will reject an unfamiliar sign-in</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Limited to what the guest uploaded themselves, since guests are granted read-only access by default" data-astro-cid-jh75pjse>Limited to what the guest uploaded themselves, since guests are granted read-only access by default</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Whatever that group grants, reachable with credentials you did not issue and cannot reset" data-astro-cid-jh75pjse>Whatever that group grants, reachable with credentials you did not issue and cannot reset</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Whatever that group grants, reachable with credentials you did not issue and cannot reset</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> The guest flag is a label on an account rather than a restriction on it, so group membership and the access it carries work exactly as they would for anyone else. There is no default read-only ceiling. Your directory will accept the sign-in because the partner&#39;s identity provider vouches for it, which is the whole arrangement. The uncomfortable part is the second half: the credential was issued elsewhere, so you cannot rotate it, and your only levers are removing the group membership or the account.</p></div></details></div></details><script>(function(){const readKey = "identity/a-guest-is-a-real-account";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://learn.microsoft.com/en-us/entra/external-id/what-is-b2b" rel="noopener" target="_blank" data-astro-cid-jh75pjse>B2B collaboration overview</a></li></ul></section><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

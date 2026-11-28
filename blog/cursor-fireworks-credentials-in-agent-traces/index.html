@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The credentials were in the traces | Cybernetic Intern</title><meta name="description" content="Cursor says unredacted API credentials inside stored coding agent traces gave the attacker its foothold. Privacy Mode worked. The traces were the gap."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/cursor-fireworks-credentials-in-agent-traces/"><meta property="og:type" content="article"><meta property="og:title" content="The credentials were in the traces | Cybernetic Intern"><meta property="og:description" content="Cursor says unredacted API credentials inside stored coding agent traces gave the attacker its foothold. Privacy Mode worked. The traces were the gap."><meta property="og:url" content="https://cyberneticsintern.com/blog/cursor-fireworks-credentials-in-agent-traces/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og/cursor-fireworks-credentials-in-agent-traces.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The credentials were in the traces"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og/cursor-fireworks-credentials-in-agent-traces.png"><meta property="article:published_time" content="2026-11-15T00:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The credentials were in the traces","description":"Cursor says unredacted API credentials inside stored coding agent traces gave the attacker its foothold. Privacy Mode worked. The traces were the gap.","datePublished":"2026-11-15T00:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/cursor-fireworks-credentials-in-agent-traces/"},"keywords":"Cursor Fireworks breach, LLMJacking, malicious Claude Code extension, AI coding agent traces credentials, AI vendor supply chain risk, svc-telemetry SSH key","citation":[{"@type":"CreativeWork","name":"An update on our recent security incident","url":"https://cursor.com/blog/security-incident-update"},{"@type":"CreativeWork","name":"Security notice: malicious version of Anthropic.claude-code (2.1.312 and 2.1.313) identified in the Cursor VS Code Extension Marketplace","url":"https://cursor.com/blog/claude-code-extension-security-notice"},{"@type":"CreativeWork","name":"Fireworks October 2026 security incident","url":"https://fireworks.ai/security/bulletins/october-2026-security-incident"},{"@type":"CreativeWork","name":"Update on October 2026 security incident","url":"https://fireworks.ai/security/bulletins/october-2026-security-incident-update"},{"@type":"CreativeWork","name":"The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources","url":"https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models"},{"@type":"CreativeWork","name":"AI company Fireworks says hackers stole data, billing info during October breaches","url":"https://therecord.media/ai-company-fireworks-says-hackers-stole-data-in-oct-attacks"},{"@type":"CreativeWork","name":"Fireworks AI discloses new breach after cloud provider hack","url":"https://www.bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was Anthropic breached?","acceptedAnswer":{"@type":"Answer","text":"No. Cursor states plainly that Anthropic did not publish the tampered copy and that this was not a vulnerability in Anthropic's product. The tampered builds were placed on the cache that serves Cursor's own extension marketplace. Cursor also says Open VSX, the upstream marketplace source, never held the malware. The extension was the thing impersonated, not the thing compromised."}},{"@type":"Question","name":"I use Cursor. Was my code stolen?","acceptedAnswer":{"@type":"Answer","text":"Cursor says prompts and code are unaffected if you use Privacy Mode, and that for users not using Privacy Mode, coding agent traces were exposed for fewer than 0.05% of users, each notified directly. Separately, if you installed Anthropic.claude-code version 2.1.312 or 2.1.313 from the Cursor marketplace during roughly 11 hours on October 29, 2026, check the host. Cursor warns that uninstalling the extension alone may not be enough."}},{"@type":"Question","name":"What is LLMJacking and why does it make my API keys more valuable?","acceptedAnswer":{"@type":"Answer","text":"It is the hijacking of an organization's paid access to large language models so the attacker can resell it. Google Threat Intelligence Group and Mandiant reported fraudulent charges above 100,000 US dollars in a single day, and cumulative charges reaching 1 million dollars at some organizations before access was revoked. A stolen model API key now has a direct resale market, which is why credentials lying around in AI pipelines are worth hunting for."}},{"@type":"Question","name":"How would a credential end up in an agent trace in the first place?","acceptedAnswer":{"@type":"Answer","text":"Because a trace records the session. If a developer pastes a key into a prompt, a tool reads an environment file, or an agent echoes a config during a run, that text becomes part of the recorded session. Redaction is a filter applied on the way out, and filters miss things. The trace store was built for debugging and model training, so nobody classified it as a secrets store."}},{"@type":"Question","name":"What should I actually change this week?","acceptedAnswer":{"@type":"Answer","text":"Two things. Point your secret scanner at the places that hold exported telemetry, analytics data and support tickets, not only at source repositories. And go and read what your AI tooling retains and who it shares it with, specifically whether traces leave your tenant and whether redaction is claimed or guaranteed."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"The credentials were in the traces","item":"https://cyberneticsintern.com/blog/cursor-fireworks-credentials-in-agent-traces/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.DzFyZwuC.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>AI security</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Technical analysis</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-11-15T00:00:00.000Z" data-astro-cid-jo55ryrt>November 15, 2026</time></div><h1 data-astro-cid-jo55ryrt>The credentials were in the traces</h1><p class="standfirst" data-astro-cid-jo55ryrt>Cursor says unredacted API credentials inside stored coding agent traces gave the attacker its foothold. Privacy Mode worked. The traces were the gap.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Anyone running AI coding agents, and anyone who signs off on AI vendor reviews without asking where the traces go.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p>One sentence in Cursor’s incident update is doing more work than the headline it
+sits under.</p>
+<p><span class="cite-run">“A small number of those traces contained credentials that had not been
+redacted; less than 0.01% of customers had API credentials exposed. Starting
+with those credentials, the attacker reached select SaaS tools used by Cursor.”
+<a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a></span></p>
+<p><span class="cite-run">Every AI vendor review I have seen asks whether the vendor trains on your code.
+Cursor has a Privacy Mode that answers exactly that question, and it held:
+Cursor says prompts and code in Privacy Mode were not affected <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. The breach
+started one layer below the question anybody thought to ask, in a bucket of
+stored agent traces, where a handful of API keys had survived redaction.</span></p>
+<h2 id="what-happened">What happened</h2>
+<p><span class="cite-run">On November 13, 2026, Cursor published the result of a two-week investigation
+into the incident it had first disclosed on October 29 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">The sequence it describes begins at a third party. An attacker obtained an
+access key that Cursor had issued to Fireworks AI, an inference provider. The
+key was exposed by Fireworks, and the attacker used it to copy data from a
+read-only storage bucket that Cursor used to share data with them. That bucket
+held coding agent traces, mostly from 2025, from sessions not in Privacy Mode,
+which Cursor was permitted to use for model training <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">Some of those traces carried API credentials that redaction had missed. Those
+credentials opened SaaS tools that Cursor uses, and from there the attacker read
+archived non-production source repositories, customer support data and email
+conversations, product usage metrics and contact details, summaries of some
+agent conversations, and credentials that users had sent to the support team
+<a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">Then it became a supply-chain problem. On October 29, using a credential taken
+from that internal data, the attacker placed tampered copies of Anthropic’s
+Claude Code extension on the cache that serves the Cursor VS Code extension
+marketplace. Cursor is explicit that Anthropic did not publish the copy, that
+this was not a vulnerability in Anthropic’s product, and that Open VSX, the
+upstream marketplace source, never held the malware <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. At most 5,000 users who
+requested those cached versions received the tampered build, which was available
+for about 11 hours <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Cursor says the last attacker activity it saw was on
+November 1, and that it was blocked <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">Fireworks, for its part, has disclosed two October incidents <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. On October 6 it
+found unauthorized use of internal credentials, and said an unauthorized third
+party had accessed environment variables used in evaluation jobs in a limited
+number of customer accounts, including “API keys and tokens stored as secrets”
+<a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. On October 23 a third-party cloud provider hosting Fireworks R&amp;D machines
+was itself breached, and the following day the attacker used that access to
+reach Fireworks development machines. The data involved there included resource
+metadata, billing information, and incomplete model weights and datasets for
+certain customers <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. Neither
+company has said publicly which of the two exposed the Cursor key, and I am not
+going to guess.</span></p>
+<p><span class="cite-run">Fireworks names a motive. Its evidence, it says, indicates a financially
+motivated group “aimed at selling tokens from unauthorized access to Large
+Language Models (LLMs) to illicit routing gateways, known as LLMJacking” <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>.</span></p>
+<p><span class="cite-run">Cursor was one of more than 10,000 Fireworks customers <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>. Notion published
+its own notice: it was told of the incident on November 2, disconnected its
+systems from Fireworks and deleted its data there, and on November 6 Fireworks
+told it that malicious actors may have accessed potential customer data. Notion
+had been using Fireworks for
+classification jobs behind a product feature called Insights, and as a general
+inference provider for open-weight models. It has disabled the feature and
+stopped serving those models through Fireworks <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>.</span></p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p><span class="cite-run">Look at what sat in the two containers that failed here. At Fireworks, customer
+secrets in environment variables attached to evaluation jobs <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. At Cursor,
+customer API keys inside recorded agent sessions kept for model training <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p>Neither of those is a secrets manager. Both were full of secrets.</p>
+<p><span class="cite-run">That is the pattern, and it is not a story about two careless companies. An AI
+coding agent works by reading your environment and narrating what it does. A
+trace is a recording of that. If a developer pastes a key into a prompt, if a
+tool step prints a config, if an agent echoes an environment file while
+explaining itself, the key is now text in a log. Redaction is a filter on the
+way out, and filters have a false negative rate. Cursor’s own number for that
+rate, expressed as customers rather than traces, is under 0.01% <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Small
+enough to be invisible in a review. Large enough to start this.</span></p>
+<p><span class="cite-run">The second half of why this matters is economics. Credentials have always been
+worth stealing, but the price of a model API key specifically has just gone up.
+Google Threat Intelligence Group and Mandiant published research on November 2,
+2026, describing LLMJacking incidents across financial services, retail,
+technology and transportation in North America, South America and Asia Pacific,
+with fraudulent charges above 100,000 US dollars in a single day and cumulative
+charges reaching 1 million dollars at some organizations before access was
+revoked <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. They describe a division of labor: one set of actors gets in, and
+another, operating what the researchers call “LLM Mixers”, resells the access
+<a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></p>
+<p>So there is now a liquid market for exactly the kind of credential that AI
+tooling accumulates. That is what makes the trace store a target rather than an
+embarrassment.</p>
+<h2 id="technical-breakdown">Technical breakdown</h2>
+<p>The route from a vendor’s exposed key to a developer’s laptop runs through six
+stages, and a named control severs four of them.</p>
+<figure class="attack-chain"><figcaption class="chain-cap">ATTACK CHAIN</figcaption><ol><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">01</span><div class="chain-body"><span class="chain-label">Initial access</span><span class="chain-detail">An access key Cursor issued to Fireworks is exposed at the vendor and used to read a shared storage bucket</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Scope a vendor-issued key to one bucket and one network path. Cursor has since expanded network access restrictions across its service providers so a stolen credential cannot be used outside its intended location. Alert on any vendor-issued key authenticating from a new ASN, region or egress IP.</div></details></div></li><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">02</span><div class="chain-body"><span class="chain-label">Credential access</span><span class="chain-detail">Unredacted API credentials inside historical agent traces in that bucket are used to reach SaaS tools</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Redact before the trace leaves the product, and point secret scanning at analytics stores, data exports and support tickets, not only at source repositories. Cursor has since added secret scanning across its repositories and expanded it to other internal data sources. Alert on any scanner hit inside a bucket shared with a third party.</div></details></div></li><li class="chain-step"><span class="chain-num" aria-hidden="true">03</span><div class="chain-body"><span class="chain-label">Discovery</span><span class="chain-detail">Archived non-production repositories, support email, usage metrics, conversation summaries and credentials sent to support are collected</span></div></li><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">04</span><div class="chain-body"><span class="chain-label">Supply chain</span><span class="chain-detail">A stolen credential is used to place tampered copies of a third-party extension on the cache serving the marketplace</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Verify artifact integrity at the cache and not only at the source, because the upstream source was clean throughout. Alert on any extension package whose hash does not match the publisher's published build.</div></details></div></li><li class="chain-step"><span class="chain-num" aria-hidden="true">05</span><div class="chain-body"><span class="chain-label">Execution</span><span class="chain-detail">Up to 5,000 users who requested those versions during an 11-hour window receive the tampered build</span></div></li><li class="chain-step is-break"><span class="chain-num" aria-hidden="true">06</span><div class="chain-body"><span class="chain-label">Persistence</span><span class="chain-detail">The payload adds an SSH key, tries to enable the local SSH service and opens a reverse tunnel, kept alive by a LaunchAgent or a scheduled task</span><details class="chain-break has-how"><summary>BREAK THE CHAIN HERE<span class="chain-break-cue" aria-hidden="true"></span></summary><div class="chain-break-how">Alert on new entries in authorized_keys on developer endpoints, on LaunchAgents and scheduled tasks created by an editor process, and on outbound SSH from a developer host to an unfamiliar address. Cursor published remediation scripts for macOS and Windows.</div></details></div></li></ol></figure>
+<p>Two details from the payload are worth a defender’s attention.</p>
+<p><span class="cite-run">The first is that it mostly did not work. Cursor states that enabling the local
+SSH service requires admin rights the extension does not have on most macOS and
+Windows hosts, and that because of errors in the malicious code the step would
+fail outside unusual circumstances where the editor had been started with
+administrator privileges <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. The key was still added, and the persistence
+mechanisms were still installed. Cursor’s guidance reflects that, which is why
+it says uninstalling the extension may not be sufficient: the payload drops
+standalone scripts that keep running <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></p>
+<p>The second is the naming. The SSH key is labeled <code>svc-telemetry</code>. The macOS
+LaunchAgent is <code>com.apple.sysmond</code>. The Windows scheduled task is <code>SysMon</code>. Every
+artifact is dressed as routine system plumbing, and that is the part most hunts
+skip, because a scheduled task called SysMon on a developer laptop reads as
+something the security team installed.</p>
+<p><span class="cite-run">Cursor published full indicators. These are the ones worth hunting today <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>:</span></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span># SSH key comment appended to authorized_keys</span></span>
+<span class="line"><span>svc-telemetry</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Attacker endpoint, now taken offline by the hosting provider</span></span>
+<span class="line"><span>134[.]209[.]82[.]225</span></span>
+<span class="line"><span>hxxp://134[.]209[.]82[.]225:8099/beacon</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Persistence paths</span></span>
+<span class="line"><span>macOS    ~/Library/LaunchAgents/com.apple.sysmond.plist</span></span>
+<span class="line"><span>macOS    ~/.config/.smt , ~/.config/.smtk</span></span>
+<span class="line"><span>Windows  scheduled task "SysMon"</span></span>
+<span class="line"><span>Windows  %USERPROFILE%\.config\smt.cmd , %USERPROFILE%\.config\smtk</span></span>
+<span class="line"><span>Windows  %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\sysmon.cmd</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Tampered package versions</span></span>
+<span class="line"><span>Anthropic.claude-code 2.1.312 and 2.1.313 from the Cursor marketplace only</span></span></code></pre>
+<p>The attacker server is offline, so a live beacon finds nothing now.
+The key, the LaunchAgent and the scheduled task are what remain on disk, and
+they are what a retrospective hunt should look for.</p>
+<p><span class="cite-run">One more detection, from the Mandiant research rather than this incident.
+Attackers validating stolen model keys at scale make tiny requests, single-token
+calls or zero-temperature pings, specifically to stay under the volume anomaly
+thresholds that SIEM rules use <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. If you proxy model traffic through a
+gateway, a burst of minimum-size completions across many keys is a credential
+validation sweep, not usage. Mandiant also notes that in several of its
+investigations the LLM service was not even enabled when the attacker arrived,
+and the attacker turned it on, so unauthorized enablement of a model API should
+be a critical alert in its own right <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></p>
+<h2 id="what-defenders-should-do-next">What defenders should do next</h2>
+<p><strong>Immediate, within 24 hours.</strong></p>
+<ol>
+<li><span class="cite-run">If anyone in your organization installed or updated Anthropic.claude-code
+through the Cursor marketplace on October 29, 2026, check those hosts for the
+indicators above. Treat a hit as host compromise, rotate credentials reachable
+from that machine from a trusted system, and rebuild rather than clean <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>.</span></li>
+<li>Inventory which AI vendors hold a credential you issued, and what each one
+can reach with it. This incident began with a key one company gave another,
+which is the most ordinary artifact in any integration.</li>
+<li><span class="cite-run">Check whether your model API keys have spending caps and per-model quotas. A
+key with no cap is a blank check in a market where a day of abuse has
+reached six figures <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></li>
+</ol>
+<p><strong>Near term, this week.</strong></p>
+<ol start="4">
+<li><span class="cite-run">Point your secret scanner somewhere new. Most programs scan source
+repositories and stop. Scan the exported telemetry, the analytics warehouse,
+the support ticket system and anything you ship to a vendor for evaluation or
+training. Cursor’s remediation included exactly this expansion <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></li>
+<li>Read your own AI tooling’s data retention terms and find out, specifically,
+whether session traces leave your tenant, who they are shared with, and
+whether redaction is guaranteed or merely attempted. “We redact secrets” and
+“no secret has ever survived redaction” are different claims.</li>
+<li>Tell developers that a key pasted into a prompt is a key written to a log
+somewhere. It costs nothing, and it is the only control here that
+works upstream of everything else.</li>
+</ol>
+<p><strong>Structural, this quarter.</strong></p>
+<ol start="7">
+<li>Bind machine identities to a network path. The single control that would have
+done the most here is the one Cursor added afterwards: a credential that only
+works from where it is supposed to be used. Apply it to vendor-issued keys
+first.</li>
+<li>Classify agent telemetry as a secrets-bearing data class in your data
+inventory, with the retention and access controls that implies. It is almost
+certainly classified as logs today.</li>
+<li><span class="cite-run">Verify integrity where artifacts are served, not only where they are
+published. Open VSX was clean for this entire incident <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. The compromise
+happened at the cache in front of it, and signature verification at the point
+of delivery is what catches that.</span></li>
+</ol>
+<h2 id="checklist">Checklist</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> October 29 Cursor marketplace installs of Anthropic.claude-code identified and hunted</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code>svc-telemetry</code>, <code>com.apple.sysmond</code> and the <code>SysMon</code> task searched across developer endpoints</li>
+<li class="task-list-item"><input type="checkbox" disabled> Inventory of credentials issued to AI vendors, with what each can reach</li>
+<li class="task-list-item"><input type="checkbox" disabled> Spending caps and per-model quotas on every model API key</li>
+<li class="task-list-item"><input type="checkbox" disabled> Secret scanning extended to telemetry, analytics, exports and support tickets</li>
+<li class="task-list-item"><input type="checkbox" disabled> AI tooling retention and sharing terms read, with trace handling confirmed in writing</li>
+<li class="task-list-item"><input type="checkbox" disabled> Developers told that a pasted key is a logged key</li>
+<li class="task-list-item"><input type="checkbox" disabled> Vendor-issued keys bound to an expected network path</li>
+<li class="task-list-item"><input type="checkbox" disabled> Agent telemetry reclassified as secrets-bearing in the data inventory</li>
+<li class="task-list-item"><input type="checkbox" disabled> Unauthorized enablement of a model API service alerting as a critical event</li>
+</ul>
+<h2 id="the-question-the-vendor-review-did-not-ask">The question the vendor review did not ask</h2>
+<p>Both companies disclosed well. Cursor shipped indicators, check commands and
+remediation scripts within about a day of detection, and its November update is
+specific about numbers in a way most incident write-ups are not. Fireworks
+published a timestamped timeline and told customers which third-party
+credentials to rotate at which providers. That is better than the norm and worth
+saying first.</p>
+<p>The failure is upstream of both, and it is one of classification. We built an
+assurance process for AI tools around a single question, which is whether the
+vendor trains on your data. That question has a yes-or-no answer,
+it fits in a procurement form, and it produced a real control that really worked
+here. Nobody asked the second question, which is what the recording of the
+session contains, because a trace does not look like a document. It looks like a
+log, and logs are the one data class every organization has agreed to stop
+worrying about.</p>
+<p>An AI coding agent reads your environment out loud. Anything it reads can end up
+in the transcript, and the transcript goes somewhere. Until agent telemetry is
+treated as a secrets-bearing data class rather than as debugging exhaust, the
+next version of this incident is already in a bucket, waiting for someone to
+read it.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Was Anthropic breached?</dt><dd data-astro-cid-jo55ryrt>No. Cursor states plainly that Anthropic did not publish the tampered copy and that this was not a vulnerability in Anthropic&#39;s product. The tampered builds were placed on the cache that serves Cursor&#39;s own extension marketplace. Cursor also says Open VSX, the upstream marketplace source, never held the malware. The extension was the thing impersonated, not the thing compromised.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>I use Cursor. Was my code stolen?</dt><dd data-astro-cid-jo55ryrt>Cursor says prompts and code are unaffected if you use Privacy Mode, and that for users not using Privacy Mode, coding agent traces were exposed for fewer than 0.05% of users, each notified directly. Separately, if you installed Anthropic.claude-code version 2.1.312 or 2.1.313 from the Cursor marketplace during roughly 11 hours on October 29, 2026, check the host. Cursor warns that uninstalling the extension alone may not be enough.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>What is LLMJacking and why does it make my API keys more valuable?</dt><dd data-astro-cid-jo55ryrt>It is the hijacking of an organization&#39;s paid access to large language models so the attacker can resell it. Google Threat Intelligence Group and Mandiant reported fraudulent charges above 100,000 US dollars in a single day, and cumulative charges reaching 1 million dollars at some organizations before access was revoked. A stolen model API key now has a direct resale market, which is why credentials lying around in AI pipelines are worth hunting for.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>How would a credential end up in an agent trace in the first place?</dt><dd data-astro-cid-jo55ryrt>Because a trace records the session. If a developer pastes a key into a prompt, a tool reads an environment file, or an agent echoes a config during a run, that text becomes part of the recorded session. Redaction is a filter applied on the way out, and filters miss things. The trace store was built for debugging and model training, so nobody classified it as a secrets store.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>What should I actually change this week?</dt><dd data-astro-cid-jo55ryrt>Two things. Point your secret scanner at the places that hold exported telemetry, analytics data and support tickets, not only at source repositories. And go and read what your AI tooling retains and who it shares it with, specifically whether traces leave your tenant and whether redaction is claimed or guaranteed.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>Both Cursor and Fireworks describe investigations that are still open and say findings may expand. The chain from the exposed key to the tampered extension is Cursor&#39;s own account of its own incident, published November 13, 2026, and no independent forensic report confirms it. Fireworks has not said publicly which of its two October incidents exposed the Cursor key, and Cursor has not said either, so this post does not assign it to one. Further downstream victims of the Fireworks incidents were reported in the two days before publication; I could not open the originating report or any state breach filing for them, so they are not in this post. The LLMJacking attribution is Fireworks&#39; reading of its own evidence, supported by separately published Google and Mandiant research into the same tactic, not by a named indictment or a government attribution.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://cursor.com/blog/security-incident-update" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>An update on our recent security incident</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cursor · Published November 13, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://cursor.com/blog/claude-code-extension-security-notice" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Security notice: malicious version of Anthropic.claude-code (2.1.312 and 2.1.313) identified in the Cursor VS Code Extension Marketplace</a><span class="meta mono" data-astro-cid-j6o3mlwn>Cursor · Published October 29, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Fireworks October 2026 security incident</a><span class="meta mono" data-astro-cid-j6o3mlwn>Fireworks AI · Published October 9, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Update on October 2026 security incident</a><span class="meta mono" data-astro-cid-j6o3mlwn>Fireworks AI · Published November 9, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-5" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[5]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Threat Intelligence Group and Mandiant · Published November 2, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="vendor-research" data-astro-cid-j6o3mlwn>VENDOR RESEARCH</span></li><li id="ref-6" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[6]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://therecord.media/ai-company-fireworks-says-hackers-stole-data-in-oct-attacks" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>AI company Fireworks says hackers stole data, billing info during October breaches</a><span class="meta mono" data-astro-cid-j6o3mlwn>The Record, Recorded Future News · Published November 10, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li><li id="ref-7" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[7]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Fireworks AI discloses new breach after cloud provider hack</a><span class="meta mono" data-astro-cid-j6o3mlwn>BleepingComputer · Published November 10, 2026 · Accessed November 15, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20The%20credentials%20were%20in%20the%20traces" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

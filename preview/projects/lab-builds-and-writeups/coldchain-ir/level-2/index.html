@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>COLD CHAIN — Level 2 | Cybernetic Intern</title><meta name="description" content="A small company: a domain controller, a file server and three Windows PCs on a private network, with an attacker joining from Lab 7. One sign-in now lands in several logs, so the labs follow people across machines and check one tool's answer with another."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/preview/projects/lab-builds-and-writeups/coldchain-ir/level-2/"><meta property="og:type" content="website"><meta property="og:title" content="COLD CHAIN — Level 2 | Cybernetic Intern"><meta property="og:description" content="A small company: a domain controller, a file server and three Windows PCs on a private network, with an attacker joining from Lab 7. One sign-in now lands in several logs, so the labs follow people across machines and check one tool's answer with another."><meta property="og:url" content="https://cyberneticsintern.com/preview/projects/lab-builds-and-writeups/coldchain-ir/level-2/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><link rel="stylesheet" href="/_astro/BlogBase.DzFyZwuC.css"><link rel="stylesheet" href="/_astro/SeriesShell.Cdji-j0a.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><canvas id="blueprint" aria-hidden="true" data-astro-cid-5hczm6xy></canvas><div class="bp-vignette" aria-hidden="true" data-astro-cid-5hczm6xy></div><script>(function(){const rungs = [{"level":"level-1","levelName":"Level 1","slug":"lab-1","n":1,"title":"COLD CHAIN Lab 1: what normal looks like in the Windows sign-in log"},{"level":"level-1","levelName":"Level 1","slug":"lab-2","n":2,"title":"COLD CHAIN Lab 2: finding password guesses in the Windows Security log"},{"level":"level-1","levelName":"Level 1","slug":"lab-3","n":3,"title":"COLD CHAIN Lab 3: tracing a new admin account in the Windows Security log"},{"level":"level-1","levelName":"Level 1","slug":"lab-4","n":4,"title":"COLD CHAIN Lab 4: finding a task that runs at every sign-in"},{"level":"level-1","levelName":"Level 1","slug":"lab-5","n":5,"title":"COLD CHAIN Lab 5: writing one page about an incident"},{"level":"level-2","levelName":"Level 2","slug":"lab-6","n":6,"title":"COLD CHAIN Lab 6: one sign-in, written down on three machines"},{"level":"level-2","levelName":"Level 2","slug":"lab-7","n":7,"title":"COLD CHAIN Lab 7: spraying one password at a whole company"},{"level":"level-2","levelName":"Level 2","slug":"lab-8","n":8,"title":"COLD CHAIN Lab 8: following one stolen account across a network"}];
+const bands = [{"slug":"level-1","name":"Level 1","tagline":"Basics","count":5},{"slug":"level-2","name":"Level 2","tagline":"A small company","count":3}];
+const focusLevel = "level-2";
+const focusLab = null;
+
+  (function () {
+    var cv = document.getElementById("blueprint");
+    if (!cv) return;
+    var ctx = cv.getContext("2d");
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var coarse = window.matchMedia("(pointer: coarse)").matches;
+
+    var RUNG = 74;
+    var FOOT = 150;
+    var FOCAL = 900;
+    var TOTAL = rungs.length;
+    var H_WORLD = Math.max(TOTAL, 3) * RUNG;
+
+    /* Band boundaries in rung indices, so a level can be lit as a span
+       without re-deriving it every frame. */
+    var spans = [];
+    var acc = 0;
+    bands.forEach(function (b) {
+      spans.push({ slug: b.slug, name: b.name, from: acc, to: acc + b.count });
+      acc += b.count;
+    });
+
+    var focusIdx = -1;
+    if (focusLab) {
+      for (var i = 0; i < rungs.length; i++) {
+        if (rungs[i].slug === focusLab) { focusIdx = i; break; }
+      }
+    }
+
+    var W = 0, H = 0, DPR = 1, CX = 0, CY = 0, SAFE_X = 0;
+    var MONO =
+      getComputedStyle(document.documentElement).getPropertyValue("--font-mono").trim() ||
+      "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+
+    function computeSafe() {
+      var r = 0;
+      document.querySelectorAll("[data-bp-clear]").forEach(function (el) {
+        var b = el.getBoundingClientRect();
+        if (b.width) r = Math.max(r, b.right);
+      });
+      SAFE_X = r + 28;
+    }
+
+    function size() {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth;
+      H = cv.clientHeight;
+      cv.width = Math.round(W * DPR);
+      cv.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      computeSafe();
+      /* Centred in the space the words leave over, not at a fixed fraction of
+         the viewport. 0.74 * W put the tower half off the right edge as soon
+         as the text column was narrow enough to leave real room. */
+      CX = W > 860 ? (SAFE_X + W) / 2 : W * 0.5;
+      CY = H * 0.5;
+    }
+
+    /* Distance is set so the WHOLE tower fits the frame however many labs the
+       series grows to. Hard-coding it would work today at seven rungs and
+       quietly crop the top at twelve. */
+    function fitDistance() {
+      var usableH = H * 0.72;
+      /* Width matters as much as height and was missing: fitting only the
+         height let a short, wide tower run off the side instead of the top.
+         2.6 * FOOT approximates the widest the footprint gets once the orbit
+         turns it on the diagonal and perspective enlarges the near corner. */
+      var usableW = Math.max(180, (W - SAFE_X) * 0.86);
+      var byH = (H_WORLD * FOCAL) / Math.max(1, usableH);
+      var byW = (FOOT * 2.6 * FOCAL) / Math.max(1, usableW);
+      return Math.max(900, byH, byW);
+    }
+
+    var cam = { yaw: 0.5, pitch: 0.06, dist: 1400, panY: 0 };
+    var want = { yaw: 0.5, pitch: 0.06 };
+
+    function project(x, y, z) {
+      // orbit: rotate the world about its vertical axis, then pull back
+      var cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw);
+      var rx = x * cy - z * sy;
+      var rz = x * sy + z * cy + cam.dist;
+      var yy = y - cam.panY;
+      var cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+      var ry = yy * cp - rz * sp;
+      var rz2 = yy * sp + rz * cp;
+      if (rz2 < 60) return null;
+      var s = FOCAL / rz2;
+      return { x: CX + rx * s, y: CY + ry * s, s: s };
+    }
+
+    function seg(x1, y1, z1, x2, y2, z2, alpha, width) {
+      var a = project(x1, y1, z1);
+      var b = project(x2, y2, z2);
+      if (!a || !b) return;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = width || 1;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+
+    /* y for a rung index. 0 is the bottom rung, so the tower builds upward in
+       reading order. */
+    function yOf(i) { return H_WORLD / 2 - i * RUNG; }
+
+    function tracked(text, x, y, track) {
+      var cx = x;
+      for (var i = 0; i < text.length; i++) {
+        var ch = text.charAt(i);
+        ctx.fillText(ch, cx, y);
+        cx += ctx.measureText(ch).width + track;
+      }
+      return cx - x - track;
+    }
+    function trackedWidth(text, track) {
+      var w = 0;
+      for (var i = 0; i < text.length; i++) w += ctx.measureText(text.charAt(i)).width + track;
+      return w - track;
+    }
+
+    function lit(i) {
+      if (focusIdx >= 0) return i === focusIdx;
+      if (focusLevel) return rungs[i] && rungs[i].level === focusLevel;
+      return true;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = "#94bce3";
+
+      var L = -FOOT, R = FOOT, N = -FOOT, F = FOOT;
+      var top = yOf(TOTAL - 1) - RUNG * 0.5;
+      var bot = yOf(0) + RUNG * 0.5;
+
+      // four uprights
+      ctx.setLineDash([]);
+      seg(L, bot, N, L, top, N, 0.5, 1.2);
+      seg(R, bot, N, R, top, N, 0.5, 1.2);
+      seg(L, bot, F, L, top, F, 0.26);
+      seg(R, bot, F, R, top, F, 0.26);
+
+      // cap and footprint
+      [top, bot].forEach(function (y) {
+        seg(L, y, N, R, y, N, 0.42);
+        seg(R, y, N, R, y, F, 0.3);
+        seg(R, y, F, L, y, F, 0.22);
+        seg(L, y, F, L, y, N, 0.3);
+      });
+
+      // one shelf per lab
+      for (var i = 0; i < TOTAL; i++) {
+        var y = yOf(i);
+        var on = lit(i);
+        var a = on ? 0.72 : 0.16;
+        seg(L, y, N, R, y, N, a, on ? 1.5 : 1);
+        seg(L, y, F, R, y, F, a * 0.45);
+        seg(L, y, N, L, y, F, a * 0.5);
+        seg(R, y, N, R, y, F, a * 0.5);
+
+        var p = project(L, y, N);
+        if (p) {
+          ctx.globalAlpha = on ? 0.95 : 0.2;
+          ctx.fillStyle = "#94bce3";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, on ? 4 : 2.2, 0, 6.283);
+          ctx.fill();
+        }
+      }
+
+      // band separators: where one level ends and the next begins
+      ctx.setLineDash([4, 6]);
+      for (var b = 1; b < spans.length; b++) {
+        var yb = yOf(spans[b].from) + RUNG * 0.5;
+        seg(L - 40, yb, N, R + 40, yb, N, 0.3);
+      }
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+
+      if (W > 860) labels();
+    }
+
+    function labels() {
+      ctx.textBaseline = "middle";
+      for (var b = 0; b < spans.length; b++) {
+        var sp = spans[b];
+        var mid = (sp.from + sp.to - 1) / 2;
+        var q = project(FOOT, yOf(mid), -FOOT);
+        if (!q) continue;
+
+        var px = Math.min(17, Math.max(9, 12 * q.s * 2));
+        var track = px * 0.17;
+        ctx.font = Math.round(px) + "px " + MONO;
+
+        var on = !focusLevel || focusLevel === sp.slug;
+        var text = sp.name.toUpperCase() + " · " + (sp.to - sp.from);
+        var w = trackedWidth(text, track);
+        var tx = q.x + 22;
+        if (tx + w > W - 12) tx = W - 12 - w;
+        // Never across the words: the graph owns its own half or draws nothing.
+        if (tx < SAFE_X) continue;
+
+        ctx.globalAlpha = on ? 0.9 : 0.3;
+        ctx.fillStyle = on ? "#94bce3" : "#5980a6";
+        tracked(text, tx, q.y, track);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    /* Measure again once the page body exists.
+     *
+     * This component renders at the TOP of the page and its inline script runs
+     * there, so on first execution the slotted content below it has not been
+     * parsed yet: computeSafe() found no [data-bp-clear] elements, SAFE_X came
+     * out as 28, and the blueprint sized and centred itself as though it owned
+     * the whole viewport — drawing straight over the column of text it is
+     * supposed to sit beside.
+     *
+     * Re-running on DOMContentLoaded catches the markup, and on load catches
+     * the web fonts, which change how wide the text column actually is.
+     */
+    function recalc() {
+      size();
+      cam.dist = fitDistance();
+      if (reduced) draw();
+    }
+    recalc();
+    document.addEventListener("DOMContentLoaded", recalc);
+    window.addEventListener("load", recalc);
+    window.addEventListener("resize", recalc);
+
+    if (reduced) {
+      draw();
+      return;
+    }
+
+    if (!coarse) {
+      window.addEventListener(
+        "pointermove",
+        function (e) {
+          want.yaw = 0.5 + (e.clientX / window.innerWidth - 0.5) * 0.5;
+          want.pitch = 0.06 + (e.clientY / window.innerHeight - 0.5) * 0.12;
+        },
+        { passive: true },
+      );
+    }
+
+    /* One static frame before the loop, for the same reason the other preview
+       pages do it: a context that never ticks rAF would otherwise show an
+       empty canvas rather than a still blueprint. */
+    draw();
+
+    function frame(t) {
+      var sec = t / 1000;
+      cam.yaw += (want.yaw + Math.sin(sec * 0.13) * 0.07 - cam.yaw) * 0.04;
+      cam.pitch += (want.pitch + Math.cos(sec * 0.11) * 0.02 - cam.pitch) * 0.04;
+
+      /* Scroll pans DOWN the tower rather than flying through it. Mapped over
+         the scrollable range so the pan finishes with the page instead of
+         running out early on a short one. */
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      var f = Math.min(1, Math.max(0, window.scrollY / max));
+      var targetPan = (0.5 - f) * H_WORLD * 0.55;
+      cam.panY += (targetPan - cam.panY) * 0.07;
+
+      draw();
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+})();</script><div class="sx-hud mono" aria-hidden="true"><span class="sx-hud-l">COLD CHAIN</span><span class="sx-hud-r">Level 2 · 3 labs</span></div><main class="sx-deck"><nav class="sx-crumbs mono" aria-label="Breadcrumb"><a href="/preview/projects/">Projects</a><span class="sx-sep" aria-hidden="true">/</span><a href="/preview/projects/">Lab Builds and Writeups</a><span class="sx-sep" aria-hidden="true">/</span><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/">COLD CHAIN</a><span class="sx-sep" aria-hidden="true">/</span><span aria-current="page">Level 2</span></nav><div class="sx-col" data-bp-clear><p class="sx-tag">COLD CHAIN · 3 labs</p><h1 class="sx-h1">Level 2 — A small company</h1><p class="sx-lede">A small company: a domain controller, a file server and three Windows PCs on a private network, with an attacker joining from Lab 7. One sign-in now lands in several logs, so the labs follow people across machines and check one tool&#39;s answer with another.</p></div><ul class="sx-list sx-col-wide" data-bp-clear><li><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-2/lab-6/"><span class="sx-n">LAB 06</span><span><span class="sx-t">COLD CHAIN Lab 6: one sign-in, written down on three machines</span><span class="sx-s">The first Level 2 lab: trace one normal sign-in and one shared folder through three machines&#39; logs on a small Windows domain. My run found a sign-in type I didn&#39;t expect, and a filter that missed every sign-in.</span></span><span class="sx-k">Nov 2026</span></a></li><li><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-2/lab-7/"><span class="sx-n">LAB 07</span><span><span class="sx-t">COLD CHAIN Lab 7: spraying one password at a whole company</span><span class="sx-s">The second Level 2 lab: spray one password at eight accounts from a Kali VM, then trace it through the file server and the domain controller. My attack tool showed timeouts. The logs showed every guess, and the one that worked.</span></span><span class="sx-k">Nov 2026</span></a></li><li><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-2/lab-8/"><span class="sx-n">LAB 08</span><span><span class="sx-t">COLD CHAIN Lab 8: following one stolen account across a network</span><span class="sx-s">The third Level 2 lab: use the password Lab 7&#39;s spray found to look around Rimeport from Kali, then follow that one account across the servers. Six sign-ins, six password checks, and nothing on the staff PCs.</span></span><span class="sx-k">Nov 2026</span></a></li></ul><p class="sx-jump mono"><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/">← COLD CHAIN</a><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/">← Level 1</a></p></main></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

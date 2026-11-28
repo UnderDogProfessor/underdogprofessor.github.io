@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>COLD CHAIN Lab 4: finding a task that runs at every sign-in | Cybernetic Intern</title><meta name="description" content="A beginner lab where you set a task to run at every sign-in, then trace it through Task Scheduler and the Windows Security log. In my run, the record of its deletion kept the name and nothing else."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-4/"><meta property="og:type" content="website"><meta property="og:title" content="COLD CHAIN Lab 4: finding a task that runs at every sign-in | Cybernetic Intern"><meta property="og:description" content="A beginner lab where you set a task to run at every sign-in, then trace it through Task Scheduler and the Windows Security log. In my run, the record of its deletion kept the name and nothing else."><meta property="og:url" content="https://cyberneticsintern.com/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-4/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><link rel="stylesheet" href="/_astro/BlogBase.DzFyZwuC.css"><link rel="stylesheet" href="/_astro/SeriesShell.Cdji-j0a.css"><style>.sx-date{margin:var(--s-4) 0 0;font-size:var(--t-mono-xs);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--text-muted)}.sx-prose{max-width:68ch;margin-top:var(--s-7);padding:var(--s-6) clamp(var(--s-4), 3vw, var(--s-7));border:1px solid var(--rule-soft);font-size:var(--t-body);color:var(--text-body);background:#06070adb;line-height:1.68}.sx-prose>:first-child{margin-top:0}.sx-prose h2,.sx-prose h3{font-family:var(--font-heading);text-transform:uppercase;letter-spacing:-.015em;color:var(--text);margin:var(--s-7) 0 var(--s-3);line-height:1.1}.sx-prose h2{font-size:var(--t-display-sm)}.sx-prose h3{font-size:var(--t-body-lg)}.sx-prose p{margin:var(--s-4) 0 0}.sx-prose ul,.sx-prose ol{margin:var(--s-4) 0 0;padding-left:1.3em}.sx-prose li{margin-top:var(--s-2)}.sx-prose a{color:var(--signal)}.sx-prose code{font-family:var(--font-mono);color:var(--signal);font-size:.88em}.sx-prose pre{margin:var(--s-5) 0 0;padding:var(--s-4);border:1px solid var(--rule-soft);font-size:var(--t-body-sm);background:#94bce30a;line-height:1.5;overflow-x:auto}.sx-prose pre code{color:var(--text-body)}.sx-prose blockquote{margin:var(--s-5) 0 0;padding-left:var(--s-4);border-left:2px solid var(--signal-mid);color:var(--text-muted)}.sx-prose table{width:100%;margin:var(--s-5) 0 0;border-collapse:collapse;font-size:var(--t-body-sm)}.sx-prose th,.sx-prose td{padding:var(--s-2) var(--s-3);border:1px solid var(--rule-soft);text-align:left;vertical-align:top}.sx-prose th{font-family:var(--font-mono);font-size:var(--t-mono-xs);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--signal)}.sx-prose img{max-width:100%;height:auto}.sx-links{margin-top:var(--s-7)}.sx-links-k{margin:0 0 var(--s-3);font-size:var(--t-mono-xs);letter-spacing:var(--track-label);text-transform:uppercase;color:var(--text-dim)}.sx-links ul{border-top:1px solid var(--rule);margin:0;padding:0;list-style:none}.sx-links a{justify-content:space-between;align-items:baseline;gap:var(--s-4);padding:var(--s-3) var(--s-2);margin-inline:calc(var(--s-2) * -1);border-bottom:1px solid var(--rule-soft);color:inherit;transition:background var(--m-micro) var(--m-ease);text-decoration:none;display:flex}.sx-links a:hover{background:#94bce30f}.sx-links a:focus-visible{outline:1px solid var(--signal);outline-offset:-2px}.sx-lt{font-size:var(--t-body);color:var(--text)}.sx-links a:hover .sx-lt{color:var(--signal)}.sx-la{color:var(--signal-mid)}
+</style></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><canvas id="blueprint" aria-hidden="true" data-astro-cid-5hczm6xy></canvas><div class="bp-vignette" aria-hidden="true" data-astro-cid-5hczm6xy></div><script>(function(){const rungs = [{"level":"level-1","levelName":"Level 1","slug":"lab-1","n":1,"title":"COLD CHAIN Lab 1: what normal looks like in the Windows sign-in log"},{"level":"level-1","levelName":"Level 1","slug":"lab-2","n":2,"title":"COLD CHAIN Lab 2: finding password guesses in the Windows Security log"},{"level":"level-1","levelName":"Level 1","slug":"lab-3","n":3,"title":"COLD CHAIN Lab 3: tracing a new admin account in the Windows Security log"},{"level":"level-1","levelName":"Level 1","slug":"lab-4","n":4,"title":"COLD CHAIN Lab 4: finding a task that runs at every sign-in"},{"level":"level-1","levelName":"Level 1","slug":"lab-5","n":5,"title":"COLD CHAIN Lab 5: writing one page about an incident"},{"level":"level-2","levelName":"Level 2","slug":"lab-6","n":6,"title":"COLD CHAIN Lab 6: one sign-in, written down on three machines"},{"level":"level-2","levelName":"Level 2","slug":"lab-7","n":7,"title":"COLD CHAIN Lab 7: spraying one password at a whole company"},{"level":"level-2","levelName":"Level 2","slug":"lab-8","n":8,"title":"COLD CHAIN Lab 8: following one stolen account across a network"}];
+const bands = [{"slug":"level-1","name":"Level 1","tagline":"Basics","count":5},{"slug":"level-2","name":"Level 2","tagline":"A small company","count":3}];
+const focusLevel = "level-1";
+const focusLab = "lab-4";
+
+  (function () {
+    var cv = document.getElementById("blueprint");
+    if (!cv) return;
+    var ctx = cv.getContext("2d");
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var coarse = window.matchMedia("(pointer: coarse)").matches;
+
+    var RUNG = 74;
+    var FOOT = 150;
+    var FOCAL = 900;
+    var TOTAL = rungs.length;
+    var H_WORLD = Math.max(TOTAL, 3) * RUNG;
+
+    /* Band boundaries in rung indices, so a level can be lit as a span
+       without re-deriving it every frame. */
+    var spans = [];
+    var acc = 0;
+    bands.forEach(function (b) {
+      spans.push({ slug: b.slug, name: b.name, from: acc, to: acc + b.count });
+      acc += b.count;
+    });
+
+    var focusIdx = -1;
+    if (focusLab) {
+      for (var i = 0; i < rungs.length; i++) {
+        if (rungs[i].slug === focusLab) { focusIdx = i; break; }
+      }
+    }
+
+    var W = 0, H = 0, DPR = 1, CX = 0, CY = 0, SAFE_X = 0;
+    var MONO =
+      getComputedStyle(document.documentElement).getPropertyValue("--font-mono").trim() ||
+      "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+
+    function computeSafe() {
+      var r = 0;
+      document.querySelectorAll("[data-bp-clear]").forEach(function (el) {
+        var b = el.getBoundingClientRect();
+        if (b.width) r = Math.max(r, b.right);
+      });
+      SAFE_X = r + 28;
+    }
+
+    function size() {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth;
+      H = cv.clientHeight;
+      cv.width = Math.round(W * DPR);
+      cv.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      computeSafe();
+      /* Centred in the space the words leave over, not at a fixed fraction of
+         the viewport. 0.74 * W put the tower half off the right edge as soon
+         as the text column was narrow enough to leave real room. */
+      CX = W > 860 ? (SAFE_X + W) / 2 : W * 0.5;
+      CY = H * 0.5;
+    }
+
+    /* Distance is set so the WHOLE tower fits the frame however many labs the
+       series grows to. Hard-coding it would work today at seven rungs and
+       quietly crop the top at twelve. */
+    function fitDistance() {
+      var usableH = H * 0.72;
+      /* Width matters as much as height and was missing: fitting only the
+         height let a short, wide tower run off the side instead of the top.
+         2.6 * FOOT approximates the widest the footprint gets once the orbit
+         turns it on the diagonal and perspective enlarges the near corner. */
+      var usableW = Math.max(180, (W - SAFE_X) * 0.86);
+      var byH = (H_WORLD * FOCAL) / Math.max(1, usableH);
+      var byW = (FOOT * 2.6 * FOCAL) / Math.max(1, usableW);
+      return Math.max(900, byH, byW);
+    }
+
+    var cam = { yaw: 0.5, pitch: 0.06, dist: 1400, panY: 0 };
+    var want = { yaw: 0.5, pitch: 0.06 };
+
+    function project(x, y, z) {
+      // orbit: rotate the world about its vertical axis, then pull back
+      var cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw);
+      var rx = x * cy - z * sy;
+      var rz = x * sy + z * cy + cam.dist;
+      var yy = y - cam.panY;
+      var cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+      var ry = yy * cp - rz * sp;
+      var rz2 = yy * sp + rz * cp;
+      if (rz2 < 60) return null;
+      var s = FOCAL / rz2;
+      return { x: CX + rx * s, y: CY + ry * s, s: s };
+    }
+
+    function seg(x1, y1, z1, x2, y2, z2, alpha, width) {
+      var a = project(x1, y1, z1);
+      var b = project(x2, y2, z2);
+      if (!a || !b) return;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = width || 1;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+
+    /* y for a rung index. 0 is the bottom rung, so the tower builds upward in
+       reading order. */
+    function yOf(i) { return H_WORLD / 2 - i * RUNG; }
+
+    function tracked(text, x, y, track) {
+      var cx = x;
+      for (var i = 0; i < text.length; i++) {
+        var ch = text.charAt(i);
+        ctx.fillText(ch, cx, y);
+        cx += ctx.measureText(ch).width + track;
+      }
+      return cx - x - track;
+    }
+    function trackedWidth(text, track) {
+      var w = 0;
+      for (var i = 0; i < text.length; i++) w += ctx.measureText(text.charAt(i)).width + track;
+      return w - track;
+    }
+
+    function lit(i) {
+      if (focusIdx >= 0) return i === focusIdx;
+      if (focusLevel) return rungs[i] && rungs[i].level === focusLevel;
+      return true;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = "#94bce3";
+
+      var L = -FOOT, R = FOOT, N = -FOOT, F = FOOT;
+      var top = yOf(TOTAL - 1) - RUNG * 0.5;
+      var bot = yOf(0) + RUNG * 0.5;
+
+      // four uprights
+      ctx.setLineDash([]);
+      seg(L, bot, N, L, top, N, 0.5, 1.2);
+      seg(R, bot, N, R, top, N, 0.5, 1.2);
+      seg(L, bot, F, L, top, F, 0.26);
+      seg(R, bot, F, R, top, F, 0.26);
+
+      // cap and footprint
+      [top, bot].forEach(function (y) {
+        seg(L, y, N, R, y, N, 0.42);
+        seg(R, y, N, R, y, F, 0.3);
+        seg(R, y, F, L, y, F, 0.22);
+        seg(L, y, F, L, y, N, 0.3);
+      });
+
+      // one shelf per lab
+      for (var i = 0; i < TOTAL; i++) {
+        var y = yOf(i);
+        var on = lit(i);
+        var a = on ? 0.72 : 0.16;
+        seg(L, y, N, R, y, N, a, on ? 1.5 : 1);
+        seg(L, y, F, R, y, F, a * 0.45);
+        seg(L, y, N, L, y, F, a * 0.5);
+        seg(R, y, N, R, y, F, a * 0.5);
+
+        var p = project(L, y, N);
+        if (p) {
+          ctx.globalAlpha = on ? 0.95 : 0.2;
+          ctx.fillStyle = "#94bce3";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, on ? 4 : 2.2, 0, 6.283);
+          ctx.fill();
+        }
+      }
+
+      // band separators: where one level ends and the next begins
+      ctx.setLineDash([4, 6]);
+      for (var b = 1; b < spans.length; b++) {
+        var yb = yOf(spans[b].from) + RUNG * 0.5;
+        seg(L - 40, yb, N, R + 40, yb, N, 0.3);
+      }
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+
+      if (W > 860) labels();
+    }
+
+    function labels() {
+      ctx.textBaseline = "middle";
+      for (var b = 0; b < spans.length; b++) {
+        var sp = spans[b];
+        var mid = (sp.from + sp.to - 1) / 2;
+        var q = project(FOOT, yOf(mid), -FOOT);
+        if (!q) continue;
+
+        var px = Math.min(17, Math.max(9, 12 * q.s * 2));
+        var track = px * 0.17;
+        ctx.font = Math.round(px) + "px " + MONO;
+
+        var on = !focusLevel || focusLevel === sp.slug;
+        var text = sp.name.toUpperCase() + " · " + (sp.to - sp.from);
+        var w = trackedWidth(text, track);
+        var tx = q.x + 22;
+        if (tx + w > W - 12) tx = W - 12 - w;
+        // Never across the words: the graph owns its own half or draws nothing.
+        if (tx < SAFE_X) continue;
+
+        ctx.globalAlpha = on ? 0.9 : 0.3;
+        ctx.fillStyle = on ? "#94bce3" : "#5980a6";
+        tracked(text, tx, q.y, track);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    /* Measure again once the page body exists.
+     *
+     * This component renders at the TOP of the page and its inline script runs
+     * there, so on first execution the slotted content below it has not been
+     * parsed yet: computeSafe() found no [data-bp-clear] elements, SAFE_X came
+     * out as 28, and the blueprint sized and centred itself as though it owned
+     * the whole viewport — drawing straight over the column of text it is
+     * supposed to sit beside.
+     *
+     * Re-running on DOMContentLoaded catches the markup, and on load catches
+     * the web fonts, which change how wide the text column actually is.
+     */
+    function recalc() {
+      size();
+      cam.dist = fitDistance();
+      if (reduced) draw();
+    }
+    recalc();
+    document.addEventListener("DOMContentLoaded", recalc);
+    window.addEventListener("load", recalc);
+    window.addEventListener("resize", recalc);
+
+    if (reduced) {
+      draw();
+      return;
+    }
+
+    if (!coarse) {
+      window.addEventListener(
+        "pointermove",
+        function (e) {
+          want.yaw = 0.5 + (e.clientX / window.innerWidth - 0.5) * 0.5;
+          want.pitch = 0.06 + (e.clientY / window.innerHeight - 0.5) * 0.12;
+        },
+        { passive: true },
+      );
+    }
+
+    /* One static frame before the loop, for the same reason the other preview
+       pages do it: a context that never ticks rAF would otherwise show an
+       empty canvas rather than a still blueprint. */
+    draw();
+
+    function frame(t) {
+      var sec = t / 1000;
+      cam.yaw += (want.yaw + Math.sin(sec * 0.13) * 0.07 - cam.yaw) * 0.04;
+      cam.pitch += (want.pitch + Math.cos(sec * 0.11) * 0.02 - cam.pitch) * 0.04;
+
+      /* Scroll pans DOWN the tower rather than flying through it. Mapped over
+         the scrollable range so the pan finishes with the page instead of
+         running out early on a short one. */
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      var f = Math.min(1, Math.max(0, window.scrollY / max));
+      var targetPan = (0.5 - f) * H_WORLD * 0.55;
+      cam.panY += (targetPan - cam.panY) * 0.07;
+
+      draw();
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+})();</script><div class="sx-hud mono" aria-hidden="true"><span class="sx-hud-l">COLD CHAIN · Level 1</span><span class="sx-hud-r">Lab 04 of 8</span></div><main class="sx-deck"><nav class="sx-crumbs mono" aria-label="Breadcrumb"><a href="/preview/projects/">Projects</a><span class="sx-sep" aria-hidden="true">/</span><a href="/preview/projects/">Lab Builds and Writeups</a><span class="sx-sep" aria-hidden="true">/</span><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/">COLD CHAIN</a><span class="sx-sep" aria-hidden="true">/</span><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/">Level 1</a><span class="sx-sep" aria-hidden="true">/</span><span aria-current="page">Lab 4</span></nav><div class="sx-col" data-bp-clear><p class="sx-tag">COLD CHAIN · Level 1 · Lab 4</p><h1 class="sx-h1">COLD CHAIN Lab 4: finding a task that runs at every sign-in</h1><p class="sx-lede">A beginner lab where you set a task to run at every sign-in, then trace it through Task Scheduler and the Windows Security log. In my run, the record of its deletion kept the name and nothing else.</p><p class="sx-date mono">October 28, 2026</p></div><ul class="sx-meta sx-col-wide" data-bp-clear><li><span class="sx-ml mono">Level</span><span class="sx-mv">1, Basics</span></li><li><span class="sx-ml mono">Time</span><span class="sx-mv">About 45 minutes</span></li><li><span class="sx-ml mono">Lab computer</span><span class="sx-mv">Windows 11 Enterprise Evaluation, build 26100, in VMware Workstation</span></li><li><span class="sx-ml mono">Evidence</span><span class="sx-mv">Security log, events 4698, 4699 and 4624, and schtasks</span></li></ul><article class="sx-prose" data-bp-clear><h2 id="what-this-is">What this is</h2>
+<p>This is the fourth lab in COLD CHAIN, a set of hands-on incident response labs
+I’m building in public around a made-up company, Rimeport Cold Logistics. It
+uses the same Windows 11 virtual machine as
+<a href="https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-3/">Lab 3</a>.</p>
+<p>The story: Dana says her computer “does something” every time she signs in,
+and nobody in IT installed anything new. Is something set up to run at every
+sign-in? If so, what is it, who set it up, and when?</p>
+<h2 id="what-the-lab-asks">What the lab asks</h2>
+<p>You play the intruder. First you check that Windows records scheduled tasks at
+all, because that audit setting is a separate one. Then you create a task with
+a name that looks like IT made it, <strong>PrintDriverUpdate</strong>, set to run at every
+sign-in with the highest rights the account has. You restart, prove the task
+ran, and trace it three ways: in Task Scheduler, in the Security log as event
+<strong>4698</strong> (a scheduled task was created), and with <code>schtasks /query</code>. Finally you
+delete it and see what event <strong>4699</strong> (a scheduled task was deleted) keeps.</p>
+<h2 id="what-i-found">What I found</h2>
+<ul>
+<li><strong>Windows wasn’t recording it until I turned it on.</strong> The setting that
+records scheduled tasks said No Auditing on my VM.</li>
+<li><strong>Created at 11:20:40 AM by Dana’s admin session.</strong> The task’s full contents
+are inside the 4698: who made it, that it runs at sign-in, that it runs with
+the highest rights, and the exact command. Its Logon ID matched the Elevated
+Token Yes half of Dana’s sign-in, the match I couldn’t make in Lab 3 because
+I had cleared the log.</li>
+<li><strong>It ran 3 seconds after I signed in.</strong> I signed in at 11:22:14 after the
+restart, and Windows says the task last ran at 11:22:17. The proof file it
+writes was stamped 11:22 with one line in it, so two separate sources agree.</li>
+<li><strong>I wasn’t the only one making tasks.</strong> Two minutes before mine, OneDrive
+deleted and re-created its own task, and the log names Dana as the account
+that did it. Windows updated its own tasks 36 times in about ten minutes.
+Edge and OneDrive tasks also share the top folder with mine. A new task
+isn’t suspicious by itself. What it runs is.</li>
+<li><strong>The deletion record kept the name and nothing else.</strong> Microsoft’s page for
+4699, written for Windows 10, says it holds the full deleted task. On my
+Windows 11 VM its contents were empty, so the creation record was the only
+full copy.</li>
+</ul>
+<h2 id="what-i-missed-and-what-changed-because-of-my-run">What I missed, and what changed because of my run</h2>
+<p>I didn’t write times as I went, so every time in my notes comes from the log or
+a screenshot clock. I typed <code>/get</code> instead of <code>/set</code> the first time I changed
+the audit setting, and my first screenshot of the 4698 was OneDrive’s task, not
+mine. The window the lab’s story promised at sign-in was too quick for me to
+notice, because the task only writes one line. It’s all in my notes.</p>
+<p>The lab changed because of the run. It now warns that filtering for 4698 shows
+tasks Windows and apps make themselves, says the top folder is a reason to look
+rather than proof, asks which sign-in created the task, and says the 4699 may
+not keep the task’s contents, so you export the creation record before you
+delete anything.</p>
+<h2 id="try-it">Try it</h2>
+<p>The <a href="https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/04-something-runs-at-startup.md">lab</a>
+is on GitHub, and so are <a href="https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/04-something-runs-at-startup.md">my notes</a>,
+my screenshots and my exported <code>.evtx</code> logs, so you can open the real records
+in Event Viewer. Do the lab before reading my notes. Your times will differ.</p>
+</article><nav class="sx-links sx-col-wide" data-bp-clear aria-label="Lab sources"><p class="sx-links-k mono">Sources and the lab itself</p><ul><li><a href="https://github.com/UnderDogProfessor/coldchain-ir/blob/main/labs/level-1/04-something-runs-at-startup.md" rel="noopener" target="_blank"><span class="sx-lt">The lab</span><span class="sx-la mono">↗</span></a></li><li><a href="https://github.com/UnderDogProfessor/coldchain-ir/blob/main/notes/level-1/04-something-runs-at-startup.md" rel="noopener" target="_blank"><span class="sx-lt">My notes and evidence</span><span class="sx-la mono">↗</span></a></li><li><a href="https://cyberneticsintern.com/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-3/" rel="noopener" target="_blank"><span class="sx-lt">Lab 3</span><span class="sx-la mono">↗</span></a></li><li><a href="https://github.com/UnderDogProfessor/coldchain-ir" rel="noopener" target="_blank"><span class="sx-lt">Repository</span><span class="sx-la mono">↗</span></a></li></ul></nav><p class="sx-jump mono"><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/">← Level 1</a><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-3/">← Lab 3</a><a href="/preview/projects/lab-builds-and-writeups/coldchain-ir/level-1/lab-5/">Lab 5 →</a></p></main></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

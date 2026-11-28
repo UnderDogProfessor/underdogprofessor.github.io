@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The column that says Unknown | Cybernetic Intern</title><meta name="description" content="Project Zero will publish at 90 days, fixed or not, and 30 days by 2028. Its own public data shows only 31% of its 2026 reports were fixed that fast."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/blog/project-zero-full-x-disclosure-policy-patch-gap/"><meta property="og:type" content="article"><meta property="og:title" content="The column that says Unknown | Cybernetic Intern"><meta property="og:description" content="Project Zero will publish at 90 days, fixed or not, and 30 days by 2028. Its own public data shows only 31% of its 2026 reports were fixed that fast."><meta property="og:url" content="https://cyberneticsintern.com/blog/project-zero-full-x-disclosure-policy-patch-gap/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og/project-zero-full-x-disclosure-policy-patch-gap.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The column that says Unknown"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og/project-zero-full-x-disclosure-policy-patch-gap.png"><meta property="article:published_time" content="2026-11-16T00:00:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The column that says Unknown","description":"Project Zero will publish at 90 days, fixed or not, and 30 days by 2028. Its own public data shows only 31% of its 2026 reports were fixed that fast.","datePublished":"2026-11-16T00:00:00.000Z","author":{"@type":"Person","name":"Shreyas Lipare","url":"https://cyberneticsintern.com","jobTitle":"Concierge Security Engineer 2, Arctic Wolf"},"publisher":{"@type":"Organization","name":"Cybernetic Intern","url":"https://cyberneticsintern.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://cyberneticsintern.com/blog/project-zero-full-x-disclosure-policy-patch-gap/"},"keywords":"project zero disclosure policy, full x disclosure policy, project zero 30 day deadline, vulnerability disclosure deadline 2027, upstream patch gap, project zero reporting transparency","citation":[{"@type":"CreativeWork","name":"Policy and Disclosure: 2026 Edition","url":"https://projectzero.google/2026/11/disclosure-policy.html"},{"@type":"CreativeWork","name":"Reporting Transparency","url":"https://projectzero.google/reporting-transparency.html"},{"@type":"CreativeWork","name":"Vulnerability Disclosure FAQ","url":"https://projectzero.google/vulnerability-disclosure-faq.html"},{"@type":"CreativeWork","name":"Policy and Disclosure: 2021 Edition","url":"https://projectzero.google/2021/04/policy-and-disclosure-2021-edition.html"},{"@type":"CreativeWork","name":"Policy and Disclosure: 2025 Edition","url":"https://projectzero.google/2025/07/reporting-transparency.html"},{"@type":"CreativeWork","name":"How Google handles security vulnerabilities","url":"https://about.google/company-info/appsecurity/"},{"@type":"CreativeWork","name":"Fuzzers vs. AI: Comparing Fuzzilli and BigSleep on JavaScript Engines","url":"https://projectzero.google/2026/10/fuzzing-v-AI.html"},{"@type":"CreativeWork","name":"Project Zero issue tracker","url":"https://project-zero.issues.chromium.org/"},{"@type":"CreativeWork","name":"Google Project Zero will disclose bugs after 90 days, fixed or not","url":"https://www.helpnetsecurity.com/2026/11/16/google-project-zero-disclosure-policy/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this mean Project Zero will now publish zero-days with no patch available?","acceptedAnswer":{"@type":"Answer","text":"It means it will publish technical details once the deadline expires, whether or not a fix exists. That was already true when a vendor missed the 90-day deadline under the old policy. What changed is that shipping a fix no longer buys an extra 30 days of silence, and the deadline itself drops to 60 days in February 2027 and 30 days in January 2028. Bugs already under active exploitation are handled separately, under Google's application security policy and its 7-day clock."}},{"@type":"Question","name":"Does the new policy apply to bugs that were already reported?","acceptedAnswer":{"@type":"Answer","text":"No. Project Zero's disclosure FAQ says a vulnerability is subject to the policy in force on the date it was reported, and that the governing policy is written at the bottom of each report. Everything filed before November 13, 2026 keeps 90 + 30. A bug reported on November 13 is the earliest that can publish unfixed under Full 90, which puts the first of them around February 11, 2027."}},{"@type":"Question","name":"Project Zero only files a few dozen bugs a year. Why should this change anything for me?","acceptedAnswer":{"@type":"Answer","text":"The direct volume is small and Project Zero says so itself. What it produces is a state most vulnerability programs have no process for: a serious bug with public technical details, no patch, and no vendor commitment date. If you have no owner and no playbook for that state, the policy change is a good reason to build both, because other researchers tend to follow where Project Zero sets the norm."}},{"@type":"Question","name":"Is the claim that AI is speeding up exploitation actually backed by evidence?","acceptedAnswer":{"@type":"Answer","text":"Partly. Project Zero gives three reasons and has measured one of them. Its own comparison of the Fuzzilli fuzzer against the BigSleep LLM system on Chrome's V8 engine found 37 actionable vulnerabilities from the fuzzer and 45 from the LLM over six months, so the discovery-volume claim is substantiated for that target. The claims about attackers exploiting faster and turning patches into exploits faster are stated in the announcement without public evidence, and Project Zero calls zero patch-to-exploitation time a model rather than an observation."}},{"@type":"Question","name":"How do I keep an eye on this without a feed to subscribe to?","acceptedAnswer":{"@type":"Answer","text":"Project Zero's Reporting Transparency page lists every pending report with the vendor, the product, the report date and the deadline, and the team says it updates the page weekly. There is no mailing list or RSS feed for it, so this is a calendar reminder and a person, not an integration. Pending deadlines currently run from late November 2026 to February 2027."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cyberneticsintern.com"},{"@type":"ListItem","position":2,"name":"Cybernetic Intern","item":"https://cyberneticsintern.com/blog/"},{"@type":"ListItem","position":3,"name":"The column that says Unknown","item":"https://cyberneticsintern.com/blog/project-zero-full-x-disclosure-policy-patch-gap/"}]}</script><link rel="stylesheet" href="/_astro/BlogBase.DzFyZwuC.css"><link rel="stylesheet" href="/_astro/_..pKdBji3G.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page" data-astro-cid-jo55ryrt><header class="head" data-astro-cid-jo55ryrt><div class="meta mono" data-astro-cid-jo55ryrt><span class="tag" data-astro-cid-jo55ryrt>Vulnerability</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><span data-astro-cid-jo55ryrt>Defensive guide</span><span class="sep" aria-hidden="true" data-astro-cid-jo55ryrt>/</span><time datetime="2026-11-16T00:00:00.000Z" data-astro-cid-jo55ryrt>November 16, 2026</time></div><h1 data-astro-cid-jo55ryrt>The column that says Unknown</h1><p class="standfirst" data-astro-cid-jo55ryrt>Project Zero will publish at 90 days, fixed or not, and 30 days by 2028. Its own public data shows only 31% of its 2026 reports were fixed that fast.</p><div class="byline" data-astro-cid-jo55ryrt><div class="mono who" data-astro-cid-jo55ryrt>SHREYAS LIPARE · GCIH · CEH MASTER</div><p class="mono for" data-astro-cid-jo55ryrt>Anyone who owns a vulnerability management process, and anyone who will have to answer what we do about a serious bug that is public with no patch.</p></div><p class="mono provenance" data-astro-cid-jo55ryrt>Researched and drafted with AI assistance, then reviewed and edited by Shreyas Lipare before publication. Every source below was checked against the original.</p></header><div class="prose" data-astro-cid-jo55ryrt><p><span class="cite-run">Project Zero publishes a table of every vulnerability it has reported since the
+middle of 2025, and the last column of it is headed “First Known User Device
+Protected” <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. It is the only column in the whole table that measures the thing
+a defender actually cares about, which is whether the fix reached a machine.</span></p>
+<p>I counted it on November 16, 2026. Fifty of the sixty-one fixed reports in the
+2026 table say Unknown.</p>
+<p><span class="cite-run">Three days earlier, Project Zero rewrote its disclosure policy <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. That column
+is the argument.</span></p>
+<h2 id="what-happened">What happened</h2>
+<p><span class="cite-run">On November 13, 2026, Project Zero replaced the rule it had run since April
+2021 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a><a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>.</span></p>
+<p><span class="cite-run">The old rule was “90 + 30”. A vendor got 90 days to fix a reported bug. If the
+fix shipped inside that window, Project Zero held the technical details for
+another 30 days of soak time so the patch could roll out. A vendor that expected
+to land a fix by day 104 could request a 14-day grace period, which then ate
+into the soak rather than extending it. The longest a report could stay private
+was 120 days <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>.</span></p>
+<p>The new rule is “Full X”. Details publish X days after the report, and nothing
+else enters into it. Not whether the bug is fixed. Not how severe it is. Not
+whether the vendor asked for more time.</p>
+<p><span class="cite-run">X is 90 today. It drops to 60 on February 2, 2027, and to 30 on January 3,
+2028 <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a><a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a><a href="#ref-9" class="citation" aria-label="Reference 9">[9]</a>.</span></p>
+<p><span class="cite-run">The grace period is gone and so is the variant policy. Three exceptions survive.
+A bug under active exploitation moves to Google’s application security
+disclosure policy, which runs a 7-day clock <a href="#ref-6" class="citation" aria-label="Reference 6">[6]</a>. Project Zero may publish at its
+discretion if someone else has already published the details. And a vendor can
+ask Project Zero to publish <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>.</span></p>
+<p><span class="cite-run">One sentence carries the change: “We still plan to track whether bugs are fixed
+and communicate if they are not, however, this will not be a decision point in
+our policy.” <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a></span></p>
+<p><span class="cite-run">One detail decides what happens next, and it is not in the announcement. It
+lives in the FAQ, which says that vulnerabilities “are subject to the
+disclosure policy on the date they were reported”, and that the governing
+policy is written at the bottom of each individual report <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. Everything in
+flight on November 13 keeps 90 + 30. The earliest report that can publish
+unfixed under Full 90 is one filed on November 13 itself, which lands the first
+of them around February 11, 2027. The next three months are unchanged.</span></p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p><span class="cite-run">Start with the honest limit, because it is large. Project Zero says plainly that
+it “accounts for only a portion of vulnerabilities reported to most software
+makers” <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. Forty-nine reports were pending when I checked <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. Nobody is about
+to be buried.</span></p>
+<p>What the policy produces is not volume. It is a state: a serious bug, full
+technical detail in public, no patch, and no date from the vendor. Most
+vulnerability management programs have three outcomes for a finding, which are
+open, patched, and risk accepted. None of those is the right word for this one,
+and the gap tends to show up at the worst possible moment, which is the morning
+the details land.</p>
+<p><span class="cite-run">You also cannot negotiate your way around the window. Project Zero declines
+requests from affected organizations to see reports early, and sends them
+upstream to the vendor instead <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>. Whatever the vendor tells you is what you
+get.</span></p>
+<p><span class="cite-run">The vendors on the clock are the ones in your fleet. Of the 49 pending reports,
+30 are against Apple, 7 against Adobe, 4 against Google, 3 against Samsung
+Mobile, 2 against Cisco for openh264, 2 against Ittiam Systems for libhevc, and
+1 against AMD for Radeon <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. Forty-six of the 49 name an image, video or audio
+decoder, or an imaging framework. That is a specific exposure, and it is not
+the one most patch programs are organized around.</span></p>
+<p>For anyone who has to defend a remediation target to a board: your window is now
+partly set by a schedule another organization published. The consolation is that
+it is published. You can plan against a date you can read, which is more than
+most vendor roadmaps offer.</p>
+<h2 id="technical-breakdown">Technical breakdown</h2>
+<h3 id="what-project-zero-publishes-and-when">What Project Zero publishes, and when</h3>
+<p><span class="cite-run">Since July 29, 2025, Project Zero has run a trial it calls Reporting
+Transparency <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. Within roughly a week of sending a report, it publishes the
+reference number, the vendor or project, the affected product, the date the
+report was filed, and the date the deadline expires. No technical detail, no
+proof of concept. The team describes it as “an alert, not a blueprint for
+attackers” and says it updates the page weekly <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></p>
+<p><span class="cite-run">The page carries three tables: reports still pending, reports marked fixed, and
+reports whose deadline expired with no fix <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. When a deadline arrives, the
+corresponding entry in the issue tracker is derestricted and the technical
+description becomes readable <a href="#ref-3" class="citation" aria-label="Reference 3">[3]</a>.</span></p>
+<p>So the clock is already public, and has been for over a year. Full X does not
+create the visibility. It changes what the date on the page means, from “the
+latest Project Zero might publish” to “when Project Zero publishes”.</p>
+<h3 id="what-the-data-says-about-a-30-day-deadline">What the data says about a 30-day deadline</h3>
+<p>The 2026 fixed table had 61 rows on November 16, 2026. I took the fix times
+straight from the page’s own “Fix time (Days)” column.</p>
+<p>The median is 46 days. The range runs from 0 days to 101.</p>
+<p>Nineteen of the 61, or 31%, were fixed inside 30 days. Thirty-seven, or 61%,
+were fixed inside 60. Four took longer than 90.</p>
+<p>Read that against the schedule. Under Full 30, roughly two in three of these
+reports would have gone public with no fix available. Under Full 60, roughly two
+in five. Under the 90-day deadline that has applied all along, four.</p>
+<table>
+<thead>
+<tr>
+<th>Reported to</th>
+<th>Fixed reports</th>
+<th>Median days</th>
+<th>Inside 30 days</th>
+<th>Slowest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FreeType</td>
+<td>4</td>
+<td>1</td>
+<td>4 of 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td>2</td>
+<td>13.5</td>
+<td>2 of 2</td>
+<td>19</td>
+</tr>
+<tr>
+<td>StrukturAG</td>
+<td>1</td>
+<td>20</td>
+<td>1 of 1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>5</td>
+<td>26</td>
+<td>4 of 5</td>
+<td>31</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>5</td>
+<td>36</td>
+<td>0 of 5</td>
+<td>36</td>
+</tr>
+<tr>
+<td>Adobe</td>
+<td>9</td>
+<td>42</td>
+<td>3 of 9</td>
+<td>83</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>6</td>
+<td>43</td>
+<td>3 of 6</td>
+<td>95</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>14</td>
+<td>60</td>
+<td>2 of 14</td>
+<td>73</td>
+</tr>
+<tr>
+<td>Samsung Mobile</td>
+<td>9</td>
+<td>76</td>
+<td>0 of 9</td>
+<td>92</td>
+</tr>
+<tr>
+<td>Imagination</td>
+<td>4</td>
+<td>85.5</td>
+<td>0 of 4</td>
+<td>101</td>
+</tr>
+<tr>
+<td>Samsung Semiconductor</td>
+<td>2</td>
+<td>91.5</td>
+<td>0 of 2</td>
+<td>94</td>
+</tr>
+<tr>
+<td><strong>All</strong></td>
+<td><strong>61</strong></td>
+<td><strong>46</strong></td>
+<td><strong>19 of 61</strong></td>
+<td><strong>101</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Two cautions before anyone screenshots that table. It is one year of one
+research team’s reports, heavily weighted towards media parsing, so it is not a
+ranking of vendor security. And a 36-day median with zero inside 30, as Oracle
+has, is five reports that all landed on the same release date, which is a
+release train rather than a failure.</p>
+<p>What it does show is that the January 2028 deadline is not a formality for most
+of this list. Three entries cleared 30 days on every report they appear in:
+FreeType on four, Microsoft on two, StrukturAG on one. None of the three has to
+route a fix through somebody else’s device build.</p>
+<h3 id="the-column-nobody-can-fill-in">The column nobody can fill in</h3>
+<p><span class="cite-run">Of the 61 fixed reports, 50 carry Unknown in the “First Known User Device
+Protected” column. Eleven carry a date: two Microsoft Windows reports, five
+Oracle VirtualBox reports, one Apple System Libraries report, and three Google
+V8 reports <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. In all eleven, that date is identical to the date the fix
+landed. Not one row in the table records a gap between a fix existing and a
+device being protected, because the only rows anyone can fill in are the ones
+where those two things are the same event.</span></p>
+<p><span class="cite-run">There is a pattern in the eleven and it is not clean. V8 reaches users inside
+Chrome, which updates itself, and all three V8 rows carry a date. Both Google
+Pixel rows are blank, and those took 85 and 95 days. Everything from Samsung
+Mobile, Imagination and Ittiam is blank, and those are components that have to
+travel through a chipset vendor and then a device maker before a phone sees
+them. Project Zero named that specific problem when it launched the transparency
+trial and called it the upstream patch gap <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>.</span></p>
+<p>Fifty blanks is the measurement. It is also the reason the measurement exists:
+the team built the column to find out when a fix reaches a device and, for four
+fifths of its own reports, nobody can say.</p>
+<h3 id="the-ai-argument-and-how-much-of-it-is-evidenced">The AI argument, and how much of it is evidenced</h3>
+<p><span class="cite-run">Project Zero gives three reasons for the change and all three are about large
+language models <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. Attackers find and exploit bugs faster. Attackers turn a
+patch into a working exploit faster, to the point that “zero
+patch-to-exploitation time is a reasonable, though imperfect, model of
+attacker behavior”. And Project Zero’s own report volume has risen, “several
+vulnerabilities a week in targets where we once found a few vulnerabilities a
+year”.</span></p>
+<p><span class="cite-run">The third claim is the one the team has measured in public. In October it
+compared Fuzzilli, a long-running special-purpose fuzzer for JavaScript engines,
+against BigSleep, its LLM-based bug finder, on Chrome’s V8 engine over April to
+September 2026 <a href="#ref-7" class="citation" aria-label="Reference 7">[7]</a>. Raw filed reports were 316 for Fuzzilli and 441 for
+BigSleep. Filtered to the tracker’s vulnerability type, 178 and 95. Narrowed
+again to actionable bugs that were not duplicates and that drew at least one fix
+commit, 37 and 45. Observed overlap was 25%, and dedicated experiments put the
+theoretical overlap nearer 60%. Project Zero’s conclusion was that the two
+approaches are complementary and vendors should run both.</span></p>
+<p>A pipeline that went live in April 2026 drew level with a mature, purpose-built
+fuzzer on one of the most heavily fuzzed targets in the world, inside six
+months. That substantiates the volume claim for that target.</p>
+<p><span class="cite-run">The first two claims are different. The announcement states them and cites
+nothing public, and the patch-to-exploit claim is explicitly offered as a model
+rather than an observation <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>. They are a reasonable read of where things are
+going. They are not measurements, and the post does not pretend otherwise.</span></p>
+<h3 id="what-i-could-not-establish">What I could not establish</h3>
+<p><span class="cite-run">The Reporting Transparency page’s most recent update is dated November 10,
+2026, which is three days before the policy changed, and its column is still
+headed “90-day Deadline expires” <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. On November 16 it had not been refreshed.
+Given the FAQ’s rule that a report is governed by the policy in force on its
+report date, those pending deadlines are presumably correct as they stand, but I
+cannot confirm that from the page itself.</span></p>
+<p><span class="cite-run">One entry does not behave like the others. PZ-527459675, reported to Google for
+Android on June 24, 2026, sits in the table of reports whose deadline expired
+without a fix. Its tracker entry returns “Access is denied to this issue” <a href="#ref-8" class="citation" aria-label="Reference 8">[8]</a>.
+The other four entries in that table are readable. From outside I cannot tell
+whether it has not been derestricted or whether this is a tracker permission
+quirk, and the distinction matters: a deadline expiring and the details becoming
+readable are two different events, and a defender watching the tracker only sees
+the second one.</span></p>
+<p><span class="cite-run">Separately, a query for open issues in the Project Zero tracker returned 17
+reports that are public and not marked fixed <a href="#ref-8" class="citation" aria-label="Reference 8">[8]</a>. The oldest had not been
+touched since April 2025. They include issues in XNU, CUPS, libxml2, libxslt and
+a handful of desktop applications. Most predate the transparency trial, so they
+appear in none of its tables. The state everyone is worried about, public and
+unpatched, is not hypothetical. It currently stands at 17.</span></p>
+<h2 id="what-defenders-should-do-next">What defenders should do next</h2>
+<p><strong>Immediate, today or within 24 hours.</strong></p>
+<p><span class="cite-run">Open the Reporting Transparency page and read the “Reported to” column against
+your own asset inventory <a href="#ref-2" class="citation" aria-label="Reference 2">[2]</a>. Today that is Apple, Adobe, Google, Samsung
+Mobile, Cisco, Ittiam Systems and AMD. Twelve of the pending deadlines fall on
+November 23 and November 25, 2026.</span></p>
+<p>Name the person who owns the decision for “public, unfixed, no vendor date”.
+This takes five minutes and it is the single highest-value thing on this list,
+because an unowned decision defaults to whoever happens to be on call the
+morning it arrives.</p>
+<p><strong>Near term, this week.</strong></p>
+<p>Write the no-patch response per product class before you need it. What you can
+disable, what you can put behind a proxy, what you can stop accepting. For a
+media decoder bug, the useful control is almost always the file rather than the
+patch: attachment filtering, preview and thumbnail generation, and anything that
+decodes something a stranger sent you.</p>
+<p>Check where your remediation clock starts. If your SLA begins when a ticket is
+created rather than when the advisory published, your real window is shorter
+than your target by however long intake takes, and nobody has told the board.</p>
+<p><span class="cite-run">Put the transparency page on a weekly check, because weekly is how often Project
+Zero says it updates it <a href="#ref-5" class="citation" aria-label="Reference 5">[5]</a>. There is no feed. A calendar reminder and a named
+person is the whole implementation.</span></p>
+<p><strong>Structural, this quarter.</strong></p>
+<p>Ask your significant vendors the question Project Zero’s table answers on their
+behalf: median days from report to fix, and whether they can say when a fix
+reached a device. The second half is the one that matters, and an inability to
+answer it is itself the answer.</p>
+<p><span class="cite-run">Put non-patch remediation into procurement and renewal conversations. Can the
+vendor disable a feature remotely. Can it ship a configuration change faster
+than a build. Project Zero’s own guidance to vendors this year was to work out
+how they would respond to imminent disclosure before they receive one <a href="#ref-1" class="citation" aria-label="Reference 1">[1]</a>, and
+that question belongs on your side of the table too.</span></p>
+<p>Reduce the surface the pending table is actually about. Forty-six of the 49
+pending reports are image, video or audio parsing. That is attachment handling,
+document preview, thumbnailers, messaging clients and anything else that
+decodes untrusted files on receipt.</p>
+<h2 id="checklist">Checklist</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Reporting Transparency page read against the asset inventory, with the
+vendors that matter to us written down</li>
+<li class="task-list-item"><input type="checkbox" disabled> An owner named for “public, unfixed, no vendor date”, with authority to
+act without waiting for a change window</li>
+<li class="task-list-item"><input type="checkbox" disabled> A no-patch playbook per product class, listing what can be disabled,
+proxied or refused</li>
+<li class="task-list-item"><input type="checkbox" disabled> Remediation SLA clock confirmed to start at advisory publication, not at
+ticket creation</li>
+<li class="task-list-item"><input type="checkbox" disabled> Weekly check on the transparency page assigned to a named person</li>
+<li class="task-list-item"><input type="checkbox" disabled> Vendor question asked: median report-to-fix time, and time to a protected
+device</li>
+<li class="task-list-item"><input type="checkbox" disabled> Untrusted file decoding inventoried: attachments, previews, thumbnails,
+messaging clients</li>
+<li class="task-list-item"><input type="checkbox" disabled> February 2, 2027 and January 3, 2028 on the risk calendar, not just in
+somebody’s inbox</li>
+</ul>
+<h2 id="the-deadline-was-the-easy-half">The deadline was the easy half</h2>
+<p>Project Zero can move its own publication date, and it just did, twice, with the
+second move booked for 2028. What it cannot move is the date a fix arrives on a
+phone. The only honest measurement of that in its own data is a column that
+reads Unknown fifty times out of sixty-one. The policy is pressure applied at
+the one point the team controls, aimed at a problem that lives somewhere else
+entirely, in build pipelines and carrier approvals and update infrastructure
+nobody writes blog posts about.</p>
+<p><span class="cite-run">That is worth saying about the 2028 date in particular. In April 2021 the same
+team wrote that, based on its patch-time data, “it’s likely that we can move to
+a ‘84+28’ model for 2022” <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>. Five and a half years later the policy was still
+90 + 30. An announced schedule is a statement of intent by people who do not
+control the constraint, and Full 30 should be read that way until it is in
+force.</span></p>
+<p><span class="cite-run">The counterargument is strong and it comes from Project Zero itself. The 2021
+post spelled out what the soak period cost defenders. It said the change would
+“make it more difficult for the defensive community to quickly perform their own
+risk assessment, prioritize patch deployment, test patch efficacy, quickly find
+variants, deploy available mitigations, and develop detection signatures” <a href="#ref-4" class="citation" aria-label="Reference 4">[4]</a>.
+That cost has now been withdrawn. Measured against the team’s own 2021
+reasoning, this is a win for the people who have to respond, and a fair share of
+the objections will come from organizations that had been treating the extra
+month as planning slack rather than rollout time.</span></p>
+<p>So take the one thing from this that survives whatever happens to the schedule.
+Stop letting “patched” be a terminal state in your own tooling. Project Zero
+built a column for the next state along, could not fill it in, and changed its
+policy partly because of that. Inside your own estate, that column is fillable.
+Nobody outside it can do it for you.</p>
+</div><section class="faq" aria-labelledby="faq-heading" data-astro-cid-jo55ryrt><h2 class="label" id="faq-heading" data-astro-cid-jo55ryrt>FREQUENTLY ASKED</h2><dl data-astro-cid-jo55ryrt><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Does this mean Project Zero will now publish zero-days with no patch available?</dt><dd data-astro-cid-jo55ryrt>It means it will publish technical details once the deadline expires, whether or not a fix exists. That was already true when a vendor missed the 90-day deadline under the old policy. What changed is that shipping a fix no longer buys an extra 30 days of silence, and the deadline itself drops to 60 days in February 2027 and 30 days in January 2028. Bugs already under active exploitation are handled separately, under Google&#39;s application security policy and its 7-day clock.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Does the new policy apply to bugs that were already reported?</dt><dd data-astro-cid-jo55ryrt>No. Project Zero&#39;s disclosure FAQ says a vulnerability is subject to the policy in force on the date it was reported, and that the governing policy is written at the bottom of each report. Everything filed before November 13, 2026 keeps 90 + 30. A bug reported on November 13 is the earliest that can publish unfixed under Full 90, which puts the first of them around February 11, 2027.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Project Zero only files a few dozen bugs a year. Why should this change anything for me?</dt><dd data-astro-cid-jo55ryrt>The direct volume is small and Project Zero says so itself. What it produces is a state most vulnerability programs have no process for: a serious bug with public technical details, no patch, and no vendor commitment date. If you have no owner and no playbook for that state, the policy change is a good reason to build both, because other researchers tend to follow where Project Zero sets the norm.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>Is the claim that AI is speeding up exploitation actually backed by evidence?</dt><dd data-astro-cid-jo55ryrt>Partly. Project Zero gives three reasons and has measured one of them. Its own comparison of the Fuzzilli fuzzer against the BigSleep LLM system on Chrome&#39;s V8 engine found 37 actionable vulnerabilities from the fuzzer and 45 from the LLM over six months, so the discovery-volume claim is substantiated for that target. The claims about attackers exploiting faster and turning patches into exploits faster are stated in the announcement without public evidence, and Project Zero calls zero patch-to-exploitation time a model rather than an observation.</dd></div><div class="qa" data-astro-cid-jo55ryrt><dt data-astro-cid-jo55ryrt>How do I keep an eye on this without a feed to subscribe to?</dt><dd data-astro-cid-jo55ryrt>Project Zero&#39;s Reporting Transparency page lists every pending report with the vendor, the product, the report date and the deadline, and the team says it updates the page weekly. There is no mailing list or RSS feed for it, so this is a calendar reminder and a person, not an integration. Pending deadlines currently run from late November 2026 to February 2027.</dd></div></dl></section><aside class="confidence" aria-labelledby="confidence-heading" data-astro-cid-j6o3mlwn><div class="label" id="confidence-heading" data-astro-cid-j6o3mlwn>CONFIDENCE AND LIMITATIONS</div><p data-astro-cid-j6o3mlwn>The policy facts come from Project Zero&#39;s own posts and FAQ, which I read in full. Every count and median in this post is mine, taken from the 2026 Reporting Transparency table as it stood on November 16, 2026, and the page is updated weekly, so the numbers will move. Sixty-one fixed reports is a small sample weighted towards media parsing on mobile and desktop platforms, and it measures time from a Project Zero report to a fix, which is not the same thing as a vendor&#39;s overall security. Two things I could not settle are named in the post: whether the transparency page&#39;s pending deadlines will be restated under the new policy, and why one expired entry is not readable in the tracker. Project Zero&#39;s claims about AI speeding up exploitation are its own assessment, offered without public evidence in the announcement.</p></aside><section class="refs" aria-labelledby="refs-heading" data-astro-cid-j6o3mlwn><h2 class="label" id="refs-heading" data-astro-cid-j6o3mlwn>REFERENCES</h2><ol data-astro-cid-j6o3mlwn><li id="ref-1" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[1]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://projectzero.google/2026/11/disclosure-policy.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Policy and Disclosure: 2026 Edition</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Project Zero · Published November 13, 2026 · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-2" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[2]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://projectzero.google/reporting-transparency.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Reporting Transparency</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Project Zero · Published November 10, 2026 · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-3" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[3]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://projectzero.google/vulnerability-disclosure-faq.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Vulnerability Disclosure FAQ</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Project Zero · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-4" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[4]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://projectzero.google/2021/04/policy-and-disclosure-2021-edition.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Policy and Disclosure: 2021 Edition</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Project Zero · Published April 15, 2021 · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-5" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[5]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://projectzero.google/2025/07/reporting-transparency.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Policy and Disclosure: 2025 Edition</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Project Zero · Published July 29, 2025 · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-6" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[6]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://about.google/company-info/appsecurity/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>How Google handles security vulnerabilities</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-7" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[7]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://projectzero.google/2026/10/fuzzing-v-AI.html" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Fuzzers vs. AI: Comparing Fuzzilli and BigSleep on JavaScript Engines</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google Project Zero · Published October 27, 2026 · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="vendor-research" data-astro-cid-j6o3mlwn>VENDOR RESEARCH</span></li><li id="ref-8" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[8]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://project-zero.issues.chromium.org/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Project Zero issue tracker</a><span class="meta mono" data-astro-cid-j6o3mlwn>Google · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="primary" data-astro-cid-j6o3mlwn>PRIMARY</span></li><li id="ref-9" data-astro-cid-j6o3mlwn><span class="mono num" data-astro-cid-j6o3mlwn>[9]</span><span class="body" data-astro-cid-j6o3mlwn><a href="https://www.helpnetsecurity.com/2026/11/16/google-project-zero-disclosure-policy/" rel="noopener nofollow" target="_blank" data-astro-cid-j6o3mlwn>Google Project Zero will disclose bugs after 90 days, fixed or not</a><span class="meta mono" data-astro-cid-j6o3mlwn>Help Net Security · Published November 16, 2026 · Accessed November 16, 2026</span></span><span class="mono tier" data-tier="journalism" data-astro-cid-j6o3mlwn>JOURNALISM</span></li></ol></section><section class="cta" aria-labelledby="cta-heading" data-astro-cid-pmq6rq5t><h2 class="label" id="cta-heading" data-astro-cid-pmq6rq5t>BEFORE YOU GO</h2><div class="grid" data-astro-cid-pmq6rq5t><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Was this useful?</h3><p data-astro-cid-pmq6rq5t>Tell me what you'd change, what was unclear, or what you'd want covered next. Replies shape what gets written.</p><a class="chip" href="mailto:shreyas.lipare@cyberneticsintern.com?subject=Feedback%3A%20The%20column%20that%20says%20Unknown" data-astro-cid-pmq6rq5t>SEND FEEDBACK ↗</a></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>The newsletter</h3><form class="signup" action="https://app.kit.com/forms/9801085/subscriptions" method="post" target="_blank" data-astro-cid-pmq6rq5t><label class="sr-only" for="nl-email" data-astro-cid-pmq6rq5t>Email address</label><input id="nl-email" type="email" name="email_address" required placeholder="you@company.com" autocomplete="email" data-astro-cid-pmq6rq5t><button type="submit" data-astro-cid-pmq6rq5t>SUBSCRIBE</button></form></div><div class="cell" data-astro-cid-pmq6rq5t><h3 data-astro-cid-pmq6rq5t>Follow along</h3><p data-astro-cid-pmq6rq5t>Notes between posts, and whatever I'm breaking in the lab.</p><a class="chip" href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-pmq6rq5t>LINKEDIN ↗</a></div></div></section></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>

@@ -1,0 +1,64 @@
+# Cybernetic Intern
+
+> Concierge Security Engineer 2 at Arctic Wolf. GCIH and CEH Master. Incident response, detection and defensive security, plus the Cybernetic Intern blog.
+
+Security writing by a named practitioner. Every factual claim carries an
+inline citation to a primary source, and each post states what remains
+unconfirmed rather than asserting it. Posts are static HTML and need no
+JavaScript to read.
+
+## Posts
+
+- [Every signal said wait](https://cyberneticsintern.com/blog/idunno-anticsrf-cve-2026-131914-signals-say-wait/)
+- [Same Java, different CPU](https://cyberneticsintern.com/blog/java4shell-cve-2026-114938-avx512-hardware-gate/)
+- [The column that says Unknown](https://cyberneticsintern.com/blog/project-zero-full-x-disclosure-policy-patch-gap/)
+- [The credentials were in the traces](https://cyberneticsintern.com/blog/cursor-fireworks-credentials-in-agent-traces/)
+- [Three status pages, three answers](https://cyberneticsintern.com/blog/microsoft-365-outage-status-pages-disagree/)
+- [The miner was the cheap part](https://cyberneticsintern.com/blog/n-able-n-central-4everable2shell-rmm-blast-radius/)
+- [Nothing else turned off](https://cyberneticsintern.com/blog/sonicwall-cve-2026-19868-saml-mfa-bypass-alternate-auth/)
+- [The version number said patched](https://cyberneticsintern.com/blog/gitlab-onigmo-cve-2026-97229-ruby-patch-gap/)
+- [The stopgap was the fix](https://cyberneticsintern.com/blog/php-cve-2026-115560-session-upload-progress-unpatched/)
+- [Six hours before the patch](https://cyberneticsintern.com/blog/php2shell-cve-2026-109618-109619-leak-before-patch/)
+- [They tried the password first](https://cyberneticsintern.com/blog/connectwise-cloud-backup-service-principal-m365/)
+- [The integrity checker said it was clean](https://cyberneticsintern.com/blog/ivanti-connect-secure-uta0576-chain-integrity-checker/)
+- [The defrost was a feature](https://cyberneticsintern.com/blog/danfoss-refrigeration-controllers-supermarket-defrost-attack/)
+- [Data info, soon](https://cyberneticsintern.com/blog/deloitte-gentlemen-leak-site-claim-unverified/)
+- [The newest one is from 2023](https://cyberneticsintern.com/blog/kev-october-8-old-cves-forensic-triage/)
+- [They encoded one letter](https://cyberneticsintern.com/blog/peoplesoft-waf-bypass-fbi-contractor-patch/)
+- [Every score said this could wait](https://cyberneticsintern.com/blog/zammad-zero-days-agentic-attack-scoring/)
+- [One down, nine to go](https://cyberneticsintern.com/blog/one-down-nine-to-go/)
+- [The scope came from the vendor's logs](https://cyberneticsintern.com/blog/openai-agent-australia-detection-gap/)
+- [The implant never connected to the attacker](https://cyberneticsintern.com/blog/bambootoken-mqtt-broker-c2/)
+- [Publish first, verify later](https://cyberneticsintern.com/blog/rubygems-publish-first-verify-later/)
+- [The second entrance had no lock](https://cyberneticsintern.com/blog/cwe-288-alternate-path-cisco-citrix-kev/)
+- [The backdoor called itself chronyd](https://cyberneticsintern.com/blog/stylesmuggler-magento-cve-2026-75650/)
+- [You cannot rotate a driver's license](https://cyberneticsintern.com/blog/idscan-nexus-driver-licence-leak/)
+- [Failing the key check was enough to get in](https://cyberneticsintern.com/blog/litellm-mcp-auth-bypass-cve-2026-59822/)
+- [Changing a setting was the same as running code](https://cyberneticsintern.com/blog/papercut-ng-mf-zero-day-cve-2026-81578/)
+- [Microsoft blocked device code flow, probably not in your tenant](https://cyberneticsintern.com/blog/device-code-flow-phishing-entra-conditional-access/)
+- [Six CVEs, two deadlines](https://cyberneticsintern.com/blog/kev-august-26-two-deadlines-privilege-escalation/)
+- [Two minutes, ten minutes, twenty minutes](https://cyberneticsintern.com/blog/tale-of-two-socs-red-team-detection/)
+- [The detection audit you can run in a week](https://cyberneticsintern.com/blog/detection-programme-audit-five-checks/)
+- [The perfect 10 that belongs to nobody](https://cyberneticsintern.com/blog/oracle-proxy-plugin-cve-2026-21962-kev/)
+- [AI did not make ICS attacks possible. It made them ordinary.](https://cyberneticsintern.com/blog/ai-generated-exploit-scripts-siemens-s7/)
+- [The rescue email arrives before the breach is public](https://cyberneticsintern.com/blog/ransom-busters-fake-recovery-service/)
+- [A CVSS 10.0 you cannot patch](https://cyberneticsintern.com/blog/entra-id-cve-2026-69836-cloud-kev/)
+- [The AI picked the targets. People did the breaking in.](https://cyberneticsintern.com/blog/autonomous-ai-campaign-cve-2026-33824/)
+- [Ray's browser guard was one string comparison](https://cyberneticsintern.com/blog/ray-cve-2025-62593-browser-guard/)
+- [Patched July 29, compromised by August 5](https://cyberneticsintern.com/blog/vcenter-cve-2026-59310-mass-exploitation/)
+- [A Mac with Screen Sharing on the internet is now a mining rig](https://cyberneticsintern.com/blog/macos-screen-sharing-cve-2026-65400/)
+- [The job offer was the attack: a Windows zero-day delivered by fake recruiters](https://cyberneticsintern.com/blog/lazarus-afd-zero-day-dream-job/)
+- [Boil water notices, caused by a password change](https://cyberneticsintern.com/blog/water-utility-plc-internet-exposure/)
+- [A perfect 10: the Metabase flaw that hands over every connected database](https://cyberneticsintern.com/blog/metabase-sql-injection-cve-2026-72898/)
+- [Gunra ransomware: when the attacker owns your login page](https://cyberneticsintern.com/blog/gunra-ransomware-advisory/)
+- [A worm got into npm through one maintainer's account](https://cyberneticsintern.com/blog/shai-hulud-npm-worm-keyv/)
+- [Your AI prototyping tool is now internet-facing infrastructure](https://cyberneticsintern.com/blog/langflow-rce-ai-tooling-kev/)
+- [A Cisco firewall flaw is being exploited, and there is no workaround](https://cyberneticsintern.com/blog/cisco-asa-ftd-vpn-dos-kev/)
+- [Payroll pirates: an eight-year-old fraud that MFA did not stop](https://cyberneticsintern.com/blog/payroll-pirate-storm-2755/)
+
+## Sections
+
+- [Blog](https://cyberneticsintern.com/blog/): incident breakdowns, CVE analysis, defensive guides
+- [Micro-learning](https://cyberneticsintern.com/learn/): one security concept at a time, by domain
+- [Projects](https://cyberneticsintern.com/projects/): labs, detection content, certifications
+- [Sitemap](https://cyberneticsintern.com/sitemap-index.xml)

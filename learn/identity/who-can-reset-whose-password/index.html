@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-b5rvqjkb><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Who can reset whose password | Cybernetic Intern</title><meta name="description" content="The right to reset an account's password is the right to become it, and that right is usually delegated by container rather than by account."><meta name="author" content="Shreyas Lipare"><link rel="canonical" href="https://cyberneticsintern.com/learn/identity/who-can-reset-whose-password/"><meta property="og:type" content="article"><meta property="og:title" content="Who can reset whose password | Cybernetic Intern"><meta property="og:description" content="The right to reset an account's password is the right to become it, and that right is usually delegated by container rather than by account."><meta property="og:url" content="https://cyberneticsintern.com/learn/identity/who-can-reset-whose-password/"><meta property="og:site_name" content="Cybernetic Intern"><meta property="og:image" content="https://cyberneticsintern.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Cybernetic Intern, Shreyas Lipare"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cyberneticsintern.com/og.png"><meta property="article:published_time" content="2026-11-25T07:20:00.000Z"><meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;4486d41118e94aaf90ff3d30129572d4&quot;}"></script><link rel="alternate" type="application/rss+xml" title="Cybernetic Intern" href="/blog/rss.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Who can reset whose password","description":"The right to reset an account's password is the right to become it, and that right is usually delegated by container rather than by account.","url":"https://cyberneticsintern.com/learn/identity/who-can-reset-whose-password/","datePublished":"2026-11-25T07:20:00.000Z","educationalLevel":"practitioner","about":"Identity and Access","author":{"@type":"Person","name":"Shreyas Lipare"}}</script><link rel="stylesheet" href="/_astro/BlogBase.DzFyZwuC.css"><link rel="stylesheet" href="/_astro/_slug_.6b4bEG6J.css"></head><body data-astro-cid-b5rvqjkb><a class="skip" href="#main" data-astro-cid-b5rvqjkb>SKIP TO CONTENT</a><header class="bar" data-astro-cid-b5rvqjkb><div class="page inner" data-astro-cid-b5rvqjkb><a class="mono home" href="/" data-astro-cid-b5rvqjkb>← CYBERNETICSINTERN.COM</a><a class="mono brand" href="/blog/" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</a></div></header><main id="main" data-astro-cid-b5rvqjkb><article class="page entry" data-astro-cid-jh75pjse><div class="meta mono" data-astro-cid-jh75pjse><a class="dom" href="/learn/identity/" data-astro-cid-jh75pjse>Identity and Access</a><span data-astro-cid-jh75pjse>PRACTITIONER</span><time datetime="2026-11-25T07:20:00.000Z" data-astro-cid-jh75pjse>November 25, 2026</time></div><h1 data-astro-cid-jh75pjse>Who can reset whose password</h1><p class="summary" data-astro-cid-jh75pjse>The right to reset an account&#39;s password is the right to become it, and that right is usually delegated by container rather than by account.</p><div class="prose" data-astro-cid-jh75pjse><p>Directory permissions are not only about reading. They include the right to act
+on another account, and the most useful of those is resetting its password.</p>
+<p>If you can reset an account’s password, you can become that account. There is
+no exploit involved and no credential to steal. It is one supported
+administrative action, and the only thing standing in the way is that the
+directory writes it down.</p>
+<p>These rights are normally delegated at the container level. A service desk
+group is given reset rights over an organizational unit and inherits them down
+to everything inside it. That is sensible, right up until somebody moves a
+privileged account into that unit, or creates one there, or nests a group into
+the service desk group for an unrelated reason.</p>
+<p>The path that results is invisible from a group membership list. The service
+desk account is not a member of anything privileged. It holds a permission on
+an object that is.</p>
+<p>This is why attack path tooling exists at all. The interesting routes through a
+directory are permissions rather than memberships, and permissions are not
+where people look.</p>
+<p>Take your three most privileged accounts and list everyone holding reset rights
+over each one. Count the people. It is almost always a larger number than you
+would have guessed.</p>
+</div><details class="check" data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>CHECK YOURSELF<span class="cue" aria-hidden="true" data-astro-cid-jh75pjse></span></summary><div class="check-body" data-check data-answer="Everyone in the service desk group can now take over that service account by resetting its password" data-astro-cid-jh75pjse><p class="ask" data-astro-cid-jh75pjse>A service desk group holds password reset rights over an organizational unit. Somebody moves the service account that owns your backup agents into that organizational unit. What has changed?</p><ul class="opts" data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><button type="button" data-opt value="Nothing, because reset rights apply only to accounts that log on interactively" data-astro-cid-jh75pjse>Nothing, because reset rights apply only to accounts that log on interactively</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Nothing of consequence, since the service desk group holds no privileged group memberships" data-astro-cid-jh75pjse>Nothing of consequence, since the service desk group holds no privileged group memberships</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Nothing, because the directory automatically reapplies default permissions to privileged objects" data-astro-cid-jh75pjse>Nothing, because the directory automatically reapplies default permissions to privileged objects</button></li><li data-astro-cid-jh75pjse><button type="button" data-opt value="Everyone in the service desk group can now take over that service account by resetting its password" data-astro-cid-jh75pjse>Everyone in the service desk group can now take over that service account by resetting its password</button></li></ul><p class="feedback mono" data-feedback role="status" aria-live="polite" data-astro-cid-jh75pjse></p><details class="reveal" data-reveal data-astro-cid-jh75pjse><summary data-astro-cid-jh75pjse>SHOW THE ANSWER</summary><div class="reveal-body" data-astro-cid-jh75pjse><p class="answer" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Everyone in the service desk group can now take over that service account by resetting its password</strong></p><p class="why" data-astro-cid-jh75pjse><strong data-astro-cid-jh75pjse>Why.</strong> Delegated rights are inherited down the container, so moving an object into it grants those rights over the object. Reset rights do not care whether an account logs on interactively. Automatic reapplication of default permissions is a real mechanism, which is what makes that option tempting, but it covers members of specific protected groups rather than every account you happen to consider important, and a backup service account is usually not one of them. The group&#39;s own memberships are beside the point: this privilege is a permission held on an object, which is exactly why it never appears in a membership report.</p></div></details></div></details><script>(function(){const readKey = "identity/who-can-reset-whose-password";
+
+      /**
+       * Mark this piece read, in this browser only.
+       *
+       * Marking on open rather than behind a button: an explicit control is
+       * more honest about what "read" means, and almost nobody clicks it, so
+       * the honest version records nothing. Reset lives on the domain page.
+       */
+      (function () {
+        var KEY = "ci:learn:read";
+        try {
+          var read = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+          read[readKey] = Date.now();
+          localStorage.setItem(KEY, JSON.stringify(read));
+        } catch (e) {
+          /* Private mode, or storage disabled. Nothing here is load-bearing. */
+        }
+      })();
+    })();</script><script>
+      /**
+       * The only client JavaScript on the site, and a deliberate exception.
+       * Articles stay server-rendered; a self-test is an interactive control
+       * and is allowed to behave like one.
+       *
+       * Progressive enhancement: with scripting off the buttons are inert but
+       * "SHOW THE ANSWER" still works, so the question is never a dead end.
+       *
+       * The answer sits in a data attribute, so anyone reading source can find
+       * it. That is fine. This is a self-test, not an exam, and the only person
+       * a peek cheats is the reader.
+       */
+      document.querySelectorAll("[data-check]").forEach(function (box) {
+        var answer = box.getAttribute("data-answer");
+        var feedback = box.querySelector("[data-feedback]");
+        var reveal = box.querySelector("[data-reveal]");
+        var opts = box.querySelectorAll("[data-opt]");
+        var solved = false;
+
+        opts.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (solved || btn.disabled) return;
+
+            if (btn.value === answer) {
+              solved = true;
+              btn.classList.add("is-right");
+              feedback.textContent = "CORRECT";
+              feedback.className = "feedback mono is-right";
+              opts.forEach(function (o) {
+                o.disabled = true;
+              });
+              if (reveal) reveal.open = true;
+            } else {
+              btn.classList.add("is-wrong");
+              btn.disabled = true;
+              feedback.textContent = "NOT QUITE. TRY ANOTHER.";
+              feedback.className = "feedback mono is-wrong";
+            }
+          });
+        });
+      });
+    </script><section class="refs" data-astro-cid-jh75pjse><h2 class="mono" data-astro-cid-jh75pjse>REFERENCE</h2><ul data-astro-cid-jh75pjse><li data-astro-cid-jh75pjse><a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/delegating-administration-of-default-containers-and-ous" rel="noopener" target="_blank" data-astro-cid-jh75pjse>Delegating administration of default containers and OUs</a></li></ul></section><a class="mono back" href="/learn/identity/" data-astro-cid-jh75pjse>← ALL IDENTITY AND ACCESS</a></article></main><footer class="foot" data-astro-cid-b5rvqjkb><div class="page" data-astro-cid-b5rvqjkb><div class="foot-grid" data-astro-cid-b5rvqjkb><div data-astro-cid-b5rvqjkb><div class="label" data-astro-cid-b5rvqjkb>CYBERNETIC INTERN</div><p class="tagline" data-astro-cid-b5rvqjkb>Security writing from someone who does the work. Incidents, vulnerabilities and defenses: explained plainly first, then in technical depth, with every claim cited to a primary source.</p></div><div class="links mono" data-astro-cid-b5rvqjkb><a href="/" data-astro-cid-b5rvqjkb>Portfolio</a><a href="/blog/" data-astro-cid-b5rvqjkb>All posts</a><a href="/blog/rss.xml" data-astro-cid-b5rvqjkb>RSS</a><a href="https://www.linkedin.com/in/shrey-lipare/" rel="me noopener" target="_blank" data-astro-cid-b5rvqjkb>LinkedIn</a></div></div><div class="colophon mono" data-astro-cid-b5rvqjkb>SHREYAS LIPARE · GCIH · CEH MASTER · © 2026</div></div></footer></body></html>
